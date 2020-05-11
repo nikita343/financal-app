@@ -1,0 +1,1998 @@
+
+{%extends 'base.html'%}
+{% load static %}
+{% block title %}
+| Settings
+{% endblock  %}
+{%block content%}
+
+
+
+<script>
+
+
+var colorPicker = new iro.ColorPicker(".colorPicker", {
+// color picker options
+// Option guide: https://iro.js.org/guide.html#color-picker-options
+width: 200,
+color: "#fff",
+borderWidth: 1,
+borderColor: 0,
+
+});
+
+var values =document.getElementById("values");
+// read color value
+colorPicker.on(["color:init", "color:change"], function(color){
+  
+$(function () {
+
+// $("body").get(0).style.setProperty("--color-primary", color.hexString);
+
+});
+    
+var hex = colorPicker.color.hexString;
+    $('.dummyinput').val(hex);
+});
+
+</script>
+    
+
+    
+    <script>
+
+function hideVisibilityCss(item){
+      item.css({
+        "visibility":"hidden",
+        "opacity": "0",
+      })
+    }
+    function visibilityCss(item){
+      item.css({
+        "visibility":"visible",
+        "opacity": "1",
+      })
+    }
+    
+        
+function showPass() {
+    var x = document.getElementById("newPass");
+    if (x.type === "password") {
+      x.type = "text";
+      hideVisibilityCss($(".newPassErorrIcon"))
+      hideVisibilityCss($(".newPassIcon"))
+      visibilityCss($(".showpass"))
+    
+    } else {
+      x.type = "password";
+      visibilityCss($(".newPassIcon"))
+      hideVisibilityCss($(".showpass"))
+      hideVisibilityCss($(".newPassErorrIcon"))
+    }
+
+  }
+    </script>
+
+
+
+
+
+    {% include 'partials/_menu.html' %}
+    {% if user.usermembership.language.id == 1 %}
+
+    <div class="dashboard__popup dashboardpopup" id="dashboardpopup">
+
+
+        <div class="dashboard__popup-close" id="closeButton">&times;</div>
+        <div class="dashboard__popup-2" id="cancelMembership">
+            <form action="{%url 'cancel'%}">
+        <p class="dashboard__popup-heading">Do You Want To Cancel Your Membership ?</p>
+      
+        <button id="OkMessageClick" class="dashboard__popup-button">Yes<span>&rarr;</span></button>    
+      </form>
+      </div>
+    </div>
+
+<div class="u-margin-top-medium">
+<div class="settings__box {{user.usermembership.colorscheme}}">
+    <a id="closeMenu" href="#" class="dashboard__popup-button-4"><span>&larr;</span> Back To Menu</a>
+                  
+    <div id="settingsHeading" class="settings__heading">Settings</div>
+  
+    <div class="settings__grid">
+        <div class="settings__grid-1">
+
+            <ul class="dashboard__sidebar__ul">
+                <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                    <a href="#" id="accountClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                        <svg version="1.1" id="accountIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                        <g>
+                            <path d="M500,591.4c-110.9,0-201-90.2-201-201c0-110.9,90.2-201,201-201c110.9,0,201,90.2,201,201C701,501.2,610.9,591.4,500,591.4
+                                z M500,244.3c-80.5,0-146,65.5-146,146s65.5,146,146,146s146-65.5,146-146S580.5,244.3,500,244.3z"/>
+                            <path d="M216,808.6l0-0.2c0-0.4,0-0.8,0-1.2c0-75.9,29.5-147.2,83.2-200.8c53.6-53.6,125-83.2,200.8-83.2s147.2,29.5,200.8,83.2
+                                c53.6,53.6,83.2,125,83.2,200.8h-55c0-126.3-102.7-229-229-229c-126.3,0-229,102.7-229,229l0,0.2c0,0.3,0,0.6,0,0.9L216,808.6z"/>
+                        </g>
+                        <path d="M500,992.9c-64.8,0-127.7-12.7-186.9-37.7c-57.2-24.2-108.5-58.8-152.6-102.9c-44.1-44.1-78.7-95.4-102.9-152.6
+                            c-25-59.2-37.7-122.1-37.7-186.9c0-64.8,12.7-127.7,37.7-186.9c24.2-57.2,58.8-108.5,102.9-152.6c44.1-44.1,95.4-78.7,152.6-102.9
+                            c59.2-25,122.1-37.7,186.9-37.7c64.8,0,127.7,12.7,186.9,37.7c57.2,24.2,108.5,58.8,152.6,102.9c44.1,44.1,78.7,95.4,102.9,152.6
+                            c25,59.2,37.7,122.1,37.7,186.9c0,64.8-12.7,127.7-37.7,186.9c-24.2,57.2-58.8,108.5-102.9,152.6s-95.4,78.7-152.6,102.9
+                            C627.7,980.2,564.8,992.9,500,992.9z M500,87.5c-234.4,0-425.2,190.7-425.2,425.2S265.6,937.9,500,937.9s425.2-190.7,425.2-425.2
+                            S734.4,87.5,500,87.5z"/>
+                        </svg>
+                        
+                        
+                        Account</a>
+                </li>
+                <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                    <a href="#" id="themesClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                        <svg version="1.1" id="themesIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                        <g>
+                            <g>
+                                <path d="M910.6,33.7c-26.9,0-50.9,16-61.3,40.8l-59.8,142.9C771.6,200.6,748.3,190,723,190H136.5c-53.9,0-97.7,43.9-97.7,97.7
+                                    v586.5c0,53.9,43.9,97.7,97.7,97.7H723c53.9,0,97.7-43.9,97.7-97.7V446.3l150.1-316.7c4.1-8.7,6.3-18.4,6.3-29.4
+                                    C977.1,63.5,947.2,33.7,910.6,33.7z M781.6,874.3c0,32.3-26.3,58.6-58.6,58.6H136.5c-32.3,0-58.6-26.3-58.6-58.6V287.8
+                                    c0-32.3,26.3-58.6,58.6-58.6H723c20.6,0,39.1,11.2,49.6,28.5L703.4,423v-96.1c0-10.8-8.8-19.6-19.6-19.6H175.6
+                                    c-10.8,0-19.6,8.8-19.6,19.6v156.4c0,10.8,8.8,19.6,19.6,19.6H670l-16.4,39.1H488.4c-10.8,0-19.6,8.8-19.6,19.6v234.6
+                                    c0,0.5,0.2,0.9,0.3,1.4c-16.1,14.3-25.9,19-26.6,19.3c-6.2,2.3-10.8,7.5-12.3,14c-1.5,6.6,0.5,13.5,5.2,18.2
+                                    c28.3,28.3,67.4,39.1,105.6,39.1c48.8,0,96.2-17.7,117.5-39.1c30.7-30.7,53.3-91.6,36.2-137l86.8-183.1L781.6,874.3L781.6,874.3z
+                                     M534.7,762.2c5.4-17.8,10.5-34.6,26.1-50.1c27.6-27.6,62-27.6,89.7,0c24.7,24.7,5.9,83.8-19.6,109.2
+                                    c-21.2,21.2-96.5,41.6-147.1,15.1c6.7-5.2,14.5-12,23.2-20.8C523.4,799.3,529.2,780.5,534.7,762.2z M507.9,721.6V581h129.3
+                                    l-30,71.6c-26.1-0.5-52.4,10-74.1,31.9C521,696.7,513.4,709.3,507.9,721.6z M645.8,661.8L698.5,536l29.6,14.5l-59.7,125.8
+                                    C661.1,670.5,653.7,665.5,645.8,661.8z M664.3,346.4v117.3H195.1V346.4H664.3z M935.5,112.9L744.7,515.2L713.6,500l99.1-236.9
+                                    l72.6-173.5c4.3-10.2,14.2-16.8,25.3-16.8c15.1,0,27.4,12.3,27.4,28.7C938,105.4,937.1,109.4,935.5,112.9z"/>
+                            </g>
+                        </g>
+                        <g>
+                            <g>
+                                <path d="M371.1,541.9H175.6c-10.8,0-19.6,8.8-19.6,19.6v273.7c0,10.8,8.8,19.6,19.6,19.6h195.5c10.8,0,19.6-8.8,19.6-19.6V561.5
+                                    C390.6,550.7,381.9,541.9,371.1,541.9z M351.5,815.6H195.1V581h156.4L351.5,815.6L351.5,815.6z"/>
+                            </g>
+                        </g>
+                        </svg>
+                        
+                        
+                        Personalisation</a>
+                </li>
+              
+                <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                    <a href="#" id="colourClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                        <svg version="1.1" id="colourIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                        <path d="M526.2,971.6h-78.7c-37.5,0-67.9-30.4-67.9-67.8V573.1c0-8.7-7-15.7-15.7-15.7H256.6c-37.5,0-67.9-30.4-67.9-67.9V135.9
+                        c0-37.5,30.4-67.9,67.9-67.9h464c37.5,0,67.9,30.4,67.9,67.9V230c0,15.2-12.3,27.5-27.5,27.5l0,0c-15.2,0-27.5-12.3-27.5-27.5v-91.3
+                        c0-8.7-7-15.7-15.7-15.7H259.4c-8.7,0-15.7,7-15.7,15.7v348c0,8.7,7,15.7,15.7,15.7h107.4c37.5,0,67.9,30.4,67.9,67.8v330.7
+                        c0,8.7,7,15.7,15.7,15.7h73c8.7,0,15.7-7,15.7-15.7v-328c0-37.5,30.4-67.8,67.8-67.8h110.9c8.7,0,15.7-7,15.7-15.7V385.7
+                        c0-8.7-7-15.7-15.7-15.7H348c-15.2,0-27.5-12.3-27.5-27.5v0c0-15.2,12.3-27.5,27.5-27.5h372.6c37.5,0,67.8,30.4,67.8,67.9v109.3
+                        c0,37.5-30.4,67.9-67.8,67.9H609.7c-8.7,0-15.7,7-15.7,15.7v328C594,941.2,563.7,971.6,526.2,971.6z"/>
+                    </svg>
+               
+                        
+                   Text Colour</a>
+                </li>
+
+                <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                    <a href="#" id="languageClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                        <svg version="1.1" id="languageIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                        <path d="M504.2,987c-129.8,0-251.7-50.6-343.5-142.3C69,752.9,18.4,631,18.4,501.2S69,249.5,160.7,157.7
+                            C252.5,66,374.4,15.4,504.2,15.4S755.9,66,847.7,157.7C939.6,249.5,990,371.4,990,501.2s-50.6,251.7-142.3,343.5
+                            C755.9,936.4,634,987,504.2,987z M504.2,72C267.6,72,75,264.6,75,501.2s192.5,429.2,429.2,429.2s429.2-192.5,429.2-429.2
+                            S740.9,72,504.2,72z"/>
+                        <path d="M504.7,987c-62.7,0-119.5-53.8-159.9-151.5c-37.2-89.7-57.5-208.5-57.5-334.3s20.5-244.6,57.5-334.3
+                            C385.2,69.3,442,15.4,504.7,15.4s119.5,53.8,159.9,151.5c37.2,89.7,57.5,208.5,57.5,334.3s-20.4,244.6-57.5,334.3
+                            C624.3,933.2,567.4,987,504.7,987z M504.7,72c-76.1,0-160.8,176.2-160.8,429.2s84.9,429.2,160.8,429.2s160.8-176.2,160.8-429.2
+                            S580.8,72,504.7,72z"/>
+                        <rect x="68.2" y="472.9" width="892.3" height="56.6"/>
+                        <path d="M895.3,788l-326.9-29.6c-42.7-3.9-85.8-3.9-128.5,0L113.2,788l-5-56.4L435,702c46.1-4.2,92.6-4.2,138.7,0l326.9,29.6
+                            L895.3,788z"/>
+                        <path d="M504.2,338.8c-23.1,0-46.4-1-69.4-3.1L108,306.1l5-56.4l326.9,29.6c42.7,3.9,85.8,3.9,128.5,0l326.9-29.6l5,56.4
+                            l-326.9,29.6C550.6,337.8,527.3,338.8,504.2,338.8z"/>
+                        </svg>
+                        
+                        
+                   Language</a>
+                </li>
+
+                <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                    <a href="#" id="backgroundClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                        <svg version="1.1" id="backgroundIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                   	 viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+<g>
+	<path d="M869.4,940H110c-52.1,0-94.4-42.4-94.4-94.4V225.9c0-52.1,42.4-94.4,94.4-94.4h759.4c52.1,0,94.4,42.4,94.4,94.4v619.7
+		C963.8,897.7,921.5,940,869.4,940z M110,190.5c-19.5,0-35.4,15.9-35.4,35.4v619.7c0,19.5,15.9,35.4,35.4,35.4h759.4
+		c19.5,0,35.4-15.9,35.4-35.4V225.9c0-19.5-15.9-35.4-35.4-35.4H110z"/>
+	<circle cx="750.2" cy="336.9" r="72.3"/>
+	<polygon points="83.2,910.6 41.5,868.8 401.5,508.8 425.9,532.8 608.9,715.8 714.6,610.1 940.6,836.1 898.9,877.9 714.6,693.6 
+		609.1,799.1 581.4,771.7 401.7,592 	"/>
+</g>
+</svg>
+
+                        
+                        
+                   Background</a>
+                </li>
+
+                <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                    <a href="#" id="passwordClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                        <svg version="1.1" id="passwordIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                        <path d="M793.8,969.9H186.9c-41.6,0-75.5-33.9-75.5-75.5V399.2c0-41.6,33.9-75.5,75.5-75.5h606.9c41.6,0,75.5,33.9,75.5,75.5v495.3
+                            C869.3,936,835.4,969.9,793.8,969.9z M186.9,370.9c-15.6,0-28.3,12.7-28.3,28.3v495.3c0,15.6,12.7,28.3,28.3,28.3h606.9
+                            c15.6,0,28.3-12.7,28.3-28.3V399.2c0-15.6-12.7-28.3-28.3-28.3H186.9z"/>
+                        <g>
+                            <circle cx="329.4" cy="646.8" r="57.8"/>
+                            <circle cx="487.3" cy="646.8" r="57.8"/>
+                            <circle cx="651.3" cy="646.8" r="57.8"/>
+                        </g>
+                        <path d="M759.2,294.1h-44c0-124-100.9-224.9-224.9-224.9S265.5,170.1,265.5,294.1h-44c0-36.3,7.1-71.5,21.1-104.6
+                            c13.5-32,32.9-60.8,57.6-85.4c24.7-24.7,53.4-44.1,85.4-57.6c33.2-14,68.4-21.1,104.6-21.1c36.3,0,71.5,7.1,104.6,21.1
+                            c32,13.5,60.8,32.9,85.4,57.6c24.7,24.7,44.1,53.4,57.6,85.4C752.1,222.6,759.2,257.8,759.2,294.1z"/>
+                        </svg>
+                        
+                        
+                   Password</a>
+                </li>
+                <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                    <a href="#" id="membershipClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                        <svg version="1.1" id="membershipIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                   	 viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+<g>
+	<path d="M665.8,670.5H161c-70.9,0-128.6-57.7-128.6-128.6V312.7c0-70.9,57.7-128.6,128.6-128.6h504.7
+		c70.9,0,128.6,57.7,128.6,128.6v229.2C794.3,612.8,736.6,670.5,665.8,670.5z M161,239.2c-40.6,0-73.6,33-73.6,73.6v229.2
+		c0,40.6,33,73.6,73.6,73.6h504.7c40.6,0,73.6-33,73.6-73.6V312.7c0-40.6-33-73.6-73.6-73.6H161z"/>
+	<rect x="60" y="309.5" width="706.8" height="55"/>
+</g>
+<path d="M775.2,859.3c-13.2,0-26.4-2.2-39.2-6.6L250.4,686.9c-11.4-3.9-22.1-9.4-31.9-16.4h-60.2c-69.3,0-125.8-59-125.8-131.4
+	V315.6c0-72.5,56.4-131.4,125.8-131.4h510.3c69.3,0,125.8,59,125.8,131.4v45.7l84.8,29c32,10.9,58,34.2,73.1,65.6
+	c15,31,17.7,66.2,7.6,99.3l-64.9,212.6c-10.5,34.5-33.4,62.2-64.5,78.1C812.9,854.8,794.1,859.3,775.2,859.3z M158.3,239.2
+	c-39,0-70.8,34.3-70.8,76.4V539c0,42.1,31.7,76.4,70.8,76.4H238l7.7,6.5c6.7,5.7,14.3,10,22.4,12.8l485.6,165.9
+	c17.1,5.8,35.4,4.5,51.5-3.8c17.7-9.1,30.8-25.1,37-45.2l64.9-212.6c12.4-40.5-8.2-83.9-45.9-96.8l-122-41.7v-85.1
+	c0-42.1-31.7-76.4-70.8-76.4H158.3z"/>
+<rect x="819.6" y="432" transform="matrix(0.3457 -0.9384 0.9384 0.3457 66.778 1134.7985)" width="55" height="175"/>
+</svg>
+
+                        
+                   Memberships</a>
+                </li>
+             
+            </ul>
+
+        </div>
+        <div class="settings__grid-2">
+
+
+            <div class="settings_id accountId">
+
+                <p class="settings__heading-2">Change Username</p>
+ 
+                    <form class="" id="updateNamefrm" method="POST" >
+            <div class="autorisation__input-box-2">    
+                <div class="autorisation__input-box">
+                    {% csrf_token %}
+                    <input type="text" id="updateName" name="newUserName" class="autorisation__input autorisation__input-2"  required   placeholder="New Username">
+           
+                    <svg version="1.1"  class="icon autorisation__icon updateUserIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                    <g>
+                        <path d="M500,591.4c-110.9,0-201-90.2-201-201c0-110.9,90.2-201,201-201c110.9,0,201,90.2,201,201C701,501.2,610.9,591.4,500,591.4
+                            z M500,244.3c-80.5,0-146,65.5-146,146s65.5,146,146,146s146-65.5,146-146S580.5,244.3,500,244.3z"/>
+                        <path d="M216,808.6l0-0.2c0-0.4,0-0.8,0-1.2c0-75.9,29.5-147.2,83.2-200.8c53.6-53.6,125-83.2,200.8-83.2s147.2,29.5,200.8,83.2
+                            c53.6,53.6,83.2,125,83.2,200.8h-55c0-126.3-102.7-229-229-229c-126.3,0-229,102.7-229,229l0,0.2c0,0.3,0,0.6,0,0.9L216,808.6z"/>
+                    </g>
+                    <path d="M500,992.9c-64.8,0-127.7-12.7-186.9-37.7c-57.2-24.2-108.5-58.8-152.6-102.9c-44.1-44.1-78.7-95.4-102.9-152.6
+                        c-25-59.2-37.7-122.1-37.7-186.9c0-64.8,12.7-127.7,37.7-186.9c24.2-57.2,58.8-108.5,102.9-152.6c44.1-44.1,95.4-78.7,152.6-102.9
+                        c59.2-25,122.1-37.7,186.9-37.7c64.8,0,127.7,12.7,186.9,37.7c57.2,24.2,108.5,58.8,152.6,102.9c44.1,44.1,78.7,95.4,102.9,152.6
+                        c25,59.2,37.7,122.1,37.7,186.9c0,64.8-12.7,127.7-37.7,186.9c-24.2,57.2-58.8,108.5-102.9,152.6s-95.4,78.7-152.6,102.9
+                        C627.7,980.2,564.8,992.9,500,992.9z M500,87.5c-234.4,0-425.2,190.7-425.2,425.2S265.6,937.9,500,937.9s425.2-190.7,425.2-425.2
+                        S734.4,87.5,500,87.5z"/>
+                    </svg>
+
+                    <svg version="1.1" class="icon autorisation__icon errorIcon " xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                    <path d="M83.9,929L83.9,929c-13.7-13.7-13.7-35.8,0-49.5l783-783c13.7-13.7,35.8-13.7,49.5,0v0c13.7,13.7,13.7,35.8,0,49.5l-783,783
+                        C119.8,942.7,97.6,942.7,83.9,929z"/>
+                    <path d="M867.3,929.4L83.6,145.6c-13.7-13.7-13.7-35.8,0-49.5l0,0c13.7-13.7,35.8-13.7,49.5,0l783.7,783.7
+                        c13.7,13.7,13.7,35.8,0,49.5l0,0C903.1,943,881,943,867.3,929.4z"/>
+                    </svg>
+                    
+                    <div class="autorisation__input-label-box">
+                <label  class="autorisation__input-label" for="updateName">New Username</label>
+                <label  class="autorisation__input-error" for="updateName" id="updateName-feedback"></label>
+                    </div>
+                </div>
+            </div>
+                <div class="dashboard__popup-button-3-box" >
+              <button type="submit" id="updateUserButton" disabled class="dashboard__popup-button dashboard__popup-button-3" name="updateUsername">Update <span>&rarr;</span></button>    
+                </div>
+     
+                </form>
+      
+                <p class="settings__heading-2 u-margin-bottom-small ">Log out</p>  <form action="{% url 'logout' %}" method="POST">
+                <div class="dashboard__popup-button-3-box">
+                    {% csrf_token %}
+                    <button type="submit" class="dashboard__popup-button dashboard__popup-button-3">Log out <span>&rarr;</span></button>
+                        
+                    </form>
+                </div>
+
+           
+            </div>
+
+          
+
+         <div class="settings_id colourId">
+                
+  
+                    <p class="settings__heading u-margin-bottom-medium">Text Colour</p>
+                    <div class="settings__center">
+                <div  class="colorPicker settings__colour-box "></div>
+                    <div class="u-margin-top-medium u-center-text">
+                        <form   method="POST">
+                        {% csrf_token %}
+                    <input type="text" style="display: none;" name="color" value="#fff" class="dummyinput">
+                    <div class="dashboard__popup-button-3-box ">
+               
+                        <button type="submit" name="colorchange"  name="color-change"  id="color-close" class="dashboard__popup-button dashboard__popup-button-5">Update <span>&rarr;</span></button>
+                            
+                    
+                    </div>
+                   
+                </form>
+                </div>
+            </div>
+       </div> 
+
+       <div class="settings_id backgroundId">
+        <div class="settings__center">
+        <p class="settings__heading-2">Background</p>
+<form action="#" id='myform' enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+       <div class="settings__background__link-box">
+        <button class="settings__background__link" >Select Image
+       <input type="file" class="settings__background__file" name="image" enctype="multipart/form-data"  id="backgroundimage" placeholder="Upload image">
+    </button>   
+    </div> 
+      <div class="dashboard__popup-button-3-box">
+        <button id="submit-image"disabled name="imagechange" class="dashboard__popup-button dashboard__popup-button-3" type="submit">Upload <span>&rarr;</span></button>
+          </div>   
+</form>
+    </div>
+</div>
+
+<div class="settings_id membershipId">
+    <p class="settings__heading-2">Memberships</p>
+    <p class="settings__heading-2 u-margin-bottom-small">
+        Your current Membership is <br>
+        <span class="settings__heading-span">{{ user.usermembership.membership}}</span>
+    </p>
+
+    <div class="dashboard__popup-button-3-box">
+        <form action="{%url 'select'%}">
+        <button type="submit" class="dashboard__popup-button dashboard__popup-button-3" >Upgrade Membership <span>&rarr;</span></button>    
+       </form>   </div>
+       {% if user.usermembership.membership.membership_type != "Free"%}
+       <p class="settings__heading-2">Cancel Memberships</p>
+       <div class="dashboard__popup-button-3-box">
+    
+        <button type="submit" id="cancelMembershipBtn" class="dashboard__popup-button dashboard__popup-button-3" >Cancel Membership <span>&rarr;</span></button>    
+        </div>
+        {%endif%}
+</div>
+
+
+<div class="settings_id languageId">
+    <div class="settings__center">
+    <p class="settings__heading-2 u-margin-botton-bigger">Language</p>
+    <form action="" method="post">
+        {% csrf_token %}
+        
+   <div class="select select-2 select-3" >   
+    <select name="languageupdate" value="1" onchange="this.form.submit()" >
+        <option>{{user.usermembership.language.language}}</option>
+        {% for language in languages %}
+                    <option id="{{language.id}}" value="{{language.id}}"> {{language.language}}   </option>   
+        {% endfor %}
+    </select>
+</form>
+</div>
+{% if object is not None %}
+<div class="settings__heading-2 u-center-text margin-top-bottom-small">Currency</div>
+        <form action="" method="post">
+            {% csrf_token %}
+       <div class="select select-2" >   
+        <select name="currencychange" value="$" onchange="this.form.submit()" >
+            <option>{{user.usermembership.currency}}</option>
+            <option value="$">$</option>
+            <option value="&#8364;">&#8364;</option>
+            <option value="&#8381;">&#8381;</option>
+            <option value="&#8377;">&#8377;</option>
+            <option value="&#8372;">&#8372;</option>
+            <option value="&#8376;">&#8376;</option>
+            <option value="&#8356;">&#8356;</option>
+            <option value="&#8383;">&#8383;</option>
+            <option value="&#8369;">&#8369;</option>
+        </select>
+    </div>
+        </form>
+
+        {% else %}
+     
+            <p class="settings__heading-2">Upgrade Membership <br> To Get Currency Feature</p>
+            <p class="settings__heading-2 u-margin-bottom-small">
+                Your current <br> Membership is <br>
+                <span class="settings__heading-span">{{ user.usermembership.membership}}</span>
+            </p>
+        
+            <div class="dashboard__popup-button-3-box">
+                <form action="{%url 'select'%}">
+                <button type="submit" class="dashboard__popup-button dashboard__popup-button-3" >Upgrade Membership <span>&rarr;</span></button>    
+               </form>   
+            </div>
+           
+
+        {% endif %}
+</div>
+</div>
+
+
+<div class="settings_id passwordId">
+
+    <div class="settings__center">
+        <p class="settings__heading-2">Password</p>
+        <form class="" id="updatePassfrm" method="POST" >
+            {% csrf_token %}
+                <div class="autorisation__input-box-2">    
+                    <div class="autorisation__input-box">
+                   
+                        <input type="password" id="newPass" name="newpassword" class="autorisation__input autorisation__input-2"  required   placeholder="New Password">
+               
+                        <svg version="1.1" onclick="showPass()"  class="icon autorisation__icon newPassIcon " xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                        <path  d="M793.8,969.9H186.9c-41.6,0-75.5-33.9-75.5-75.5V399.2c0-41.6,33.9-75.5,75.5-75.5h606.9c41.6,0,75.5,33.9,75.5,75.5v495.3
+                            C869.3,936,835.4,969.9,793.8,969.9z M186.9,370.9c-15.6,0-28.3,12.7-28.3,28.3v495.3c0,15.6,12.7,28.3,28.3,28.3h606.9
+                            c15.6,0,28.3-12.7,28.3-28.3V399.2c0-15.6-12.7-28.3-28.3-28.3H186.9z"/>
+                        <g>
+                            <circle cx="329.4" cy="646.8" r="57.8"/>
+                            <circle cx="487.3" cy="646.8" r="57.8"/>
+                            <circle cx="651.3" cy="646.8" r="57.8"/>
+                        </g>
+                        <path d="M759.2,294.1h-44c0-124-100.9-224.9-224.9-224.9S265.5,170.1,265.5,294.1h-44c0-36.3,7.1-71.5,21.1-104.6
+                            c13.5-32,32.9-60.8,57.6-85.4c24.7-24.7,53.4-44.1,85.4-57.6c33.2-14,68.4-21.1,104.6-21.1c36.3,0,71.5,7.1,104.6,21.1
+                            c32,13.5,60.8,32.9,85.4,57.6c24.7,24.7,44.1,53.4,57.6,85.4C752.1,222.6,759.2,257.8,759.2,294.1z"/>
+                        </svg>
+    
+                        <svg version="1.1"  class="icon autorisation__icon newPassErorrIcon error" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                        <path d="M83.9,929L83.9,929c-13.7-13.7-13.7-35.8,0-49.5l783-783c13.7-13.7,35.8-13.7,49.5,0v0c13.7,13.7,13.7,35.8,0,49.5l-783,783
+                            C119.8,942.7,97.6,942.7,83.9,929z"/>
+                        <path d="M867.3,929.4L83.6,145.6c-13.7-13.7-13.7-35.8,0-49.5l0,0c13.7-13.7,35.8-13.7,49.5,0l783.7,783.7
+                            c13.7,13.7,13.7,35.8,0,49.5l0,0C903.1,943,881,943,867.3,929.4z"/>
+                        </svg>
+
+                    
+                        <svg version="1.1"  onclick="showPass()"  class="icon autorisation__icon showpass" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                        <path d="M933.3,602.3h-55c0-211-171.7-382.6-382.6-382.6c-211,0-382.6,171.7-382.6,382.6H58c0-59.1,11.6-116.4,34.4-170.4
+                            c22-52.1,53.6-98.9,93.8-139.1c40.2-40.2,87-71.7,139.1-93.8c54-22.8,111.3-34.4,170.4-34.4s116.4,11.6,170.4,34.4
+                            c52.1,22,98.9,53.6,139.1,93.8c40.2,40.2,71.7,87,93.8,139.1C921.7,485.9,933.3,543.2,933.3,602.3z"/>
+                        <path d="M495.7,818.9c-60.8,0-117.9-23.7-160.8-66.6c-43-43-66.6-100.1-66.6-160.8s23.7-117.9,66.6-160.8
+                            c43-43,100.1-66.6,160.8-66.6c60.8,0,117.9,23.7,160.8,66.6c43,43,66.6,100.1,66.6,160.8s-23.7,117.9-66.6,160.8
+                            S556.4,818.9,495.7,818.9z M495.7,419c-95.1,0-172.5,77.4-172.5,172.5c0,95.1,77.4,172.5,172.5,172.5s172.5-77.4,172.5-172.5
+                            C668.1,496.4,590.8,419,495.7,419z"/>
+                        </svg>
+                        
+
+                        <div class="autorisation__input-label-box">
+                    <label  class="autorisation__input-label" for="newPass">New Password</label>
+                    <label  class="autorisation__input-error" for="newPass" id="newPass-feedback"></label>
+                        </div>
+                    </div>
+        <div class="dashboard__popup-button-3-box">
+      <button type="submit" id="updatePassButton" disabled class="dashboard__popup-button dashboard__popup-button-3" name="updatepassname">Update <span>&rarr;</span></button>    
+        </div>
+
+        </form>
+            
+      
+        </div>
+
+</div>
+
+    </div>
+ <div class="settings_id themeId">
+        <div class="settings__heading-2 u-center-text u-margin">Theme</div>
+        <div class="settings__theme-grid">
+          
+            <form id="" method="post">
+                {% csrf_token %}
+                <div class="settings__theme_box">
+                    <p class="settings__theme__heading">Dark Theme</p>
+                  
+                    <input type="submit" name="schemeblack" value="schemeblack" class="settings__theme" placeholder="&nbsp;"> 
+                           
+                    <span class="settings__theme__span" id="black">&nbsp;</span>   
+                  
+            </form>
+        </div>
+            <form action="" method="post">
+                <div class="settings__radio-group">
+                    {% csrf_token %}
+                    <div class="settings__theme_box">
+                        <p class="settings__theme__heading">Light Theme</p>
+                    <input  type="submit" name="schemewhite" value="schemewhite"  class="settings__theme" >
+                    <span class="settings__theme__span" id="white">&nbsp;</span>   
+                          
+                  
+                    </label>
+                
+                </div>
+            
+                </form>
+                
+               
+            
+            
+            </div>
+           
+        </div>
+
+       
+</div>
+       
+
+</div>
+
+</div> 
+
+     
+      
+    </div>
+
+       
+    </div>
+    </div>
+
+
+
+
+    {% endif %}
+
+
+    {% if user.usermembership.language.id == 2 %}
+
+    <div class="dashboard__popup dashboardpopup" id="dashboardpopup">
+
+
+        <div class="dashboard__popup-close" id="closeButton">&times;</div>
+        <div class="dashboard__popup-2" id="cancelMembership">
+            <form action="{%url 'cancel'%}">
+        <p class="dashboard__popup-heading">Вы Дествительно Хотите Отменить Подписку ?</p>
+      
+        <button id="OkMessageClick" class="dashboard__popup-button">Да<span>&rarr;</span></button>    
+      </form>
+      </div>
+    </div>
+    <div class="u-margin-top-medium">
+    <div class="settings__box {{user.usermembership.colorscheme}}">
+        <a id="closeMenu" href="#" class="dashboard__popup-button-4"><span>&larr;</span> Вернуться</a>
+                      
+        <div id="settingsHeading" class="settings__heading">Настройки</div>
+      
+        <div class="settings__grid">
+            <div class="settings__grid-1">
+    
+                <ul class="dashboard__sidebar__ul">
+                    <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                        <a href="#" id="accountClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                            <svg version="1.1" id="accountIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                            <g>
+                                <path d="M500,591.4c-110.9,0-201-90.2-201-201c0-110.9,90.2-201,201-201c110.9,0,201,90.2,201,201C701,501.2,610.9,591.4,500,591.4
+                                    z M500,244.3c-80.5,0-146,65.5-146,146s65.5,146,146,146s146-65.5,146-146S580.5,244.3,500,244.3z"/>
+                                <path d="M216,808.6l0-0.2c0-0.4,0-0.8,0-1.2c0-75.9,29.5-147.2,83.2-200.8c53.6-53.6,125-83.2,200.8-83.2s147.2,29.5,200.8,83.2
+                                    c53.6,53.6,83.2,125,83.2,200.8h-55c0-126.3-102.7-229-229-229c-126.3,0-229,102.7-229,229l0,0.2c0,0.3,0,0.6,0,0.9L216,808.6z"/>
+                            </g>
+                            <path d="M500,992.9c-64.8,0-127.7-12.7-186.9-37.7c-57.2-24.2-108.5-58.8-152.6-102.9c-44.1-44.1-78.7-95.4-102.9-152.6
+                                c-25-59.2-37.7-122.1-37.7-186.9c0-64.8,12.7-127.7,37.7-186.9c24.2-57.2,58.8-108.5,102.9-152.6c44.1-44.1,95.4-78.7,152.6-102.9
+                                c59.2-25,122.1-37.7,186.9-37.7c64.8,0,127.7,12.7,186.9,37.7c57.2,24.2,108.5,58.8,152.6,102.9c44.1,44.1,78.7,95.4,102.9,152.6
+                                c25,59.2,37.7,122.1,37.7,186.9c0,64.8-12.7,127.7-37.7,186.9c-24.2,57.2-58.8,108.5-102.9,152.6s-95.4,78.7-152.6,102.9
+                                C627.7,980.2,564.8,992.9,500,992.9z M500,87.5c-234.4,0-425.2,190.7-425.2,425.2S265.6,937.9,500,937.9s425.2-190.7,425.2-425.2
+                                S734.4,87.5,500,87.5z"/>
+                            </svg>
+                            
+                            
+                            Аккаунт</a>
+                    </li>
+                    <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                        <a href="#" id="themesClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                            <svg version="1.1" id="themesIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                            <g>
+                                <g>
+                                    <path d="M910.6,33.7c-26.9,0-50.9,16-61.3,40.8l-59.8,142.9C771.6,200.6,748.3,190,723,190H136.5c-53.9,0-97.7,43.9-97.7,97.7
+                                        v586.5c0,53.9,43.9,97.7,97.7,97.7H723c53.9,0,97.7-43.9,97.7-97.7V446.3l150.1-316.7c4.1-8.7,6.3-18.4,6.3-29.4
+                                        C977.1,63.5,947.2,33.7,910.6,33.7z M781.6,874.3c0,32.3-26.3,58.6-58.6,58.6H136.5c-32.3,0-58.6-26.3-58.6-58.6V287.8
+                                        c0-32.3,26.3-58.6,58.6-58.6H723c20.6,0,39.1,11.2,49.6,28.5L703.4,423v-96.1c0-10.8-8.8-19.6-19.6-19.6H175.6
+                                        c-10.8,0-19.6,8.8-19.6,19.6v156.4c0,10.8,8.8,19.6,19.6,19.6H670l-16.4,39.1H488.4c-10.8,0-19.6,8.8-19.6,19.6v234.6
+                                        c0,0.5,0.2,0.9,0.3,1.4c-16.1,14.3-25.9,19-26.6,19.3c-6.2,2.3-10.8,7.5-12.3,14c-1.5,6.6,0.5,13.5,5.2,18.2
+                                        c28.3,28.3,67.4,39.1,105.6,39.1c48.8,0,96.2-17.7,117.5-39.1c30.7-30.7,53.3-91.6,36.2-137l86.8-183.1L781.6,874.3L781.6,874.3z
+                                         M534.7,762.2c5.4-17.8,10.5-34.6,26.1-50.1c27.6-27.6,62-27.6,89.7,0c24.7,24.7,5.9,83.8-19.6,109.2
+                                        c-21.2,21.2-96.5,41.6-147.1,15.1c6.7-5.2,14.5-12,23.2-20.8C523.4,799.3,529.2,780.5,534.7,762.2z M507.9,721.6V581h129.3
+                                        l-30,71.6c-26.1-0.5-52.4,10-74.1,31.9C521,696.7,513.4,709.3,507.9,721.6z M645.8,661.8L698.5,536l29.6,14.5l-59.7,125.8
+                                        C661.1,670.5,653.7,665.5,645.8,661.8z M664.3,346.4v117.3H195.1V346.4H664.3z M935.5,112.9L744.7,515.2L713.6,500l99.1-236.9
+                                        l72.6-173.5c4.3-10.2,14.2-16.8,25.3-16.8c15.1,0,27.4,12.3,27.4,28.7C938,105.4,937.1,109.4,935.5,112.9z"/>
+                                </g>
+                            </g>
+                            <g>
+                                <g>
+                                    <path d="M371.1,541.9H175.6c-10.8,0-19.6,8.8-19.6,19.6v273.7c0,10.8,8.8,19.6,19.6,19.6h195.5c10.8,0,19.6-8.8,19.6-19.6V561.5
+                                        C390.6,550.7,381.9,541.9,371.1,541.9z M351.5,815.6H195.1V581h156.4L351.5,815.6L351.5,815.6z"/>
+                                </g>
+                            </g>
+                            </svg>
+                            
+                            
+                            Персонализация</a>
+                    </li>
+                  
+                    <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                        <a href="#" id="colourClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                            <svg version="1.1" id="colourIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                            <path d="M526.2,971.6h-78.7c-37.5,0-67.9-30.4-67.9-67.8V573.1c0-8.7-7-15.7-15.7-15.7H256.6c-37.5,0-67.9-30.4-67.9-67.9V135.9
+                            c0-37.5,30.4-67.9,67.9-67.9h464c37.5,0,67.9,30.4,67.9,67.9V230c0,15.2-12.3,27.5-27.5,27.5l0,0c-15.2,0-27.5-12.3-27.5-27.5v-91.3
+                            c0-8.7-7-15.7-15.7-15.7H259.4c-8.7,0-15.7,7-15.7,15.7v348c0,8.7,7,15.7,15.7,15.7h107.4c37.5,0,67.9,30.4,67.9,67.8v330.7
+                            c0,8.7,7,15.7,15.7,15.7h73c8.7,0,15.7-7,15.7-15.7v-328c0-37.5,30.4-67.8,67.8-67.8h110.9c8.7,0,15.7-7,15.7-15.7V385.7
+                            c0-8.7-7-15.7-15.7-15.7H348c-15.2,0-27.5-12.3-27.5-27.5v0c0-15.2,12.3-27.5,27.5-27.5h372.6c37.5,0,67.8,30.4,67.8,67.9v109.3
+                            c0,37.5-30.4,67.9-67.8,67.9H609.7c-8.7,0-15.7,7-15.7,15.7v328C594,941.2,563.7,971.6,526.2,971.6z"/>
+                        </svg>
+                   
+                            
+                       Цвет Текста</a>
+                    </li>
+    
+                    <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                        <a href="#" id="languageClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                            <svg version="1.1" id="languageIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                            <path d="M504.2,987c-129.8,0-251.7-50.6-343.5-142.3C69,752.9,18.4,631,18.4,501.2S69,249.5,160.7,157.7
+                                C252.5,66,374.4,15.4,504.2,15.4S755.9,66,847.7,157.7C939.6,249.5,990,371.4,990,501.2s-50.6,251.7-142.3,343.5
+                                C755.9,936.4,634,987,504.2,987z M504.2,72C267.6,72,75,264.6,75,501.2s192.5,429.2,429.2,429.2s429.2-192.5,429.2-429.2
+                                S740.9,72,504.2,72z"/>
+                            <path d="M504.7,987c-62.7,0-119.5-53.8-159.9-151.5c-37.2-89.7-57.5-208.5-57.5-334.3s20.5-244.6,57.5-334.3
+                                C385.2,69.3,442,15.4,504.7,15.4s119.5,53.8,159.9,151.5c37.2,89.7,57.5,208.5,57.5,334.3s-20.4,244.6-57.5,334.3
+                                C624.3,933.2,567.4,987,504.7,987z M504.7,72c-76.1,0-160.8,176.2-160.8,429.2s84.9,429.2,160.8,429.2s160.8-176.2,160.8-429.2
+                                S580.8,72,504.7,72z"/>
+                            <rect x="68.2" y="472.9" width="892.3" height="56.6"/>
+                            <path d="M895.3,788l-326.9-29.6c-42.7-3.9-85.8-3.9-128.5,0L113.2,788l-5-56.4L435,702c46.1-4.2,92.6-4.2,138.7,0l326.9,29.6
+                                L895.3,788z"/>
+                            <path d="M504.2,338.8c-23.1,0-46.4-1-69.4-3.1L108,306.1l5-56.4l326.9,29.6c42.7,3.9,85.8,3.9,128.5,0l326.9-29.6l5,56.4
+                                l-326.9,29.6C550.6,337.8,527.3,338.8,504.2,338.8z"/>
+                            </svg>
+                            
+                            
+                       Язык</a>
+                    </li>
+    
+                    <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                        <a href="#" id="backgroundClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                            <svg version="1.1" id="backgroundIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+    <g>
+        <path d="M869.4,940H110c-52.1,0-94.4-42.4-94.4-94.4V225.9c0-52.1,42.4-94.4,94.4-94.4h759.4c52.1,0,94.4,42.4,94.4,94.4v619.7
+            C963.8,897.7,921.5,940,869.4,940z M110,190.5c-19.5,0-35.4,15.9-35.4,35.4v619.7c0,19.5,15.9,35.4,35.4,35.4h759.4
+            c19.5,0,35.4-15.9,35.4-35.4V225.9c0-19.5-15.9-35.4-35.4-35.4H110z"/>
+        <circle cx="750.2" cy="336.9" r="72.3"/>
+        <polygon points="83.2,910.6 41.5,868.8 401.5,508.8 425.9,532.8 608.9,715.8 714.6,610.1 940.6,836.1 898.9,877.9 714.6,693.6 
+            609.1,799.1 581.4,771.7 401.7,592 	"/>
+    </g>
+    </svg>
+    
+                            
+                            
+                       Задний Фон</a>
+                    </li>
+    
+                    <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                        <a href="#" id="passwordClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                            <svg version="1.1" id="passwordIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                            <path d="M793.8,969.9H186.9c-41.6,0-75.5-33.9-75.5-75.5V399.2c0-41.6,33.9-75.5,75.5-75.5h606.9c41.6,0,75.5,33.9,75.5,75.5v495.3
+                                C869.3,936,835.4,969.9,793.8,969.9z M186.9,370.9c-15.6,0-28.3,12.7-28.3,28.3v495.3c0,15.6,12.7,28.3,28.3,28.3h606.9
+                                c15.6,0,28.3-12.7,28.3-28.3V399.2c0-15.6-12.7-28.3-28.3-28.3H186.9z"/>
+                            <g>
+                                <circle cx="329.4" cy="646.8" r="57.8"/>
+                                <circle cx="487.3" cy="646.8" r="57.8"/>
+                                <circle cx="651.3" cy="646.8" r="57.8"/>
+                            </g>
+                            <path d="M759.2,294.1h-44c0-124-100.9-224.9-224.9-224.9S265.5,170.1,265.5,294.1h-44c0-36.3,7.1-71.5,21.1-104.6
+                                c13.5-32,32.9-60.8,57.6-85.4c24.7-24.7,53.4-44.1,85.4-57.6c33.2-14,68.4-21.1,104.6-21.1c36.3,0,71.5,7.1,104.6,21.1
+                                c32,13.5,60.8,32.9,85.4,57.6c24.7,24.7,44.1,53.4,57.6,85.4C752.1,222.6,759.2,257.8,759.2,294.1z"/>
+                            </svg>
+                            
+                            
+                       Пароль</a>
+                    </li>
+                    <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                        <a href="#" id="membershipClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                            <svg version="1.1" id="membershipIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+    <g>
+        <path d="M665.8,670.5H161c-70.9,0-128.6-57.7-128.6-128.6V312.7c0-70.9,57.7-128.6,128.6-128.6h504.7
+            c70.9,0,128.6,57.7,128.6,128.6v229.2C794.3,612.8,736.6,670.5,665.8,670.5z M161,239.2c-40.6,0-73.6,33-73.6,73.6v229.2
+            c0,40.6,33,73.6,73.6,73.6h504.7c40.6,0,73.6-33,73.6-73.6V312.7c0-40.6-33-73.6-73.6-73.6H161z"/>
+        <rect x="60" y="309.5" width="706.8" height="55"/>
+    </g>
+    <path d="M775.2,859.3c-13.2,0-26.4-2.2-39.2-6.6L250.4,686.9c-11.4-3.9-22.1-9.4-31.9-16.4h-60.2c-69.3,0-125.8-59-125.8-131.4
+        V315.6c0-72.5,56.4-131.4,125.8-131.4h510.3c69.3,0,125.8,59,125.8,131.4v45.7l84.8,29c32,10.9,58,34.2,73.1,65.6
+        c15,31,17.7,66.2,7.6,99.3l-64.9,212.6c-10.5,34.5-33.4,62.2-64.5,78.1C812.9,854.8,794.1,859.3,775.2,859.3z M158.3,239.2
+        c-39,0-70.8,34.3-70.8,76.4V539c0,42.1,31.7,76.4,70.8,76.4H238l7.7,6.5c6.7,5.7,14.3,10,22.4,12.8l485.6,165.9
+        c17.1,5.8,35.4,4.5,51.5-3.8c17.7-9.1,30.8-25.1,37-45.2l64.9-212.6c12.4-40.5-8.2-83.9-45.9-96.8l-122-41.7v-85.1
+        c0-42.1-31.7-76.4-70.8-76.4H158.3z"/>
+    <rect x="819.6" y="432" transform="matrix(0.3457 -0.9384 0.9384 0.3457 66.778 1134.7985)" width="55" height="175"/>
+    </svg>
+    
+                            
+                       Подписки</a>
+                    </li>
+                 
+                </ul>
+    
+            </div>
+            <div class="settings__grid-2">
+    
+    
+                <div class="settings_id accountId">
+    
+                    <p class="settings__heading-2">Изменить Ник</p>
+     
+                        <form class="" id="updateNamefrm" method="POST" >
+                <div class="autorisation__input-box-2">    
+                    <div class="autorisation__input-box">
+                        {% csrf_token %}
+                        <input type="text" id="updateName" name="newUserName" class="autorisation__input autorisation__input-2"  required   placeholder="Новый Ник">
+               
+                        <svg version="1.1"  class="icon autorisation__icon updateUserIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                        <g>
+                            <path d="M500,591.4c-110.9,0-201-90.2-201-201c0-110.9,90.2-201,201-201c110.9,0,201,90.2,201,201C701,501.2,610.9,591.4,500,591.4
+                                z M500,244.3c-80.5,0-146,65.5-146,146s65.5,146,146,146s146-65.5,146-146S580.5,244.3,500,244.3z"/>
+                            <path d="M216,808.6l0-0.2c0-0.4,0-0.8,0-1.2c0-75.9,29.5-147.2,83.2-200.8c53.6-53.6,125-83.2,200.8-83.2s147.2,29.5,200.8,83.2
+                                c53.6,53.6,83.2,125,83.2,200.8h-55c0-126.3-102.7-229-229-229c-126.3,0-229,102.7-229,229l0,0.2c0,0.3,0,0.6,0,0.9L216,808.6z"/>
+                        </g>
+                        <path d="M500,992.9c-64.8,0-127.7-12.7-186.9-37.7c-57.2-24.2-108.5-58.8-152.6-102.9c-44.1-44.1-78.7-95.4-102.9-152.6
+                            c-25-59.2-37.7-122.1-37.7-186.9c0-64.8,12.7-127.7,37.7-186.9c24.2-57.2,58.8-108.5,102.9-152.6c44.1-44.1,95.4-78.7,152.6-102.9
+                            c59.2-25,122.1-37.7,186.9-37.7c64.8,0,127.7,12.7,186.9,37.7c57.2,24.2,108.5,58.8,152.6,102.9c44.1,44.1,78.7,95.4,102.9,152.6
+                            c25,59.2,37.7,122.1,37.7,186.9c0,64.8-12.7,127.7-37.7,186.9c-24.2,57.2-58.8,108.5-102.9,152.6s-95.4,78.7-152.6,102.9
+                            C627.7,980.2,564.8,992.9,500,992.9z M500,87.5c-234.4,0-425.2,190.7-425.2,425.2S265.6,937.9,500,937.9s425.2-190.7,425.2-425.2
+                            S734.4,87.5,500,87.5z"/>
+                        </svg>
+    
+                        <svg version="1.1" class="icon autorisation__icon errorIcon " xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                        <path d="M83.9,929L83.9,929c-13.7-13.7-13.7-35.8,0-49.5l783-783c13.7-13.7,35.8-13.7,49.5,0v0c13.7,13.7,13.7,35.8,0,49.5l-783,783
+                            C119.8,942.7,97.6,942.7,83.9,929z"/>
+                        <path d="M867.3,929.4L83.6,145.6c-13.7-13.7-13.7-35.8,0-49.5l0,0c13.7-13.7,35.8-13.7,49.5,0l783.7,783.7
+                            c13.7,13.7,13.7,35.8,0,49.5l0,0C903.1,943,881,943,867.3,929.4z"/>
+                        </svg>
+                        
+                        <div class="autorisation__input-label-box">
+                    <label  class="autorisation__input-label" for="updateName">Новый Ник</label>
+                    <label  class="autorisation__input-error" for="updateName" id="updateName-feedback"></label>
+                        </div>
+                    </div>
+                </div>
+                    <div class="dashboard__popup-button-3-box">
+                  <button type="submit" id="updateUserButton" disabled class="dashboard__popup-button dashboard__popup-button-3" name="updateUsername">Обновить <span>&rarr;</span></button>    
+                    </div>
+         
+                    </form>
+                        
+                    <p class="settings__heading-2 u-margin-bottom-small">Выйти</p>  <form action="{% url 'logout' %}" method="POST">
+                    <div class="dashboard__popup-button-3-box">
+                        {% csrf_token %}
+                        <button type="submit" class="dashboard__popup-button dashboard__popup-button-3">Выйти <span>&rarr;</span></button>
+                            
+                        </form>
+                    </div>
+    
+               
+                </div>
+    
+              
+    
+             <div class="settings_id colourId">
+                    
+      
+                        <p class="settings__heading u-margin-bottom-medium">Цвет Текста</p>
+                        <div class="settings__center">
+                    <div  class="colorPicker settings__colour-box "></div>
+                        <div class="u-margin-top-medium u-center-text">
+                            <form   method="POST">
+                            {% csrf_token %}
+                        <input type="text" style="display: none;" name="color" value="#fff" class="dummyinput">
+                        <div class="dashboard__popup-button-3-box ">
+                   
+                            <button type="submit" name="colorchange"  name="color-change"  id="color-close" class="dashboard__popup-button dashboard__popup-button-5">Обновить <span>&rarr;</span></button>
+                                
+                        
+                        </div>
+                       
+                    </form>
+                    </div>
+                </div>
+           </div> 
+    
+           <div class="settings_id backgroundId">
+            <div class="settings__center">
+            <p class="settings__heading-2">Задний Фон</p>
+    <form action="#" id='myform' enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+           <div class="settings__background__link-box">
+            <button class="settings__background__link" >Выбрать Картинку
+           <input type="file" class="settings__background__file" name="image" enctype="multipart/form-data"  id="backgroundimage" placeholder="Upload image">
+        </button>   
+        </div> 
+          <div class="dashboard__popup-button-3-box">
+            <button id="submit-image"disabled name="imagechange" class="dashboard__popup-button dashboard__popup-button-3" type="submit">Обновить <span>&rarr;</span></button>
+              </div>   
+    </form>
+        </div>
+    </div>
+    
+    <div class="settings_id membershipId">
+        <p class="settings__heading-2">Подписки</p>
+        <p class="settings__heading-2 u-margin-bottom-small">
+            Ваша Подписка : <br>
+            <span class="settings__heading-span">{{ user.usermembership.membership}}</span>
+        </p>
+    
+        <div class="dashboard__popup-button-3-box">
+            <form action="{%url 'select'%}">
+            <button type="submit" class="dashboard__popup-button dashboard__popup-button-3" >Улутшить Подписку <span>&rarr;</span></button>    
+           </form>   </div>
+
+           {% if user.usermembership.membership.membership_type != "Free"%}
+           <p class="settings__heading-2">Отменить Подписку</p>
+           <div class="dashboard__popup-button-3-box">
+          
+            <button type="submit" id="cancelMembershipBtn" class="dashboard__popup-button dashboard__popup-button-3" >Отменить Подписку <span>&rarr;</span></button>    
+            {%endif%}
+        </div>
+    </div>
+    
+    
+    <div class="settings_id languageId">
+        <div class="settings__center">
+        <p class="settings__heading-2 u-margin-botton-bigger">Язык</p>
+        <form action="" method="post">
+            {% csrf_token %}
+            
+       <div class="select select-2 select-3" >   
+        <select name="languageupdate" value="1" onchange="this.form.submit()" >
+            <option>{{user.usermembership.language.language}}</option>
+            {% for language in languages %}
+                        <option id="{{language.id}}" value="{{language.id}}"> {{language.language}}   </option>   
+            {% endfor %}
+        </select>
+    </form>
+    </div>
+    {% if object is not None %}
+<div class="settings__heading-2 u-center-text margin-top-bottom-small">Валюта</div>
+        <form action="" method="post">
+            {% csrf_token %}
+       <div class="select select-2" >   
+        <select name="currencychange" value="$" onchange="this.form.submit()" >
+            <option>{{user.usermembership.currency}}</option>
+            <option value="$">$</option>
+            <option value="&#8364;">&#8364;</option>
+            <option value="&#8381;">&#8381;</option>
+            <option value="&#8377;">&#8377;</option>
+            <option value="&#8372;">&#8372;</option>
+            <option value="&#8376;">&#8376;</option>
+            <option value="&#8356;">&#8356;</option>
+            <option value="&#8383;">&#8383;</option>
+            <option value="&#8369;">&#8369;</option>
+        </select>
+    </div>
+        </form>
+
+        {% else %}
+     
+        <p class="settings__heading-2">Улучшите Подписку <br> Чтобы Получить Функцию Валют</p>
+                  <p class="settings__heading-2 u-margin-bottom-small">
+                      Ваша Текущая <br> Подписка <br>
+                      <span class="settings__heading-span">{{ user.usermembership.membership}}</span>
+                  </p>
+              
+                  <div class="dashboard__popup-button-3-box">
+                      <form action="{%url 'select'%}">
+                      <button type="submit" class="dashboard__popup-button dashboard__popup-button-3" >Улучшить Подписку <span>&rarr;</span></button>    
+                     </form>   
+                  </div>
+           
+
+        {% endif %}
+    </div>
+    </div>
+    
+    
+
+    
+    <div class="settings_id passwordId">
+    
+        <div class="settings__center">
+            <p class="settings__heading-2">Пароль</p>
+            <form class="" id="updatePassfrm" method="POST" >
+                {% csrf_token %}
+                    <div class="autorisation__input-box-2">    
+                        <div class="autorisation__input-box">
+                       
+                            <input type="password" id="newPass" name="newpassword" class="autorisation__input autorisation__input-2"  required   placeholder="Новый Пароль">
+                   
+                            <svg version="1.1" onclick="showPass()"  class="icon autorisation__icon newPassIcon " xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                            <path  d="M793.8,969.9H186.9c-41.6,0-75.5-33.9-75.5-75.5V399.2c0-41.6,33.9-75.5,75.5-75.5h606.9c41.6,0,75.5,33.9,75.5,75.5v495.3
+                                C869.3,936,835.4,969.9,793.8,969.9z M186.9,370.9c-15.6,0-28.3,12.7-28.3,28.3v495.3c0,15.6,12.7,28.3,28.3,28.3h606.9
+                                c15.6,0,28.3-12.7,28.3-28.3V399.2c0-15.6-12.7-28.3-28.3-28.3H186.9z"/>
+                            <g>
+                                <circle cx="329.4" cy="646.8" r="57.8"/>
+                                <circle cx="487.3" cy="646.8" r="57.8"/>
+                                <circle cx="651.3" cy="646.8" r="57.8"/>
+                            </g>
+                            <path d="M759.2,294.1h-44c0-124-100.9-224.9-224.9-224.9S265.5,170.1,265.5,294.1h-44c0-36.3,7.1-71.5,21.1-104.6
+                                c13.5-32,32.9-60.8,57.6-85.4c24.7-24.7,53.4-44.1,85.4-57.6c33.2-14,68.4-21.1,104.6-21.1c36.3,0,71.5,7.1,104.6,21.1
+                                c32,13.5,60.8,32.9,85.4,57.6c24.7,24.7,44.1,53.4,57.6,85.4C752.1,222.6,759.2,257.8,759.2,294.1z"/>
+                            </svg>
+        
+                            <svg version="1.1"  class="icon autorisation__icon newPassErorrIcon error" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                            <path d="M83.9,929L83.9,929c-13.7-13.7-13.7-35.8,0-49.5l783-783c13.7-13.7,35.8-13.7,49.5,0v0c13.7,13.7,13.7,35.8,0,49.5l-783,783
+                                C119.8,942.7,97.6,942.7,83.9,929z"/>
+                            <path d="M867.3,929.4L83.6,145.6c-13.7-13.7-13.7-35.8,0-49.5l0,0c13.7-13.7,35.8-13.7,49.5,0l783.7,783.7
+                                c13.7,13.7,13.7,35.8,0,49.5l0,0C903.1,943,881,943,867.3,929.4z"/>
+                            </svg>
+    
+                        
+                            <svg version="1.1"  onclick="showPass()"  class="icon autorisation__icon showpass" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                            <path d="M933.3,602.3h-55c0-211-171.7-382.6-382.6-382.6c-211,0-382.6,171.7-382.6,382.6H58c0-59.1,11.6-116.4,34.4-170.4
+                                c22-52.1,53.6-98.9,93.8-139.1c40.2-40.2,87-71.7,139.1-93.8c54-22.8,111.3-34.4,170.4-34.4s116.4,11.6,170.4,34.4
+                                c52.1,22,98.9,53.6,139.1,93.8c40.2,40.2,71.7,87,93.8,139.1C921.7,485.9,933.3,543.2,933.3,602.3z"/>
+                            <path d="M495.7,818.9c-60.8,0-117.9-23.7-160.8-66.6c-43-43-66.6-100.1-66.6-160.8s23.7-117.9,66.6-160.8
+                                c43-43,100.1-66.6,160.8-66.6c60.8,0,117.9,23.7,160.8,66.6c43,43,66.6,100.1,66.6,160.8s-23.7,117.9-66.6,160.8
+                                S556.4,818.9,495.7,818.9z M495.7,419c-95.1,0-172.5,77.4-172.5,172.5c0,95.1,77.4,172.5,172.5,172.5s172.5-77.4,172.5-172.5
+                                C668.1,496.4,590.8,419,495.7,419z"/>
+                            </svg>
+                            
+    
+                            <div class="autorisation__input-label-box">
+                        <label  class="autorisation__input-label" for="newPass">Новый Пароль</label>
+                        <label  class="autorisation__input-error" for="newPass" id="newPass-feedback"></label>
+                            </div>
+                        </div>
+            <div class="dashboard__popup-button-3-box">
+          <button type="submit" id="updatePassButton" disabled class="dashboard__popup-button dashboard__popup-button-3" name="updatepassname">Обновить <span>&rarr;</span></button>    
+            </div>
+    
+            </form>
+                
+          
+            </div>
+    
+    </div>
+    
+        </div>
+     <div class="settings_id themeId">
+            <div class="settings__heading-2 u-center-text u-margin">Темы</div>
+            <div class="settings__theme-grid">
+              
+                <form id="" method="post">
+                    {% csrf_token %}
+                    <div class="settings__theme_box">
+                        <p class="settings__theme__heading">Тёмная Тема</p>
+                      
+                        <input type="submit" name="schemeblack" value="schemeblack" class="settings__theme" placeholder="&nbsp;"> 
+                               
+                        <span class="settings__theme__span" id="black">&nbsp;</span>   
+                      
+                </form>
+            </div>
+                <form action="" method="post">
+                    <div class="settings__radio-group">
+                        {% csrf_token %}
+                        <div class="settings__theme_box">
+                            <p class="settings__theme__heading">Светлая Тема</p>
+                        <input  type="submit" name="schemewhite" value="schemewhite"  class="settings__theme" >
+                        <span class="settings__theme__span" id="white">&nbsp;</span>   
+                              
+                      
+                        </label>
+                    
+                    </div>
+                
+                    </form>
+                    
+                   
+                
+                
+                </div>
+               
+            </div>
+    
+    </div>
+           
+    
+    </div>
+    
+    </div> 
+    
+         
+          
+        </div>
+    
+           
+        </div>
+        </div>
+    
+    
+    
+    
+        {% endif %}
+
+
+        {% if user.usermembership.language.id == 4 %}
+
+        <div class="dashboard__popup dashboardpopup" id="dashboardpopup">
+    
+    
+            <div class="dashboard__popup-close" id="closeButton">&times;</div>
+            <div class="dashboard__popup-2" id="cancelMembership">
+                <form action="{%url 'cancel'%}">
+            <p class="dashboard__popup-heading">Ви Дійсно Хочете Відмінити Підписку ?</p>
+          
+            <button id="OkMessageClick" class="dashboard__popup-button">Так<span>&rarr;</span></button>    
+          </form>
+          </div>
+        </div>
+        <div class="u-margin-top-medium">
+        <div class="settings__box {{user.usermembership.colorscheme}}">
+            <a id="closeMenu" href="#" class="dashboard__popup-button-4"><span>&larr;</span> Вернутися</a>
+                          
+            <div id="settingsHeading" class="settings__heading">Настройки</div>
+          
+            <div class="settings__grid">
+                <div class="settings__grid-1">
+        
+                    <ul class="dashboard__sidebar__ul">
+                        <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                            <a href="#" id="accountClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                                <svg version="1.1" id="accountIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                                <g>
+                                    <path d="M500,591.4c-110.9,0-201-90.2-201-201c0-110.9,90.2-201,201-201c110.9,0,201,90.2,201,201C701,501.2,610.9,591.4,500,591.4
+                                        z M500,244.3c-80.5,0-146,65.5-146,146s65.5,146,146,146s146-65.5,146-146S580.5,244.3,500,244.3z"/>
+                                    <path d="M216,808.6l0-0.2c0-0.4,0-0.8,0-1.2c0-75.9,29.5-147.2,83.2-200.8c53.6-53.6,125-83.2,200.8-83.2s147.2,29.5,200.8,83.2
+                                        c53.6,53.6,83.2,125,83.2,200.8h-55c0-126.3-102.7-229-229-229c-126.3,0-229,102.7-229,229l0,0.2c0,0.3,0,0.6,0,0.9L216,808.6z"/>
+                                </g>
+                                <path d="M500,992.9c-64.8,0-127.7-12.7-186.9-37.7c-57.2-24.2-108.5-58.8-152.6-102.9c-44.1-44.1-78.7-95.4-102.9-152.6
+                                    c-25-59.2-37.7-122.1-37.7-186.9c0-64.8,12.7-127.7,37.7-186.9c24.2-57.2,58.8-108.5,102.9-152.6c44.1-44.1,95.4-78.7,152.6-102.9
+                                    c59.2-25,122.1-37.7,186.9-37.7c64.8,0,127.7,12.7,186.9,37.7c57.2,24.2,108.5,58.8,152.6,102.9c44.1,44.1,78.7,95.4,102.9,152.6
+                                    c25,59.2,37.7,122.1,37.7,186.9c0,64.8-12.7,127.7-37.7,186.9c-24.2,57.2-58.8,108.5-102.9,152.6s-95.4,78.7-152.6,102.9
+                                    C627.7,980.2,564.8,992.9,500,992.9z M500,87.5c-234.4,0-425.2,190.7-425.2,425.2S265.6,937.9,500,937.9s425.2-190.7,425.2-425.2
+                                    S734.4,87.5,500,87.5z"/>
+                                </svg>
+                                
+                                
+                                Акаунт</a>
+                        </li>
+                        <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                            <a href="#" id="themesClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                                <svg version="1.1" id="themesIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                                <g>
+                                    <g>
+                                        <path d="M910.6,33.7c-26.9,0-50.9,16-61.3,40.8l-59.8,142.9C771.6,200.6,748.3,190,723,190H136.5c-53.9,0-97.7,43.9-97.7,97.7
+                                            v586.5c0,53.9,43.9,97.7,97.7,97.7H723c53.9,0,97.7-43.9,97.7-97.7V446.3l150.1-316.7c4.1-8.7,6.3-18.4,6.3-29.4
+                                            C977.1,63.5,947.2,33.7,910.6,33.7z M781.6,874.3c0,32.3-26.3,58.6-58.6,58.6H136.5c-32.3,0-58.6-26.3-58.6-58.6V287.8
+                                            c0-32.3,26.3-58.6,58.6-58.6H723c20.6,0,39.1,11.2,49.6,28.5L703.4,423v-96.1c0-10.8-8.8-19.6-19.6-19.6H175.6
+                                            c-10.8,0-19.6,8.8-19.6,19.6v156.4c0,10.8,8.8,19.6,19.6,19.6H670l-16.4,39.1H488.4c-10.8,0-19.6,8.8-19.6,19.6v234.6
+                                            c0,0.5,0.2,0.9,0.3,1.4c-16.1,14.3-25.9,19-26.6,19.3c-6.2,2.3-10.8,7.5-12.3,14c-1.5,6.6,0.5,13.5,5.2,18.2
+                                            c28.3,28.3,67.4,39.1,105.6,39.1c48.8,0,96.2-17.7,117.5-39.1c30.7-30.7,53.3-91.6,36.2-137l86.8-183.1L781.6,874.3L781.6,874.3z
+                                             M534.7,762.2c5.4-17.8,10.5-34.6,26.1-50.1c27.6-27.6,62-27.6,89.7,0c24.7,24.7,5.9,83.8-19.6,109.2
+                                            c-21.2,21.2-96.5,41.6-147.1,15.1c6.7-5.2,14.5-12,23.2-20.8C523.4,799.3,529.2,780.5,534.7,762.2z M507.9,721.6V581h129.3
+                                            l-30,71.6c-26.1-0.5-52.4,10-74.1,31.9C521,696.7,513.4,709.3,507.9,721.6z M645.8,661.8L698.5,536l29.6,14.5l-59.7,125.8
+                                            C661.1,670.5,653.7,665.5,645.8,661.8z M664.3,346.4v117.3H195.1V346.4H664.3z M935.5,112.9L744.7,515.2L713.6,500l99.1-236.9
+                                            l72.6-173.5c4.3-10.2,14.2-16.8,25.3-16.8c15.1,0,27.4,12.3,27.4,28.7C938,105.4,937.1,109.4,935.5,112.9z"/>
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path d="M371.1,541.9H175.6c-10.8,0-19.6,8.8-19.6,19.6v273.7c0,10.8,8.8,19.6,19.6,19.6h195.5c10.8,0,19.6-8.8,19.6-19.6V561.5
+                                            C390.6,550.7,381.9,541.9,371.1,541.9z M351.5,815.6H195.1V581h156.4L351.5,815.6L351.5,815.6z"/>
+                                    </g>
+                                </g>
+                                </svg>
+                                
+                                
+                                Персоналізація</a>
+                        </li>
+                      
+                        <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                            <a href="#" id="colourClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                                <svg version="1.1" id="colourIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                                <path d="M526.2,971.6h-78.7c-37.5,0-67.9-30.4-67.9-67.8V573.1c0-8.7-7-15.7-15.7-15.7H256.6c-37.5,0-67.9-30.4-67.9-67.9V135.9
+                                c0-37.5,30.4-67.9,67.9-67.9h464c37.5,0,67.9,30.4,67.9,67.9V230c0,15.2-12.3,27.5-27.5,27.5l0,0c-15.2,0-27.5-12.3-27.5-27.5v-91.3
+                                c0-8.7-7-15.7-15.7-15.7H259.4c-8.7,0-15.7,7-15.7,15.7v348c0,8.7,7,15.7,15.7,15.7h107.4c37.5,0,67.9,30.4,67.9,67.8v330.7
+                                c0,8.7,7,15.7,15.7,15.7h73c8.7,0,15.7-7,15.7-15.7v-328c0-37.5,30.4-67.8,67.8-67.8h110.9c8.7,0,15.7-7,15.7-15.7V385.7
+                                c0-8.7-7-15.7-15.7-15.7H348c-15.2,0-27.5-12.3-27.5-27.5v0c0-15.2,12.3-27.5,27.5-27.5h372.6c37.5,0,67.8,30.4,67.8,67.9v109.3
+                                c0,37.5-30.4,67.9-67.8,67.9H609.7c-8.7,0-15.7,7-15.7,15.7v328C594,941.2,563.7,971.6,526.2,971.6z"/>
+                            </svg>
+                       
+                                
+                           Колір Тексту</a>
+                        </li>
+        
+                        <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                            <a href="#" id="languageClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                                <svg version="1.1" id="languageIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                                <path d="M504.2,987c-129.8,0-251.7-50.6-343.5-142.3C69,752.9,18.4,631,18.4,501.2S69,249.5,160.7,157.7
+                                    C252.5,66,374.4,15.4,504.2,15.4S755.9,66,847.7,157.7C939.6,249.5,990,371.4,990,501.2s-50.6,251.7-142.3,343.5
+                                    C755.9,936.4,634,987,504.2,987z M504.2,72C267.6,72,75,264.6,75,501.2s192.5,429.2,429.2,429.2s429.2-192.5,429.2-429.2
+                                    S740.9,72,504.2,72z"/>
+                                <path d="M504.7,987c-62.7,0-119.5-53.8-159.9-151.5c-37.2-89.7-57.5-208.5-57.5-334.3s20.5-244.6,57.5-334.3
+                                    C385.2,69.3,442,15.4,504.7,15.4s119.5,53.8,159.9,151.5c37.2,89.7,57.5,208.5,57.5,334.3s-20.4,244.6-57.5,334.3
+                                    C624.3,933.2,567.4,987,504.7,987z M504.7,72c-76.1,0-160.8,176.2-160.8,429.2s84.9,429.2,160.8,429.2s160.8-176.2,160.8-429.2
+                                    S580.8,72,504.7,72z"/>
+                                <rect x="68.2" y="472.9" width="892.3" height="56.6"/>
+                                <path d="M895.3,788l-326.9-29.6c-42.7-3.9-85.8-3.9-128.5,0L113.2,788l-5-56.4L435,702c46.1-4.2,92.6-4.2,138.7,0l326.9,29.6
+                                    L895.3,788z"/>
+                                <path d="M504.2,338.8c-23.1,0-46.4-1-69.4-3.1L108,306.1l5-56.4l326.9,29.6c42.7,3.9,85.8,3.9,128.5,0l326.9-29.6l5,56.4
+                                    l-326.9,29.6C550.6,337.8,527.3,338.8,504.2,338.8z"/>
+                                </svg>
+                                
+                                
+                           Мова</a>
+                        </li>
+        
+                        <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                            <a href="#" id="backgroundClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                                <svg version="1.1" id="backgroundIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+        <g>
+            <path d="M869.4,940H110c-52.1,0-94.4-42.4-94.4-94.4V225.9c0-52.1,42.4-94.4,94.4-94.4h759.4c52.1,0,94.4,42.4,94.4,94.4v619.7
+                C963.8,897.7,921.5,940,869.4,940z M110,190.5c-19.5,0-35.4,15.9-35.4,35.4v619.7c0,19.5,15.9,35.4,35.4,35.4h759.4
+                c19.5,0,35.4-15.9,35.4-35.4V225.9c0-19.5-15.9-35.4-35.4-35.4H110z"/>
+            <circle cx="750.2" cy="336.9" r="72.3"/>
+            <polygon points="83.2,910.6 41.5,868.8 401.5,508.8 425.9,532.8 608.9,715.8 714.6,610.1 940.6,836.1 898.9,877.9 714.6,693.6 
+                609.1,799.1 581.4,771.7 401.7,592 	"/>
+        </g>
+        </svg>
+        
+                                
+                                
+                           Задній Фон</a>
+                        </li>
+        
+                        <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                            <a href="#" id="passwordClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                                <svg version="1.1" id="passwordIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                                <path d="M793.8,969.9H186.9c-41.6,0-75.5-33.9-75.5-75.5V399.2c0-41.6,33.9-75.5,75.5-75.5h606.9c41.6,0,75.5,33.9,75.5,75.5v495.3
+                                    C869.3,936,835.4,969.9,793.8,969.9z M186.9,370.9c-15.6,0-28.3,12.7-28.3,28.3v495.3c0,15.6,12.7,28.3,28.3,28.3h606.9
+                                    c15.6,0,28.3-12.7,28.3-28.3V399.2c0-15.6-12.7-28.3-28.3-28.3H186.9z"/>
+                                <g>
+                                    <circle cx="329.4" cy="646.8" r="57.8"/>
+                                    <circle cx="487.3" cy="646.8" r="57.8"/>
+                                    <circle cx="651.3" cy="646.8" r="57.8"/>
+                                </g>
+                                <path d="M759.2,294.1h-44c0-124-100.9-224.9-224.9-224.9S265.5,170.1,265.5,294.1h-44c0-36.3,7.1-71.5,21.1-104.6
+                                    c13.5-32,32.9-60.8,57.6-85.4c24.7-24.7,53.4-44.1,85.4-57.6c33.2-14,68.4-21.1,104.6-21.1c36.3,0,71.5,7.1,104.6,21.1
+                                    c32,13.5,60.8,32.9,85.4,57.6c24.7,24.7,44.1,53.4,57.6,85.4C752.1,222.6,759.2,257.8,759.2,294.1z"/>
+                                </svg>
+                                
+                                
+                           Пароль</a>
+                        </li>
+                        <li class="dashboard__sidebar__li dashboard__sidebar__li-2">
+                            <a href="#" id="membershipClick" class="dashboard__sidebar__link dashboard__sidebar__link-2"> 
+                                <svg version="1.1" id="membershipIcon" class="icon dashboard__sidebar__icon dashboard__sidebar__icon-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+        <g>
+            <path d="M665.8,670.5H161c-70.9,0-128.6-57.7-128.6-128.6V312.7c0-70.9,57.7-128.6,128.6-128.6h504.7
+                c70.9,0,128.6,57.7,128.6,128.6v229.2C794.3,612.8,736.6,670.5,665.8,670.5z M161,239.2c-40.6,0-73.6,33-73.6,73.6v229.2
+                c0,40.6,33,73.6,73.6,73.6h504.7c40.6,0,73.6-33,73.6-73.6V312.7c0-40.6-33-73.6-73.6-73.6H161z"/>
+            <rect x="60" y="309.5" width="706.8" height="55"/>
+        </g>
+        <path d="M775.2,859.3c-13.2,0-26.4-2.2-39.2-6.6L250.4,686.9c-11.4-3.9-22.1-9.4-31.9-16.4h-60.2c-69.3,0-125.8-59-125.8-131.4
+            V315.6c0-72.5,56.4-131.4,125.8-131.4h510.3c69.3,0,125.8,59,125.8,131.4v45.7l84.8,29c32,10.9,58,34.2,73.1,65.6
+            c15,31,17.7,66.2,7.6,99.3l-64.9,212.6c-10.5,34.5-33.4,62.2-64.5,78.1C812.9,854.8,794.1,859.3,775.2,859.3z M158.3,239.2
+            c-39,0-70.8,34.3-70.8,76.4V539c0,42.1,31.7,76.4,70.8,76.4H238l7.7,6.5c6.7,5.7,14.3,10,22.4,12.8l485.6,165.9
+            c17.1,5.8,35.4,4.5,51.5-3.8c17.7-9.1,30.8-25.1,37-45.2l64.9-212.6c12.4-40.5-8.2-83.9-45.9-96.8l-122-41.7v-85.1
+            c0-42.1-31.7-76.4-70.8-76.4H158.3z"/>
+        <rect x="819.6" y="432" transform="matrix(0.3457 -0.9384 0.9384 0.3457 66.778 1134.7985)" width="55" height="175"/>
+        </svg>
+        
+                                
+                           Підписки</a>
+                        </li>
+                     
+                    </ul>
+        
+                </div>
+                <div class="settings__grid-2">
+        
+        
+                    <div class="settings_id accountId">
+        
+                        <p class="settings__heading-2">Змінити Нік</p>
+         
+                            <form class="" id="updateNamefrm" method="POST" >
+                    <div class="autorisation__input-box-2">    
+                        <div class="autorisation__input-box">
+                            {% csrf_token %}
+                            <input type="text" id="updateName" name="newUserName" class="autorisation__input autorisation__input-2"  required   placeholder="Новий Нік">
+                   
+                            <svg version="1.1"  class="icon autorisation__icon updateUserIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                            <g>
+                                <path d="M500,591.4c-110.9,0-201-90.2-201-201c0-110.9,90.2-201,201-201c110.9,0,201,90.2,201,201C701,501.2,610.9,591.4,500,591.4
+                                    z M500,244.3c-80.5,0-146,65.5-146,146s65.5,146,146,146s146-65.5,146-146S580.5,244.3,500,244.3z"/>
+                                <path d="M216,808.6l0-0.2c0-0.4,0-0.8,0-1.2c0-75.9,29.5-147.2,83.2-200.8c53.6-53.6,125-83.2,200.8-83.2s147.2,29.5,200.8,83.2
+                                    c53.6,53.6,83.2,125,83.2,200.8h-55c0-126.3-102.7-229-229-229c-126.3,0-229,102.7-229,229l0,0.2c0,0.3,0,0.6,0,0.9L216,808.6z"/>
+                            </g>
+                            <path d="M500,992.9c-64.8,0-127.7-12.7-186.9-37.7c-57.2-24.2-108.5-58.8-152.6-102.9c-44.1-44.1-78.7-95.4-102.9-152.6
+                                c-25-59.2-37.7-122.1-37.7-186.9c0-64.8,12.7-127.7,37.7-186.9c24.2-57.2,58.8-108.5,102.9-152.6c44.1-44.1,95.4-78.7,152.6-102.9
+                                c59.2-25,122.1-37.7,186.9-37.7c64.8,0,127.7,12.7,186.9,37.7c57.2,24.2,108.5,58.8,152.6,102.9c44.1,44.1,78.7,95.4,102.9,152.6
+                                c25,59.2,37.7,122.1,37.7,186.9c0,64.8-12.7,127.7-37.7,186.9c-24.2,57.2-58.8,108.5-102.9,152.6s-95.4,78.7-152.6,102.9
+                                C627.7,980.2,564.8,992.9,500,992.9z M500,87.5c-234.4,0-425.2,190.7-425.2,425.2S265.6,937.9,500,937.9s425.2-190.7,425.2-425.2
+                                S734.4,87.5,500,87.5z"/>
+                            </svg>
+        
+                            <svg version="1.1" class="icon autorisation__icon errorIcon " xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                            <path d="M83.9,929L83.9,929c-13.7-13.7-13.7-35.8,0-49.5l783-783c13.7-13.7,35.8-13.7,49.5,0v0c13.7,13.7,13.7,35.8,0,49.5l-783,783
+                                C119.8,942.7,97.6,942.7,83.9,929z"/>
+                            <path d="M867.3,929.4L83.6,145.6c-13.7-13.7-13.7-35.8,0-49.5l0,0c13.7-13.7,35.8-13.7,49.5,0l783.7,783.7
+                                c13.7,13.7,13.7,35.8,0,49.5l0,0C903.1,943,881,943,867.3,929.4z"/>
+                            </svg>
+                            
+                            <div class="autorisation__input-label-box">
+                        <label  class="autorisation__input-label" for="updateName">Новий Нік</label>
+                        <label  class="autorisation__input-error" for="updateName" id="updateName-feedback"></label>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="dashboard__popup-button-3-box">
+                      <button type="submit" id="updateUserButton" disabled class="dashboard__popup-button dashboard__popup-button-3" name="updateUsername">Обновить <span>&rarr;</span></button>    
+                        </div>
+             
+                        </form>
+                            
+                        <p class="settings__heading-2 u-margin-bottom-small">Вийти</p>  <form action="{% url 'logout' %}" method="POST">
+                        <div class="dashboard__popup-button-3-box">
+                            {% csrf_token %}
+                            <button type="submit" class="dashboard__popup-button dashboard__popup-button-3">Вийти <span>&rarr;</span></button>
+                                
+                            </form>
+                        </div>
+        
+                   
+                    </div>
+        
+                  
+        
+                 <div class="settings_id colourId">
+                        
+          
+                            <p class="settings__heading u-margin-bottom-medium">Колір Тексту</p>
+                            <div class="settings__center">
+                        <div  class="colorPicker settings__colour-box "></div>
+                            <div class="u-margin-top-medium u-center-text">
+                                <form   method="POST">
+                                {% csrf_token %}
+                            <input type="text" style="display: none;" name="color" value="#fff" class="dummyinput">
+                            <div class="dashboard__popup-button-3-box ">
+                       
+                                <button type="submit" name="colorchange"  name="color-change"  id="color-close" class="dashboard__popup-button dashboard__popup-button-5">Оновити <span>&rarr;</span></button>
+                                    
+                            
+                            </div>
+                           
+                        </form>
+                        </div>
+                    </div>
+               </div> 
+        
+               <div class="settings_id backgroundId">
+                <div class="settings__center">
+                <p class="settings__heading-2">Задній Фон</p>
+        <form action="#" id='myform' enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+               <div class="settings__background__link-box">
+                <button class="settings__background__link" >Вибрати Картинку
+               <input type="file" class="settings__background__file" name="image" enctype="multipart/form-data"  id="backgroundimage" placeholder="Upload image">
+            </button>   
+            </div> 
+              <div class="dashboard__popup-button-3-box">
+                <button id="submit-image"disabled name="imagechange" class="dashboard__popup-button dashboard__popup-button-3" type="submit">Оновити <span>&rarr;</span></button>
+                  </div>   
+        </form>
+            </div>
+        </div>
+        
+        <div class="settings_id membershipId">
+            <p class="settings__heading-2">Подписки</p>
+            <p class="settings__heading-2 u-margin-bottom-small">
+                Ваша Підписка : <br>
+                <span class="settings__heading-span">{{ user.usermembership.membership}}</span>
+            </p>
+        
+            <div class="dashboard__popup-button-3-box">
+                <form action="{%url 'select'%}">
+                <button type="submit" class="dashboard__popup-button dashboard__popup-button-3" >Поліпшити Підписку <span>&rarr;</span></button>    
+               </form>   </div>
+    
+               {% if user.usermembership.membership.membership_type != "Free"%}
+               <p class="settings__heading-2">Відмінити Підписку</p>
+               <div class="dashboard__popup-button-3-box">
+              
+                <button type="submit" id="cancelMembershipBtn" class="dashboard__popup-button dashboard__popup-button-3" >Відмінити Подписку <span>&rarr;</span></button>    
+                {%endif%}
+            </div>
+        </div>
+        
+        
+        <div class="settings_id languageId">
+            <div class="settings__center">
+            <p class="settings__heading-2 u-margin-botton-bigger">Мова</p>
+            <form action="" method="post">
+                {% csrf_token %}
+                
+           <div class="select select-2 select-3" >   
+            <select name="languageupdate" value="1" onchange="this.form.submit()" >
+                <option>{{user.usermembership.language.language}}</option>
+                {% for language in languages %}
+                            <option id="{{language.id}}" value="{{language.id}}"> {{language.language}}   </option>   
+                {% endfor %}
+            </select>
+        </form>
+        </div>
+        {% if object is not None %}
+<div class="settings__heading-2 u-center-text margin-top-bottom-small">Валюта</div>
+        <form action="" method="post">
+            {% csrf_token %}
+       <div class="select select-2" >   
+        <select name="currencychange" value="$" onchange="this.form.submit()" >
+            <option>{{user.usermembership.currency}}</option>
+            <option value="$">$</option>
+            <option value="&#8364;">&#8364;</option>
+            <option value="&#8381;">&#8381;</option>
+            <option value="&#8377;">&#8377;</option>
+            <option value="&#8372;">&#8372;</option>
+            <option value="&#8376;">&#8376;</option>
+            <option value="&#8356;">&#8356;</option>
+            <option value="&#8383;">&#8383;</option>
+            <option value="&#8369;">&#8369;</option>
+        </select>
+    </div>
+        </form>
+
+        {% else %}
+     
+        <p class="settings__heading-2">Поліпшите Підписку  <br> Щоб Отримати Функцію Цілей</p>
+        <p class="settings__heading-2 u-margin-bottom-small">
+            Ваша Поточна <br> Підписка <br>
+            <span class="settings__heading-span">{{ user.usermembership.membership}}</span>
+        </p>
+    
+        <div class="dashboard__popup-button-3-box">
+            <form action="{%url 'select'%}">
+            <button type="submit" class="dashboard__popup-button dashboard__popup-button-3" >Поліпшити Підписку <span>&rarr;</span></button>    
+           </form>   
+        </div>
+           
+
+        {% endif %}
+        </div>
+        </div>
+        
+        
+    
+        
+        <div class="settings_id passwordId">
+        
+            <div class="settings__center">
+                <p class="settings__heading-2">Пароль</p>
+                <form class="" id="updatePassfrm" method="POST" >
+                    {% csrf_token %}
+                        <div class="autorisation__input-box-2">    
+                            <div class="autorisation__input-box">
+                           
+                                <input type="password" id="newPass" name="newpassword" class="autorisation__input autorisation__input-2"  required   placeholder="Новий Пароль">
+                       
+                                <svg version="1.1" onclick="showPass()"  class="icon autorisation__icon newPassIcon " xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                                <path  d="M793.8,969.9H186.9c-41.6,0-75.5-33.9-75.5-75.5V399.2c0-41.6,33.9-75.5,75.5-75.5h606.9c41.6,0,75.5,33.9,75.5,75.5v495.3
+                                    C869.3,936,835.4,969.9,793.8,969.9z M186.9,370.9c-15.6,0-28.3,12.7-28.3,28.3v495.3c0,15.6,12.7,28.3,28.3,28.3h606.9
+                                    c15.6,0,28.3-12.7,28.3-28.3V399.2c0-15.6-12.7-28.3-28.3-28.3H186.9z"/>
+                                <g>
+                                    <circle cx="329.4" cy="646.8" r="57.8"/>
+                                    <circle cx="487.3" cy="646.8" r="57.8"/>
+                                    <circle cx="651.3" cy="646.8" r="57.8"/>
+                                </g>
+                                <path d="M759.2,294.1h-44c0-124-100.9-224.9-224.9-224.9S265.5,170.1,265.5,294.1h-44c0-36.3,7.1-71.5,21.1-104.6
+                                    c13.5-32,32.9-60.8,57.6-85.4c24.7-24.7,53.4-44.1,85.4-57.6c33.2-14,68.4-21.1,104.6-21.1c36.3,0,71.5,7.1,104.6,21.1
+                                    c32,13.5,60.8,32.9,85.4,57.6c24.7,24.7,44.1,53.4,57.6,85.4C752.1,222.6,759.2,257.8,759.2,294.1z"/>
+                                </svg>
+            
+                                <svg version="1.1"  class="icon autorisation__icon newPassErorrIcon error" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                                <path d="M83.9,929L83.9,929c-13.7-13.7-13.7-35.8,0-49.5l783-783c13.7-13.7,35.8-13.7,49.5,0v0c13.7,13.7,13.7,35.8,0,49.5l-783,783
+                                    C119.8,942.7,97.6,942.7,83.9,929z"/>
+                                <path d="M867.3,929.4L83.6,145.6c-13.7-13.7-13.7-35.8,0-49.5l0,0c13.7-13.7,35.8-13.7,49.5,0l783.7,783.7
+                                    c13.7,13.7,13.7,35.8,0,49.5l0,0C903.1,943,881,943,867.3,929.4z"/>
+                                </svg>
+        
+                            
+                                <svg version="1.1"  onclick="showPass()"  class="icon autorisation__icon showpass" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+                                <path d="M933.3,602.3h-55c0-211-171.7-382.6-382.6-382.6c-211,0-382.6,171.7-382.6,382.6H58c0-59.1,11.6-116.4,34.4-170.4
+                                    c22-52.1,53.6-98.9,93.8-139.1c40.2-40.2,87-71.7,139.1-93.8c54-22.8,111.3-34.4,170.4-34.4s116.4,11.6,170.4,34.4
+                                    c52.1,22,98.9,53.6,139.1,93.8c40.2,40.2,71.7,87,93.8,139.1C921.7,485.9,933.3,543.2,933.3,602.3z"/>
+                                <path d="M495.7,818.9c-60.8,0-117.9-23.7-160.8-66.6c-43-43-66.6-100.1-66.6-160.8s23.7-117.9,66.6-160.8
+                                    c43-43,100.1-66.6,160.8-66.6c60.8,0,117.9,23.7,160.8,66.6c43,43,66.6,100.1,66.6,160.8s-23.7,117.9-66.6,160.8
+                                    S556.4,818.9,495.7,818.9z M495.7,419c-95.1,0-172.5,77.4-172.5,172.5c0,95.1,77.4,172.5,172.5,172.5s172.5-77.4,172.5-172.5
+                                    C668.1,496.4,590.8,419,495.7,419z"/>
+                                </svg>
+                                
+        
+                                <div class="autorisation__input-label-box">
+                            <label  class="autorisation__input-label" for="newPass">Новий Пароль</label>
+                            <label  class="autorisation__input-error" for="newPass" id="newPass-feedback"></label>
+                                </div>
+                            </div>
+                <div class="dashboard__popup-button-3-box">
+              <button type="submit" id="updatePassButton" disabled class="dashboard__popup-button dashboard__popup-button-3" name="updatepassname">Оновити <span>&rarr;</span></button>    
+                </div>
+        
+                </form>
+                    
+              
+                </div>
+        
+        </div>
+        
+            </div>
+         <div class="settings_id themeId">
+                <div class="settings__heading-2 u-center-text u-margin">Теми</div>
+                <div class="settings__theme-grid">
+                  
+                    <form id="" method="post">
+                        {% csrf_token %}
+                        <div class="settings__theme_box">
+                            <p class="settings__theme__heading">Темна Тема</p>
+                          
+                            <input type="submit" name="schemeblack" value="schemeblack" class="settings__theme" placeholder="&nbsp;"> 
+                                   
+                            <span class="settings__theme__span" id="black">&nbsp;</span>   
+                          
+                    </form>
+                </div>
+                    <form action="" method="post">
+                        <div class="settings__radio-group">
+                            {% csrf_token %}
+                            <div class="settings__theme_box">
+                                <p class="settings__theme__heading">Світла Тема</p>
+                            <input  type="submit" name="schemewhite" value="schemewhite"  class="settings__theme" >
+                            <span class="settings__theme__span" id="white">&nbsp;</span>   
+                                  
+                          
+                            </label>
+                        
+                        </div>
+                    
+                        </form>
+                        
+                       
+                    
+                    
+                    </div>
+                   
+                </div>
+        
+           
+        </div>
+               
+        
+        </div>
+        
+        </div> 
+        
+             
+              
+            </div>
+        
+               
+            </div>
+            </div>
+        
+        
+        
+        
+            {% endif %}
+
+<script>
+
+    $(function(){ 
+
+        {% if user.usermembership.language.id == 1 %}
+
+
+        'use strict';
+  
+
+  function checkValidationUpdateUser() {
+    // Check if username and email inputs are valid
+    if (formValidUpdateUser.updateName ) {
+      $('#updateUserButton').removeAttr('disabled'); // Allow submitting of form
+    } else {
+      $('#updateUserButton').attr('disabled', true); // Block form from being submitted
+    }
+  }
+
+  var formValidUpdateUser = {
+      updateName: false, // Username field
+  };
+
+
+
+  $("#updateName").on('input', function() {
+    var updateName = $(this).val(); // Assign input value to a variable
+  
+    // Function to assign message to paragraph tag
+    function msgUpdate(body) {
+        $('#updateName-feedback').text(body).show();
+      };
+    
+      // Function to hide paragraph tag
+      function hideUpdate() {
+        $('#updateName-feedback').hide();
+      };
+  
+    // Check if e-mail value is at least 1 character
+    if (updateName.length < 1) {
+      msgUpdate('Must be at least 1 characters'); // Assign error message to DOM.
+      formValidUpdateUser.updateName = false; // Set input as invalid
+     
+      visibility($(".errorIcon"));
+      hideVisibility($(".updateUserIcon"));
+      checkValidationUpdateUser(); // Perform validation check
+    }  else {
+      hideUpdate(); // Hide previous error messages
+        formValidUpdateUser.updateName = true; // Set input as invalid
+        visibility($(".updateUserIcon"));
+        hideVisibility($(".errorIcon"));
+        checkValidationUpdateUser(); // Perform validation check
+        // Check if e-mail value meets length requirements
+        if (updateName.length < 1 || updateName.length > 20) {
+          msgUpdate('Must be at least 1 characters but no more than 20'); // Return custom error message to DOM
+          formValidUpdateUser.updateName = false; // Set input as invalid
+          visibility($(".errorIcon"));
+          hideVisibility($(".updateUserIcon"));
+          
+          checkValidationUpdateUser(); // Perform validation check
+        } else {
+          hideUpdate(); // Hide previous error message
+          formValidUpdateUser.updateName = true; // Set input as valid
+      
+          visibility($(".updateUserIcon"));
+          hideVisibility($(".errorIcon"));
+          checkValidationUpdateUser(); // Perform validation check
+        }
+      
+    }
+  });
+  'use strict';
+
+// Custom object to track if inputs are valid or not
+
+
+  function checkValidationUpdatePassword() {
+    // Check if username and email inputs are valid
+    if (formValidUpdatePassword.newPass ) {
+      $('#updatePassButton').removeAttr('disabled'); // Allow submitting of form
+    } else {
+      $('#updatePassButton').attr('disabled', true); // Block form from being submitted
+    }
+  }
+
+  var formValidUpdatePassword = {
+      newPass:false,
+  };
+
+    $("#newPass").on('input', function() {
+      $("#newPass").attr('type', 'password'); 
+      hideVisibilityCss($(".showpass")
+      )
+      var newPass = $(this).val(); // Assign input value to a variable
+      
+      // Function to assign message to paragraph tag
+      function msgUpdate(body) {
+          $('#newPass-feedback').text(body).show();
+        };
+      
+        // Function to hide paragraph tag
+        function hideUpdate() {
+          $('#newPass-feedback').hide();
+        };
+    
+      // Check if e-mail value is at least 1 character
+      if (newPass.length < 1) {
+        msgUpdate('This field is required'); // Assign error message to DOM.
+        formValidUpdatePassword.newPass = false; // Set input as invalid
+        hideVisibilityCss($(".showpass"))
+        visibilityCss($(".newPassErorrIcon"));
+        hideVisibilityCss($(".newPassIcon"));
+        checkValidationUpdatePassword(); // Perform validation check
+      }  else {
+        hideUpdate(); // Hide previous error messages
+        formValidUpdatePassword.newPass = true; // Set input as invalid
+          hideVisibilityCss($(".showpass"))
+          visibilityCss($(".newPassIcon"));
+          hideVisibilityCss($(".newPassErorrIcon"));
+          checkValidationUpdatePassword(); // Perform validation check
+          // Check if e-mail value meets length requirements
+          if (newPass.length < 8) {
+            msgUpdate('Must be at least 8 symblols'); // Return custom error message to DOM
+            formValidUpdatePassword.newPass = false; // Set input as invalid
+            visibilityCss($(".newPassErorrIcon"));
+            hideVisibilityCss($(".showpass"))
+            hideVisibilityCss($(".newPassIcon"));
+            
+            checkValidationUpdatePassword(); // Perform validation check
+          } else {  
+            hideUpdate(); // Hide previous error message
+            formValidUpdatePassword.newPass = true; // Set input as valid
+            hideVisibilityCss($(".showpass"))
+            visibilityCss($(".newPassIcon"));
+            hideVisibilityCss($(".newPassErorrIcon"));
+            checkValidationUpdatePassword(); // Perform validation check
+          }
+        }
+
+
+  });
+
+
+
+        {%endif%}
+        {% if user.usermembership.language.id == 2 %}
+
+
+'use strict';
+
+
+function checkValidationUpdateUser() {
+// Check if username and email inputs are valid
+if (formValidUpdateUser.updateName ) {
+$('#updateUserButton').removeAttr('disabled'); // Allow submitting of form
+} else {
+$('#updateUserButton').attr('disabled', true); // Block form from being submitted
+}
+}
+
+var formValidUpdateUser = {
+updateName: false, // Username field
+};
+
+
+
+$("#updateName").on('input', function() {
+var updateName = $(this).val(); // Assign input value to a variable
+
+// Function to assign message to paragraph tag
+function msgUpdate(body) {
+$('#updateName-feedback').text(body).show();
+};
+
+// Function to hide paragraph tag
+function hideUpdate() {
+$('#updateName-feedback').hide();
+};
+
+// Check if e-mail value is at least 1 character
+if (updateName.length < 1) {
+msgUpdate('Должно Быть Не Менее 1 Символа'); // Assign error message to DOM.
+formValidUpdateUser.updateName = false; // Set input as invalid
+
+visibility($(".errorIcon"));
+hideVisibility($(".updateUserIcon"));
+checkValidationUpdateUser(); // Perform validation check
+}  else {
+hideUpdate(); // Hide previous error messages
+formValidUpdateUser.updateName = true; // Set input as invalid
+visibility($(".updateUserIcon"));
+hideVisibility($(".errorIcon"));
+checkValidationUpdateUser(); // Perform validation check
+// Check if e-mail value meets length requirements
+if (updateName.length < 1 || updateName.length > 20) {
+  msgUpdate('Должно Быть Не Менее 1 Символа, Но Не Более 20'); // Return custom error message to DOM
+  formValidUpdateUser.updateName = false; // Set input as invalid
+  visibility($(".errorIcon"));
+  hideVisibility($(".updateUserIcon"));
+  
+  checkValidationUpdateUser(); // Perform validation check
+} else {
+  hideUpdate(); // Hide previous error message
+  formValidUpdateUser.updateName = true; // Set input as valid
+
+  visibility($(".updateUserIcon"));
+  hideVisibility($(".errorIcon"));
+  checkValidationUpdateUser(); // Perform validation check
+}
+
+}
+});
+
+'use strict';
+
+// Custom object to track if inputs are valid or not
+
+
+  function checkValidationUpdatePassword() {
+    // Check if username and email inputs are valid
+    if (formValidUpdatePassword.newPass ) {
+      $('#updatePassButton').removeAttr('disabled'); // Allow submitting of form
+    } else {
+      $('#updatePassButton').attr('disabled', true); // Block form from being submitted
+    }
+  }
+
+  var formValidUpdatePassword = {
+      newPass:false,
+  };
+
+    $("#newPass").on('input', function() {
+      $("#newPass").attr('type', 'password'); 
+      hideVisibilityCss($(".showpass")
+      )
+      var newPass = $(this).val(); // Assign input value to a variable
+      
+      // Function to assign message to paragraph tag
+      function msgUpdate(body) {
+          $('#newPass-feedback').text(body).show();
+        };
+      
+        // Function to hide paragraph tag
+        function hideUpdate() {
+          $('#newPass-feedback').hide();
+        };
+    
+      // Check if e-mail value is at least 1 character
+      if (newPass.length < 1) {
+        msgUpdate('Это Поле Обязательно к Заполнению'); // Assign error message to DOM.
+        formValidUpdatePassword.newPass = false; // Set input as invalid
+        hideVisibilityCss($(".showpass"))
+        visibilityCss($(".newPassErorrIcon"));
+        hideVisibilityCss($(".newPassIcon"));
+        checkValidationUpdatePassword(); // Perform validation check
+      }  else {
+        hideUpdate(); // Hide previous error messages
+        formValidUpdatePassword.newPass = true; // Set input as invalid
+          hideVisibilityCss($(".showpass"))
+          visibilityCss($(".newPassIcon"));
+          hideVisibilityCss($(".newPassErorrIcon"));
+          checkValidationUpdatePassword(); // Perform validation check
+          // Check if e-mail value meets length requirements
+          if (newPass.length < 8) {
+            msgUpdate('Должно Быть Не Менее 8 Символов'); // Return custom error message to DOM
+            formValidUpdatePassword.newPass = false; // Set input as invalid
+            visibilityCss($(".newPassErorrIcon"));
+            hideVisibilityCss($(".showpass"))
+            hideVisibilityCss($(".newPassIcon"));
+            
+            checkValidationUpdatePassword(); // Perform validation check
+          } else {  
+            hideUpdate(); // Hide previous error message
+            formValidUpdatePassword.newPass = true; // Set input as valid
+            hideVisibilityCss($(".showpass"))
+            visibilityCss($(".newPassIcon"));
+            hideVisibilityCss($(".newPassErorrIcon"));
+            checkValidationUpdatePassword(); // Perform validation check
+          }
+        }
+
+
+  });
+
+
+{%endif%}
+{% if user.usermembership.language.id == 4 %}
+
+
+'use strict';
+
+
+function checkValidationUpdateUser() {
+// Check if username and email inputs are valid
+if (formValidUpdateUser.updateName ) {
+$('#updateUserButton').removeAttr('disabled'); // Allow submitting of form
+} else {
+$('#updateUserButton').attr('disabled', true); // Block form from being submitted
+}
+}
+
+var formValidUpdateUser = {
+updateName: false, // Username field
+};
+
+
+
+$("#updateName").on('input', function() {
+var updateName = $(this).val(); // Assign input value to a variable
+
+// Function to assign message to paragraph tag
+function msgUpdate(body) {
+$('#updateName-feedback').text(body).show();
+};
+
+// Function to hide paragraph tag
+function hideUpdate() {
+$('#updateName-feedback').hide();
+};
+
+// Check if e-mail value is at least 1 character
+if (updateName.length < 1) {
+msgUpdate('Повинно Бути Не Менше Одного Символа'); // Assign error message to DOM.
+formValidUpdateUser.updateName = false; // Set input as invalid
+
+visibility($(".errorIcon"));
+hideVisibility($(".updateUserIcon"));
+checkValidationUpdateUser(); // Perform validation check
+}  else {
+hideUpdate(); // Hide previous error messages
+formValidUpdateUser.updateName = true; // Set input as invalid
+visibility($(".updateUserIcon"));
+hideVisibility($(".errorIcon"));
+checkValidationUpdateUser(); // Perform validation check
+// Check if e-mail value meets length requirements
+if (updateName.length < 1 || updateName.length > 20) {
+  msgUpdate('Повинно Бути Не Менше Одного Символа, Але Не Більше 20'); // Return custom error message to DOM
+  formValidUpdateUser.updateName = false; // Set input as invalid
+  visibility($(".errorIcon"));
+  hideVisibility($(".updateUserIcon"));
+  
+  checkValidationUpdateUser(); // Perform validation check
+} else {
+  hideUpdate(); // Hide previous error message
+  formValidUpdateUser.updateName = true; // Set input as valid
+
+  visibility($(".updateUserIcon"));
+  hideVisibility($(".errorIcon"));
+  checkValidationUpdateUser(); // Perform validation check
+}
+
+}
+});
+
+'use strict';
+
+// Custom object to track if inputs are valid or not
+
+
+  function checkValidationUpdatePassword() {
+    // Check if username and email inputs are valid
+    if (formValidUpdatePassword.newPass ) {
+      $('#updatePassButton').removeAttr('disabled'); // Allow submitting of form
+    } else {
+      $('#updatePassButton').attr('disabled', true); // Block form from being submitted
+    }
+  }
+
+  var formValidUpdatePassword = {
+      newPass:false,
+  };
+
+    $("#newPass").on('input', function() {
+      $("#newPass").attr('type', 'password'); 
+      hideVisibilityCss($(".showpass")
+      )
+      var newPass = $(this).val(); // Assign input value to a variable
+      
+      // Function to assign message to paragraph tag
+      function msgUpdate(body) {
+          $('#newPass-feedback').text(body).show();
+        };
+      
+        // Function to hide paragraph tag
+        function hideUpdate() {
+          $('#newPass-feedback').hide();
+        };
+    
+      // Check if e-mail value is at least 1 character
+      if (newPass.length < 1) {
+        msgUpdate('Це Поле є Обов\'язковим для Заповнення'); // Assign error message to DOM.
+        formValidUpdatePassword.newPass = false; // Set input as invalid
+        hideVisibilityCss($(".showpass"))
+        visibilityCss($(".newPassErorrIcon"));
+        hideVisibilityCss($(".newPassIcon"));
+        checkValidationUpdatePassword(); // Perform validation check
+      }  else {
+        hideUpdate(); // Hide previous error messages
+        formValidUpdatePassword.newPass = true; // Set input as invalid
+          hideVisibilityCss($(".showpass"))
+          visibilityCss($(".newPassIcon"));
+          hideVisibilityCss($(".newPassErorrIcon"));
+          checkValidationUpdatePassword(); // Perform validation check
+          // Check if e-mail value meets length requirements
+          if (newPass.length < 8) {
+            msgUpdate('Повинно Бути Не Менше Восьми Символів'); // Return custom error message to DOM
+            formValidUpdatePassword.newPass = false; // Set input as invalid
+            visibilityCss($(".newPassErorrIcon"));
+            hideVisibilityCss($(".showpass"))
+            hideVisibilityCss($(".newPassIcon"));
+            
+            checkValidationUpdatePassword(); // Perform validation check
+          } else {  
+            hideUpdate(); // Hide previous error message
+            formValidUpdatePassword.newPass = true; // Set input as valid
+            hideVisibilityCss($(".showpass"))
+            visibilityCss($(".newPassIcon"));
+            hideVisibilityCss($(".newPassErorrIcon"));
+            checkValidationUpdatePassword(); // Perform validation check
+          }
+        }
+
+
+  });
+
+
+{%endif%}
+    function hideVisibility(item){
+      item.css({
+        "visibility":"hidden",
+      }).animate({"opacity": "0"},300);;
+    }
+    function visibility(item){
+      item.css({
+        "visibility":"visible",
+      }).animate({"opacity": "1"},300);;
+    }
+
+
+      $("#closeButton").click(function(event){
+      hideVisibility($("#cancelMembership"));
+      hideVisibility($("#dashboardpopup"));
+      hideVisibility($(".dashboard__popup-2"));
+    });
+
+    $("#OkMessageClick").click(function(){
+      hideVisibility($("#cancelMembership"));
+      hideVisibility($("#dashboardpopup"));
+    });
+    $("#cancelMembershipBtn").click(function(){
+
+      visibility($("#cancelMembership"));
+      visibility($("#dashboardpopup"));
+    })
+    
+    
+
+
+})
+
+</script>
+
+
+<script src="{% static 'js/settings.js'%}"></script>
+
+{% include 'partials/_background_image.html' %}
+
+
+
+{% endblock  %}

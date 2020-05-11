@@ -1,0 +1,749 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block title %}
+| To Buy Lists
+{% endblock  %}
+{%block content%}
+ 
+{% include 'partials/_menu.html' %}
+
+
+{% if user.usermembership.language.id == 1 %}
+
+<div class="dashboard__popup dashboardpopup" id="dashboardpopup">
+
+
+  <div class="dashboard__popup-close" id="closeButton">&times;</div>
+  <div class="dashboard__popup-2" id="OkMessage">
+
+  <p class="dashboard__popup-heading">This List Saved As Expence</p>
+
+  <button id="OkMessageClick" class="dashboard__popup-button">Ok<span>&rarr;</span></button>    
+</form>
+</div>
+
+            <div class="dashboard__popup-2" id="addListForm">
+                  
+        <form  method="POST"  id="create_listfrm" action="{%url 'add_list_record'%}">
+            {% csrf_token %}
+            <p class="dashboard__popup-heading">Add List</p>
+    
+            <div class="dashboard__popup-input-box">
+              <input type="text" class="dashboard__popup-input"  placeholder="Add Title" name="title_list">
+
+            <label class="dashboard__popup__label" for="id_title">Add Title</label>
+            </div>
+             
+            <button type="submit" id="popup-button-2" class="dashboard__popup-button" name="addlist">Add <span>&rarr;</span></button>    
+         
+         </form>
+        </div>
+
+        
+        {% if lists %}
+        {% for list in lists %}
+
+        <div class="dashboard__popup-2" id="addListItemForm{{list.id}}">
+                  
+            <form  method="POST" name="create_listitemfrm" id="create_listitemfrm{{list.id}}" action="{% url 'create_item_record' %}">
+                {% csrf_token %}
+                <p class="dashboard__popup-heading">Add item for {{list.title_list}}</p>
+        
+                <div class="dashboard__popup-input-box">
+                  <input type="text" class="dashboard__popup-input titlefocus" id="id_title{{list.id}}" placeholder="Add Title">
+                <label class="dashboard__popup__label" for="id_title">Add Title</label>
+                </div>
+             
+                <div class="dashboard__popup-input-box">
+              
+                  <input type="number" class="dashboard__popup-input popupvalue" min="1" placeholder="Add Value"  id="id_value{{list.id}}" value="1" min="1" required>
+    
+                    <div class="dashboard__popup-addbtn-box">
+                        <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepUp()" class="dashboard__popup-addbtn">+</p>
+                        <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepDown()" class="dashboard__popup-addbtn">-</p>
+                    </div>
+                    
+                    <label class="dashboard__popup__label" for="id_value">Add Value</label>
+                </div>
+
+                <p style="opacity: 0;visibility: hidden;" id="user-currency_goal">{{user.usermembership.currency}}</p>
+        
+             
+                <input type='hidden' id="item-hidden" name='form_type' value='item'>
+               
+                <button type="submit" id="popup-button-2" class="dashboard__popup-button" name="createlistitemfrmbtn">Add <span>&rarr;</span></button>    
+              </form>
+            </div>
+
+            
+            {% endfor %}
+            {% else %}
+          
+            {% endif %}
+
+        </div>
+
+<div class="goals__grid">
+  {% if object is not None %}
+    <div class="dashboard__goals dashboard__goals-2" id="budget-income">
+        <div class="dashboard__budget__text">
+            <p class="dashboard__budget__paragraph dashboard__budget__paragraph-main">Balance :</p>
+            <p class="dashboard__budget__spendings dashboard__budget__spendings-main"><span class="dashboard__plus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency budget">{{user.usermembership.budget}}</span></p>
+            </div>
+            <div class="u-margin-top-medium u-center-text">
+            <a href="#" class="dashboard__budget__button addList">Add List</a>
+                </div>
+    </div>
+        {% if lists %}
+        {% for list in lists %}
+
+<div class="dashboard__goals  dashboard__goals-2 row{{list.id}}" id="budget-income">
+    <p class="dashboard__income__delete-list dashboard__goals-delete-list" id="{{ list.id }}">&times;</p>
+    <p class="dashboard__income__heading">{{list.title_list}}</p>
+
+    <ul class="dashboard__income__ul add-item{{list.id}}"id="{{list.id}}">
+
+
+      
+        {% for item in list.listsitem_set.all %}
+        
+        <li class="dashboard__income__li">
+                <div class="dashboard__income__box">
+                <p class="dashboard__income__text">
+                    {{item.title_item}}
+                </p>
+                <div class="dashboard__income__num-box">
+                <p class="dashboard__income__num" ><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency balance{{list.id}}" >{{item.value_item}}</span></p>
+                <p class="dashboard__income__delete-inc dashboard__item__delete-inc" id="{{ item.id }}">
+
+                &times;
+                </p>
+                </div>
+            </div>
+            </li>
+ 
+            {% endfor %}
+
+
+    </ul>
+    <div class="u-margin-top-medium u-center-text">
+      <div class="dashboard__budget__text">
+          <p class="dashboard__budget__paragraph dashboard__budget__paragraph-main">Expenses :</p>
+          <p class="dashboard__budget__spendings dashboard__budget__spendings-main"><span class="dashboard__plus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency listsItem" id="balance{{list.id}}">0</span></p>
+      </div> 
+     
+      <div class="u-margin-bottom-small u-center-text">
+      <a href="#" class="dashboard__budget__button"id="addform{{list.id}}" >Add Item</a>
+      <br> <br> <br>
+
+      <form action="{% url 'create_expence_record' %}" id="create_savefrm{{list.id}}" method="POST">
+        {% csrf_token %}
+        <input type='hidden' id="expence-hidden" name='form_type' value='expence'>
+        <input type="hidden" id="title{{list.id}}" value="{{list.title_list}}">
+      <button type="submit" class="dashboard__budget__button dashboard__budget__button-2" >Save As Expense</button>
+</form></div>
+   
+  </div>
+  
+</div>
+
+
+     
+            {% endfor %}
+            {% else %}
+          
+            {% endif %}
+
+            <div id="addList"></div>
+
+        </div>
+
+
+                                    
+        {% else %}
+        <div class="dashboard__goals noneGoalsHeading dashboard__goals-2" >
+            <p class="settings__heading-2">Upgrade Membership <br> To Get To Buy Lists Feature</p>
+            <p class="settings__heading-2 u-margin-bottom-small">
+                Your current <br> Membership is <br>
+                <span class="settings__heading-span">{{ user.usermembership.membership}}</span>
+            </p>
+        
+            <div class="dashboard__popup-button-3-box">
+                <form action="{%url 'select'%}">
+                <button type="submit" class="dashboard__popup-button dashboard__popup-button-3" >Upgrade Membership <span>&rarr;</span></button>    
+               </form>   
+            </div>
+           
+            </div>
+        {% endif %}
+        {% endif %}
+
+        {% if user.usermembership.language.id == 2 %}
+
+        <div class="dashboard__popup dashboardpopup" id="dashboardpopup">
+        
+        
+          <div class="dashboard__popup-close" id="closeButton">&times;</div>
+          <div class="dashboard__popup-2" id="OkMessage">
+        
+          <p class="dashboard__popup-heading">Этот Список Сохранен Как Разход</p>
+        
+          <button id="OkMessageClick" class="dashboard__popup-button">Ок<span>&rarr;</span></button>    
+        </form>
+        </div>
+        
+                    <div class="dashboard__popup-2" id="addListForm">
+                          
+                <form  method="POST"  id="create_listfrm" action="{%url 'add_list_record'%}">
+                    {% csrf_token %}
+                    <p class="dashboard__popup-heading">Добавить Список</p>
+            
+                    <div class="dashboard__popup-input-box">
+                      <input type="text" class="dashboard__popup-input"  placeholder="Добавте Название" name="title_list">
+        
+                    <label class="dashboard__popup__label" for="id_title">Добавте Название</label>
+                    </div>
+                     
+                    <button type="submit" id="popup-button-2" class="dashboard__popup-button" name="addlist">Добавить <span>&rarr;</span></button>    
+                 
+                 </form>
+                </div>
+        
+                
+                {% if lists %}
+                {% for list in lists %}
+        
+                <div class="dashboard__popup-2" id="addListItemForm{{list.id}}">
+                          
+                    <form  method="POST" name="create_listitemfrm" id="create_listitemfrm{{list.id}}" action="{% url 'create_item_record' %}">
+                        {% csrf_token %}
+                        <p class="dashboard__popup-heading">Добавить Пункт Для {{list.title_list}}</p>
+                
+                        <div class="dashboard__popup-input-box">
+                          <input type="text" class="dashboard__popup-input titlefocus" id="id_title{{list.id}}" placeholder="Добавте Название">
+                        <label class="dashboard__popup__label" for="id_title">Добавте Название</label>
+                        </div>
+                     
+                        <div class="dashboard__popup-input-box">
+                    
+                          <input type="number" class="dashboard__popup-input popupvalue" min="1" placeholder="Добавте Сумму"  id="id_value{{list.id}}" value="1" min="1" required>
+    
+        
+                            <div class="dashboard__popup-addbtn-box">
+                                <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepUp()" class="dashboard__popup-addbtn">+</p>
+                                <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepDown()" class="dashboard__popup-addbtn">-</p>
+                            </div>
+                            
+                            <label class="dashboard__popup__label" for="id_value">Добавте Сумму</label>
+                        </div>
+        
+                        <p style="opacity: 0;visibility: hidden;" id="user-currency_goal">{{user.usermembership.currency}}</p>
+                
+                     
+                        <input type='hidden' id="item-hidden" name='form_type' value='item'>
+                       
+                        <button type="submit" id="popup-button-2" class="dashboard__popup-button" name="createlistitemfrmbtn">Добавить <span>&rarr;</span></button>    
+                      </form>
+                    </div>
+        
+                    
+                    {% endfor %}
+                    {% else %}
+                  
+                    {% endif %}
+        
+                </div>
+        
+        <div class="goals__grid">
+          {% if object is not None %}
+            <div class="dashboard__goals dashboard__goals-2" id="budget-income">
+                <div class="dashboard__budget__text">
+                    <p class="dashboard__budget__paragraph dashboard__budget__paragraph-main">Баланс :</p>
+                    <p class="dashboard__budget__spendings dashboard__budget__spendings-main"><span class="dashboard__plus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency budget">{{user.usermembership.budget}}</span></p>
+                    </div>
+                    <div class="u-margin-top-medium u-center-text">
+                    <a href="#" class="dashboard__budget__button addList">Добавить Список</a>
+                        </div>
+            </div>
+                {% if lists %}
+                {% for list in lists %}
+        
+        <div class="dashboard__goals dashboard__goals-2 row{{list.id}}" id="budget-income">
+            <p class="dashboard__income__delete-list dashboard__goals-delete-list" id="{{ list.id }}">&times;</p>
+            <p class="dashboard__income__heading">{{list.title_list}}</p>
+        
+            <ul class="dashboard__income__ul add-item{{list.id}}"id="{{list.id}}">
+        
+        
+              
+                {% for item in list.listsitem_set.all %}
+                
+                <li class="dashboard__income__li">
+                        <div class="dashboard__income__box">
+                        <p class="dashboard__income__text">
+                            {{item.title_item}}
+                        </p>
+                        <div class="dashboard__income__num-box">
+                        <p class="dashboard__income__num" ><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency balance{{list.id}}" >{{item.value_item}}</span></p>
+                        <p class="dashboard__income__delete-inc dashboard__item__delete-inc" id="{{ item.id }}">
+        
+                        &times;
+                        </p>
+                        </div>
+                    </div>
+                    </li>
+         
+                    {% endfor %}
+        
+        
+            </ul>
+            <div class="u-margin-top-medium u-center-text">
+              <div class="dashboard__budget__text">
+                  <p class="dashboard__budget__paragraph dashboard__budget__paragraph-main">Разходы :</p>
+                  <p class="dashboard__budget__spendings dashboard__budget__spendings-main"><span class="dashboard__plus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency listsItem" id="balance{{list.id}}">0</span></p>
+              </div> 
+             
+              <div class="u-margin-bottom-small u-center-text">
+              <a href="#" class="dashboard__budget__button"id="addform{{list.id}}" >Добавить Пункт</a>
+              <br> <br> <br>
+        
+              <form action="{% url 'create_expence_record' %}" id="create_savefrm{{list.id}}" method="POST">
+                {% csrf_token %}
+                <input type='hidden' id="expence-hidden" name='form_type' value='expence'>
+                <input type="hidden" id="title{{list.id}}" value="{{list.title_list}}">
+              <button type="submit" class="dashboard__budget__button dashboard__budget__button-2" >Сохранить Как Разход</button>
+        </form></div>
+           
+          </div>
+          
+        </div>
+        
+        
+             
+                    {% endfor %}
+                    {% else %}
+                  
+                    {% endif %}
+        
+                    <div id="addList"></div>
+        
+                </div>
+        
+        
+                                            
+                {% else %}
+                <div class="dashboard__goals dashboard__goals-2 noneGoalsHeading">
+                  <p class="settings__heading-2">Улучшите Подписку <br> Чтобы Получить Функцию Списков Покупок</p>
+                  <p class="settings__heading-2 u-margin-bottom-small">
+                      Ваша Текущая <br> Подписка <br>
+                      <span class="settings__heading-span">{{ user.usermembership.membership}}</span>
+                  </p>
+              
+                  <div class="dashboard__popup-button-3-box">
+                      <form action="{%url 'select'%}">
+                      <button type="submit" class="dashboard__popup-button dashboard__popup-button-3" >Улучшить Подписку <span>&rarr;</span></button>    
+                     </form>   
+                  </div>
+                 
+                  </div>
+                {% endif %}
+                {% endif %}
+        
+
+                {% if user.usermembership.language.id == 4 %}
+
+                <div class="dashboard__popup dashboardpopup" id="dashboardpopup">
+                
+                
+                  <div class="dashboard__popup-close" id="closeButton">&times;</div>
+                  <div class="dashboard__popup-2" id="OkMessage">
+                
+                  <p class="dashboard__popup-heading">Цей Список Збережений як Витрата</p>
+                
+                  <button id="OkMessageClick" class="dashboard__popup-button">Ок<span>&rarr;</span></button>    
+                </form>
+                </div>
+                
+                            <div class="dashboard__popup-2" id="addListForm">
+                                  
+                        <form  method="POST"  id="create_listfrm" action="{%url 'add_list_record'%}">
+                            {% csrf_token %}
+                            <p class="dashboard__popup-heading">Додайте Список</p>
+                    
+                            <div class="dashboard__popup-input-box">
+                              <input type="text" class="dashboard__popup-input"  placeholder="Додайте Название" name="title_list">
+                
+                            <label class="dashboard__popup__label" for="id_title">Додайте Назву</label>
+                            </div>
+                             
+                            <button type="submit" id="popup-button-2" class="dashboard__popup-button" name="addlist">Додати <span>&rarr;</span></button>    
+                         
+                         </form>
+                        </div>
+                
+                        
+                        {% if lists %}
+                        {% for list in lists %}
+                
+                        <div class="dashboard__popup-2" id="addListItemForm{{list.id}}">
+                                  
+                            <form  method="POST" name="create_listitemfrm" id="create_listitemfrm{{list.id}}" action="{% url 'create_item_record' %}">
+                                {% csrf_token %}
+                                <p class="dashboard__popup-heading">Додати Пункт Для {{list.title_list}}</p>
+                        
+                                <div class="dashboard__popup-input-box">
+                                  <input type="text" class="dashboard__popup-input titlefocus" id="id_title{{list.id}}" placeholder="Додайте Назву">
+                                <label class="dashboard__popup__label" for="id_title">Додайте Назву</label>
+                                </div>
+                             
+                                <div class="dashboard__popup-input-box">
+                            
+                                  <input type="number" class="dashboard__popup-input popupvalue" min="1" placeholder="Додайте Суму"  id="id_value{{list.id}}" value="1" min="1" required>
+            
+                
+                                    <div class="dashboard__popup-addbtn-box">
+                                        <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepUp()" class="dashboard__popup-addbtn">+</p>
+                                        <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepDown()" class="dashboard__popup-addbtn">-</p>
+                                    </div>
+                                    
+                                    <label class="dashboard__popup__label" for="id_value">Додайте Суму</label>
+                                </div>
+                
+                                <p style="opacity: 0;visibility: hidden;" id="user-currency_goal">{{user.usermembership.currency}}</p>
+                        
+                             
+                                <input type='hidden' id="item-hidden" name='form_type' value='item'>
+                               
+                                <button type="submit" id="popup-button-2" class="dashboard__popup-button" name="createlistitemfrmbtn">Додати <span>&rarr;</span></button>    
+                              </form>
+                            </div>
+                
+                            
+                            {% endfor %}
+                            {% else %}
+                          
+                            {% endif %}
+                
+                        </div>
+                
+                <div class="goals__grid">
+                  {% if object is not None %}
+                    <div class="dashboard__goals dashboard__goals-2" id="budget-income">
+                        <div class="dashboard__budget__text">
+                            <p class="dashboard__budget__paragraph dashboard__budget__paragraph-main">Баланс :</p>
+                            <p class="dashboard__budget__spendings dashboard__budget__spendings-main"><span class="dashboard__plus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency budget">{{user.usermembership.budget}}</span></p>
+                            </div>
+                            <div class="u-margin-top-medium u-center-text">
+                            <a href="#" class="dashboard__budget__button addList">Додати Список</a>
+                                </div>
+                    </div>
+                        {% if lists %}
+                        {% for list in lists %}
+                
+                <div class="dashboard__goals dashboard__goals-2 row{{list.id}}" id="budget-income">
+                    <p class="dashboard__income__delete-list dashboard__goals-delete-list" id="{{ list.id }}">&times;</p>
+                    <p class="dashboard__income__heading">{{list.title_list}}</p>
+                
+                    <ul class="dashboard__income__ul add-item{{list.id}}"id="{{list.id}}">
+                
+                
+                      
+                        {% for item in list.listsitem_set.all %}
+                        
+                        <li class="dashboard__income__li">
+                                <div class="dashboard__income__box">
+                                <p class="dashboard__income__text">
+                                    {{item.title_item}}
+                                </p>
+                                <div class="dashboard__income__num-box">
+                                <p class="dashboard__income__num" ><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency balance{{list.id}}" >{{item.value_item}}</span></p>
+                                <p class="dashboard__income__delete-inc dashboard__item__delete-inc" id="{{ item.id }}">
+                
+                                &times;
+                                </p>
+                                </div>
+                            </div>
+                            </li>
+                 
+                            {% endfor %}
+                
+                
+                    </ul>
+                    <div class="u-margin-top-medium u-center-text">
+                      <div class="dashboard__budget__text">
+                          <p class="dashboard__budget__paragraph dashboard__budget__paragraph-main">Витрати :</p>
+                          <p class="dashboard__budget__spendings dashboard__budget__spendings-main"><span class="dashboard__plus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency listsItem" id="balance{{list.id}}">0</span></p>
+                      </div> 
+                     
+                      <div class="u-margin-bottom-small u-center-text">
+                      <a href="#" class="dashboard__budget__button"id="addform{{list.id}}" >Додати Пункт</a>
+                      <br> <br> <br>
+                
+                      <form action="{% url 'create_expence_record' %}" id="create_savefrm{{list.id}}" method="POST">
+                        {% csrf_token %}
+                        <input type='hidden' id="expence-hidden" name='form_type' value='expence'>
+                        <input type="hidden" id="title{{list.id}}" value="{{list.title_list}}">
+                      <button type="submit" class="dashboard__budget__button dashboard__budget__button-2" >Зберегти як Витрату</button>
+                </form></div>
+                   
+                  </div>
+                  
+                </div>
+                
+                
+                     
+                            {% endfor %}
+                            {% else %}
+                          
+                            {% endif %}
+                
+                            <div id="addList"></div>
+                
+                        </div>
+                
+                
+                                                    
+                        {% else %}
+                        <div class="dashboard__goals dashboard__goals-2 noneGoalsHeading">
+                          <p class="settings__heading-2">Поліпшите Підписку  <br> Щоб Отримати Функцію Списків Покупок</p>
+                          <p class="settings__heading-2 u-margin-bottom-small">
+                              Ваша Поточна <br> Підписка <br>
+                              <span class="settings__heading-span">{{ user.usermembership.membership}}</span>
+                          </p>
+                      
+                          <div class="dashboard__popup-button-3-box">
+                              <form action="{%url 'select'%}">
+                              <button type="submit" class="dashboard__popup-button dashboard__popup-button-3" >Поліпшите Підписку <span>&rarr;</span></button>    
+                             </form>   
+                          </div>
+                         
+                          </div>
+                        {% endif %}
+                        {% endif %}
+    {% include 'partials/_background_image.html' %}
+
+<script>
+    $(function () {
+
+
+        function hideVisibility(item){
+      item.css({
+        "visibility":"hidden",
+      }).animate({"opacity": "0"},300);
+    }
+    function visibility(item){
+      item.css({
+        "visibility":"visible",
+      }).animate({"opacity": "1"},300);
+    }
+    let titleFocus = $(".titlefocus");
+    let closeButton = $("#closeButton");
+    closeButton.click(function(event){
+  
+      hideVisibility($("#dashboardpopup"));
+      hideVisibility($(".dashboardpopup-2"));
+
+    });
+
+    $("#closeButton").click(function(event){
+      hideVisibility($("#addListForm"));
+      hideVisibility($("#OkMessage"));
+      hideVisibility($("#dashboardpopup"));
+      hideVisibility($("#addListItemForm-5"));
+      hideVisibility($(".dashboard__popup-2"));
+    });
+
+    $("#OkMessageClick").click(function(){
+      hideVisibility($("#OkMessage"));
+      hideVisibility($("#dashboardpopup"));
+    });
+
+    {% if lists %}
+    {% for list in lists %}
+
+  
+  
+    function updateFunctions{{list.id}}(){
+    $("#addform{{list.id}}").click(function(event){
+      visibility($("#dashboardpopup"));
+      visibility($("#addListItemForm{{list.id}}"));
+      titleFocus.focus();
+    });
+
+   
+
+    function calculateIncome{{list.id}}(){
+    var objectSum =0;
+    $('.balance{{list.id}}').each(function() {
+    objectSum = objectSum + parseInt($(this).text());
+    });
+    $("#balance{{list.id}}").text(objectSum);
+
+    };
+
+
+    calculateIncome{{list.id}}()
+
+    function formatMoney(){
+    $('.dashboard__currency').text((i, t) => parseFloat(t).toFixed(2));
+    $('.dashboard__currency-temp').text((i, t) => parseFloat(t).toFixed(2));
+    }
+    formatMoney();
+
+
+    };
+
+    
+    $('#create_listitemfrm{{list.id}}').submit(function (e) {
+    // console.log("Creating the book");
+    e.preventDefault();
+    // get the form data
+      
+    var formData{{list.id}} = {
+        'title_item': $('#id_title{{list.id}}').val(),
+        'value_item': $('#id_value{{list.id}}').val(),
+        'main_list':{{list.id}},
+        'currency':$('#user-currency_goal').text(),
+        form_type: $('#item-hidden').val(),
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        contentType: 'application/x-www-form-urlencoded',
+        encode: true,
+    };
+    $.ajax({
+        type: 'POST',
+        url: 'create_item/',
+        data: formData{{list.id}},
+        dataType: 'json',
+    }).done(function (data) {
+        $(function () {
+  
+          hideVisibility($("#dashboardpopup"));
+          hideVisibility($("#addListItemForm{{list.id}}"));
+          $(".dashboard__popup-input").val("")
+
+
+
+            $(".add-item{{list.id}}").append(
+           
+                '<li class="dashboard__income__li">'+
+                '<div class="dashboard__income__box">'+
+                '<p class="dashboard__income__text">'+formData{{list.id}}['title_item'] +'</p>'+
+                '<div class="dashboard__income__num-box">'+
+                '<p class="dashboard__income__num" ><span class="currency">'+ formData{{list.id}}['currency'] + '</span><span class="dashboard__currency {{list.balance}}" >'+formData{{list.id}}['value_item'] +'</span></p>'+
+               
+                '<p class="dashboard__income__delete-inc dashboard__item__delete-inc" id="'+formData{{list.id}}['id'] +'"> &times;</p></div></div></li>'
+          
+                )
+    
+        });
+      });
+    });
+
+
+    $('#create_savefrm{{list.id}}').submit(function (e) {
+      e.preventDefault();
+      // get the form data
+      var formData = {
+          'title_exp':$("#title{{list.id}}").val(),
+          'value_exp':$("#balance{{list.id}}").text(),
+          form_type: $('#expence-hidden').val(),
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          contentType: 'application/x-www-form-urlencoded',
+          encode: true,
+          
+      };
+      $.ajax({
+          type: 'POST',
+          url: 'create_exp/',
+          data: formData,
+          dataType: 'json',
+      }).done(function (data) {
+          $(function () {
+            
+            visibility($("#OkMessage"));
+            visibility($("#dashboardpopup"));
+         
+            budget = $(".budget").text(); 
+                var formData = {
+                'id': {{list.id}},
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            };
+
+            $.ajax({
+                type: 'POST',       
+                url: "delete_list/" + formData.id + "/",
+                encode: true,
+                contentType: 'application/x-www-form-urlencoded',
+                crossDomain: false,
+                dataType: 'json',
+                data: formData,     
+                success: function (data) {
+
+                  $(".row{{list.id}}").fadeOut(300, function () {
+                    $(this).remove();
+                });
+              
+                },
+                error: function (exception) {
+                    alert('Exeption:' + exception);
+                }
+              
+            });
+
+
+
+            $.ajax({
+              type: 'POST',
+              url: 'update_budget/',
+              headers: {"X-CSRFToken":'{{ csrf_token }}'},
+              data: {
+        
+                budgetchange: parseInt(budget) + -(data.data['value_exp']),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        
+              },
+          })
+
+
+          });
+          budget = {{user.usermembership.budget}} ;
+          var newbudget = data.data['value_exp']
+          var oldbudget = budget; 
+          var updatedbudget =  parseInt(oldbudget-newbudget);
+
+          $(".budget").text(updatedbudget);
+        });
+      });
+
+    setInterval(function() {
+    updateFunctions{{list.id}}();
+    }, 1000);
+
+    {% endfor %}
+    {% else %}
+
+    {% endif %}
+
+
+
+  
+
+
+
+
+    
+
+})
+</script>
+
+<script src="{% static 'js/ajax.js'%}"></script>
+
+
+    {% endblock  %}
+
+
+
+
+
+
+

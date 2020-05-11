@@ -1,0 +1,63 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block title %}
+| Registration
+{% endblock  %}
+{%block content%}
+<script src="https://kit.fontawesome.com/4e1387f955.js" crossorigin="anonymous"></script>
+
+{% include 'partials/_alert.html' %}
+
+
+        <img src="{% static 'img/logo.svg' %}" alt="" class="autorisation__logo">
+   <div class="autorisation">
+  
+<form action="{% url 'registration' %}"method="POST" id="regForm">
+    <div class="autorisation__box">
+        <p class="autorisation__heading">Sign up</p>
+        <form action="registration"  method="post">
+        <div class="autorisation__input-box">
+            {% csrf_token %}
+       
+        <div class="autorisation__input-box u-margin-bottom-small">
+            <input type="email" name="email"  class="autorisation__input" required  id="email" placeholder="Email">
+
+            <div class="autorisation__input-label-box">
+                <label  class="autorisation__input-label" for="email">Email</label>
+                <label  class="autorisation__input-error" for="email" id="email-feedback"></label>
+                    </div>
+                    <i class="fas fa-envelope autorisation__icon-2 email"></i>
+            </div>
+         
+
+            <div class="autorisation__input-box">
+                <input type="password" name="password"  id="passwordReg" class="autorisation__input" required  placeholder="Password">
+
+                <div class="autorisation__input-label-box">
+                    <label  class="autorisation__input-label" for="password">Password</label>
+                    <label  class="autorisation__input-error" for="password" id="password-feedback"></label>
+                        </div>
+                        <i class="fas fa-eye autorisation__icon-2 passwordFirst showpassReg"></i>
+                </div>
+              
+                <div class="autorisation__input-box u-margin-botton-bigger">
+                    <input type="password" name="password2"  id="repeatpassword" class="autorisation__input" required   placeholder="Repeat Password">
+                      <div class="autorisation__input-label-box">
+                        <label  class="autorisation__input-label" for="repeatpassword">Repeat Password</label>
+                        <label  class="autorisation__input-error" for="repeatpassword" id="repeatpassword-feedback"></label>
+                            </div>
+                            <i class="autorisation__icon-2 fas fa-eye passwordRepeat showpassReg"></i>
+                </div>
+                <input type="hidden" id="username" name="username">
+        <p class="autorisation__text " >Already have an account ? <a href="{%url 'login'%}" class="autorisation__link"> Log in</a></p>
+                    <button type="submit" class="autorisation__button"  id="submitButton" disabled>Submit</button>
+                </form>
+
+                    <p class="autorisation__text u-margin-bottom-small">
+                        By signing up you agree with our <a href="{%url 'terms_and_conditions'%}" class="autorisation__link">Terms of Service</a> and <a href="{%url 'privacy'%}" class="autorisation__link">Privacy Policy</a>.
+                    </p>
+    </div>
+
+</div>
+</form>
+{% endblock  %}

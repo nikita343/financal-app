@@ -1,0 +1,220 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block title %}
+| Personalization
+{% endblock  %}
+{%block content%}
+ 
+<script>
+
+
+var colorPicker = new iro.ColorPicker(".colorPicker", {
+// color picker options
+// Option guide: https://iro.js.org/guide.html#color-picker-options
+width: 200,
+color: "#fff",
+borderWidth: 1,
+borderColor: 0,
+
+});
+
+var values =document.getElementById("values");
+// read color value
+colorPicker.on(["color:init", "color:change"], function(color){
+
+$(function () {
+
+// $("body").get(0).style.setProperty("--color-primary", color.hexString);
+
+});
+
+var hex = colorPicker.color.hexString;
+$('.dummyinput').val(hex);
+});
+
+</script>
+        
+<script src="https://kit.fontawesome.com/4e1387f955.js" crossorigin="anonymous"></script>
+
+
+<img src="{% static 'img/logo.svg' %}" alt="" class="autorisation__logo">
+
+<div class="personalization__wrapper">
+
+<div class="persinalization__child persinalization__child-1">
+
+
+<div class="autorisation">
+
+<form action="{% url 'update_username_record' %}" method="POST"  id="createUserNameFrm">
+ <div class="autorisation__box">
+     <p class="autorisation__heading">Create Username</p>
+     <div class="autorisation__input-box">
+         {% csrf_token %}
+    
+     <div class="autorisation__input-box u-margin-bottom-small">
+         <input type="text" name="username"  class="autorisation__input" required  id="username" placeholder="Username">
+
+         <div class="autorisation__input-label-box">
+             <label  class="autorisation__input-label" for="username">Username</label>
+             <label  class="autorisation__input-error" for="username" id="username-feedback"></label>
+                 </div>
+                 <i class="fas fa-user autorisation__icon-2 username"></i>
+         </div>
+      
+         <input type='hidden' id="username-hidden" name='form_type' value='username'>
+
+        <button type="submit" class="autorisation__button"  id="submitButton" disabled>Submit</button>
+    </form>
+
+            <p class="autorisation__text u-margin-bottom-small">
+              <a href="#" id="nextToBg" class="autorisation__link">Skip <span>&rarr;</span></a> 
+            </p>
+
+  </div>
+
+
+</form>
+</div>
+</div>
+</div>
+
+<div class="persinalization__child persinalization__child-5">
+
+    <p class="autorisation__heading">Select Background Image</p>
+    <form action="" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+           <div class="settings__background__link-box">
+            <button class="settings__background__link" >Select Image
+           <input type="file" class="settings__background__file" name="image" enctype="multipart/form-data"  id="backgroundimage" placeholder="Upload image">
+        </button>   
+        </div> 
+          <div class="dashboard__popup-button-3-box">
+        
+            <input type='hidden' id="image-hidden" name='form_type' value='image'>
+            <button type="submit" class="autorisation__button"  id="submit-image" disabled>Submit</button>         </div>   
+    </form>
+
+
+      <p class="autorisation__text u-margin-top-medium u-center-text">
+        <a href="#" id="backToTheme" class="autorisation__link"><span>&larr;</span> Back </a> 
+        &nbsp;
+      </p>
+    
+</div>
+
+
+
+<div class="persinalization__child persinalization__child-3">
+
+    <div class="settings__center">
+    <p class="autorisation__heading">Select Colour</p>
+<div  class="colorPicker settings__colour-box"></div>
+    <div class="u-margin-top-medium u-center-text">
+        <form action="update_color_record" id="updatColourFrm"  method="POST">
+        {% csrf_token %}
+    <input type="text" style="display: none;" name="color" id="color" value="#fff" class="dummyinput">
+    <div class="dashboard__popup-button-3-box">
+        
+        <input type='hidden' id="color-hidden" name='form_type' value='color'>
+        <button type="submit" class="autorisation__button"  id="submit-image">Submit</button>         </div>   
+   
+</form>
+
+<p class="autorisation__text u-margin-bottom-small u-center-text">
+    <a href="#" id="backToBg" class="autorisation__link"><span>&larr;</span> Back </a> 
+    &nbsp;
+    <a href="#" id="nextToTheme" class="autorisation__link">Skip <span>&rarr;</span></a> 
+  </p>
+</div>
+</div>
+</div>
+
+
+
+<div class="persinalization__child persinalization__child-4">
+
+    <div class="settings__center">
+        <div class="autorisation__heading">Theme</div>
+        <div class="settings__theme-grid">
+            <div class="settings__radio-group">
+                <div class="settings__theme_box">
+                    <p class="settings__theme__heading">Dark Theme</p>
+                  
+                    <div class="settings__theme" id="black_select"> </div>
+                           
+                    <span class="settings__theme__span settings__theme__span-2" id="black-span">&nbsp;</span>   
+                </div>
+        </div>
+                <div class="settings__radio-group">
+                    <div class="settings__theme_box">
+                        <p class="settings__theme__heading">Light Theme</p>
+                    <div class="settings__theme" id="white_select"></div>
+                    <span class="settings__theme__span settings__theme__span-2" id="white-span">&nbsp;</span>   
+                          
+                  
+                 
+                
+                </div>
+            </div>
+         </div>
+                  
+            <form id="updatThemeFrm" action="{% url 'update_theme_record'%}" method="post">
+            {% csrf_token %}
+
+        <input type="hidden" name="theme" id="theme">   
+        <input type='hidden' id="theme-hidden" name='form_type' value='theme'>
+        <button type="submit" class="autorisation__button"  id="submit-image">Submit</button>          
+       
+    </form>
+<p class="autorisation__text u-margin-top-medium u-center-text">
+    <a href="#" id="backToColour" class="autorisation__link"><span>&larr;</span> Back </a> 
+    &nbsp;
+    <a href="#" id="nextToLanguage" class="autorisation__link">Skip <span>&rarr;</span></a> 
+  </p>
+
+</div>
+
+</div>
+
+
+
+<div class="persinalization__child persinalization__child-2">
+
+    
+    <div class="settings__center">
+    <p class="autorisation__heading">Language</p>
+    <form action="{% url 'update_language_record'%}"id="updateLanguageFrm" method="post">
+        {% csrf_token %}
+        
+ 
+   <div class="select margin-top-bottom-small" >   
+    <select name="language" value="1" id="language"  >
+        <option>Select Language Below</option>
+        {% for language in languages %}
+                    <option id="{{language.id}}" value="{{language.id}}"> {{language.language}}   </option>   
+        {% endfor %}
+    </select>    
+       <input type='hidden' id="language-hidden" name='form_type' value='language'>
+       
+</form>
+</div>
+
+<p class="autorisation__text u-margin-top-medium u-center-text">
+    <a href="#" id="backToUser" class="autorisation__link"><span>&larr;</span> Back </a> 
+    &nbsp;
+    <a href="#" id="nextToColour" class="autorisation__link">Skip <span>&rarr;</span></a> 
+  </p>
+
+</div>
+
+</div>
+
+
+
+
+</div>
+<script src="{% static 'js/personalizationv.js'%}"></script>
+
+
+ {% endblock  %}

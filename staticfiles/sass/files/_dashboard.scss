@@ -1,0 +1,901 @@
+
+.dashboard{
+   position: relative;
+   box-sizing: border-box;
+  overflow-y: hidden;
+   overflow-x: hidden;
+   &__popup{
+    width: 40vw;
+    text-align: center;
+    height: 65vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 9999999;
+    background-color: var(--backgound-color);
+    border-radius: 3rem;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    @media only screen and (max-width:$bp-land){
+       width: 80vw !important;
+                        }
+
+    @media only screen and (max-width:$bp-phonemode-1){
+        width:100vw !important;
+                            }
+     &-1{
+      display: block;
+    }
+    &-2, &-3{
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+  
+    &-type{
+        font-size: 7rem;
+        text-decoration: none;
+        text-align: center;
+        color: var(--color-primary);
+        transition: all .2s ease-in-out;
+        display: block;
+        margin-top: 8rem;
+
+        &:hover{
+            color: var(--color-secondary);
+        }
+
+    }
+    &-heading{
+        font-size: 2.5rem;
+        color: var(--color-secondary);
+        padding-top: 2rem;
+
+    }
+    &-input{
+        background: none;
+        width: 35rem;
+        height: 8rem;
+        border: none;
+        border-bottom: 2px solid var(--color-primary);
+        outline: none;
+        font-size: 3rem;
+        color: var(--color-secondary);
+        appearance: textfield;
+        position: relative;
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        }
+        &:focus::placeholder{
+            opacity: 0;
+            visibility: hidden;
+            
+ 
+         }
+        &::placeholder{
+            font-size: 2.5rem;
+            color: var(--color-secondary);
+            transition: all .2s ease-in-out;
+        }
+    }
+    &-addbtn{
+        width: 4rem;
+        height: 4rem;
+        background: none;
+        display: block;
+        border-bottom: 2px solid var(--color-primary);
+        border: none;
+        color: var(--color-secondary);
+        font-size: 2rem;
+        outline: none;
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+        &:hover{
+            color: var(--color-primary);
+        }
+        &-box{
+            position: absolute;
+            top:0;
+            right: 0;
+            display: block;
+        }
+    }
+    &-button{
+        border: none;
+        color: var(--color-primary);
+        font-size: 3rem;
+        border-bottom: 2px solid currentColor;
+        margin-top: 9rem;
+        display: inline-block;
+        background-color: transparent;
+        cursor: pointer;
+        transition: all .2s;
+        outline: none;
+        &-2{
+            font-size: 1.5rem;
+            text-align: center;
+            border: none;
+            opacity: 0;
+            visibility: hidden;
+            @media only screen and (max-width: $bp-tabmode) {
+                opacity: 1;
+                visibility: visible;
+            } 
+            &:hover{
+                margin-left: -8px;
+            }
+        }
+        & span {
+            margin-left: 3px;
+            transition: margin-left .2s;
+        }
+    
+        &:hover {
+            
+    
+            span {
+                margin-left: 8px;
+            }
+        }
+    
+    }
+   }
+   &__username{
+       font-size: 2rem;
+       text-align: center;
+       padding-top: 2rem;
+       font-weight: 700;
+       color: var(--color-secondary);
+       @media only screen and (max-width: $bp-landbig) {
+        font-size: 1.5rem;
+    }    
+   }
+    &__background{
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -99999;
+        background-size: auto;
+        display: block;
+        @media only screen and (max-width:$bp-mobile){
+        width: initial;
+        height: initial;
+                  }
+        &-overlay{
+            background-color: rgba(0, 0, 0, 0.192);
+            z-index: -999;
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+
+}
+
+&__open{
+    width: 3rem;
+    height: .5rem;
+    background-color: var(--color-primary);
+    z-index: 99999;
+    border-radius: 10rem;
+    display: inline-block;
+    position: fixed;
+    top: 2%;
+    left: 2%;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    @media only screen and (max-width: $bp-tabmode) {
+        opacity: 1;
+        visibility: visible;
+    } 
+    &::after{
+        content: "";
+        display: block;
+        width: 2.5rem;
+        height: .5rem;
+        background-color: var(--color-primary);
+        z-index: 99999;
+        border-radius: 10rem;
+        margin-top: .1rem;
+        cursor: pointer;    
+    }
+}
+
+&__sidebar{
+width: 12%;
+height: 100vh;
+background-color: var(--backgound-color);
+backdrop-filter: blur(10px);  
+overflow: hidden;
+position: fixed;
+top: 0;
+left: 0;
+z-index: 999999;
+
+@media only screen and (max-width: $bp-big) {
+    width: 15%;
+}
+@media only screen and (max-width: $bp-landbig) {
+    width: 13rem;
+}
+@media only screen and (max-width: $bp-tabmode) {
+    width: 15rem;
+    margin-left: -15rem;
+}
+@media only screen and (max-width:$bp-mobile){
+  height: 100% !important;
+                    }
+&-btn{
+    text-align: center;
+    margin-top: 23rem;
+    @media only screen and (max-width:$bp-tabmode) {
+        margin-top: 10rem;
+    }
+}
+&__dashboard{
+    top: 10.5%;
+    @media only screen and (max-width: $bp-landbig) {
+        top: 12%;
+    }
+}
+&__calendar{
+    top: 18%;
+}
+&__goals{
+top: 28%;
+}
+&__settings{
+    top: 37.5%;
+}
+&__box{
+    height: 6rem;
+    width: .9rem;
+    background-color: var(--color-primary);
+    position: fixed;
+    margin-left: -0.3rem;
+    border-radius: 1rem;
+    @media only screen and (max-width: $bp-big) {
+        height: 5rem;
+    }
+    @media only screen and (max-width: $bp-landbig) {
+      width: .7rem;
+      height: 4rem;
+    }
+}
+
+&__ul{
+    list-style: none;
+    
+}
+&__li{
+    width: 80%;
+    margin-top: 5rem;
+    margin-left: 2rem;
+    position: relative;
+    @media only screen and (max-width: $bp-landbig) {
+       margin-left: 1rem;
+
+    }
+}
+&__bottom{
+    margin-left: 1rem;
+   margin-top: 20rem;
+}
+&__icon{
+    width: 3.7rem;
+    height:  2.7rem;
+    background-repeat: no-repeat;
+    margin-right: 2rem;
+    @media only screen and (max-width: $bp-landbig) {
+        width: 2.7rem;
+        height:  1.7rem;
+    }
+}
+&__link{
+    font-size: 1.9rem;
+    text-decoration: none;
+    color: var(--color-primary);
+    text-align: left;
+    display: flex;
+    @media only screen and (max-width: $bp-landbig) {
+       font-size: 1.5rem;
+    }
+}
+}
+
+
+
+&__gridbox{
+display: grid;
+grid-template-columns: 1fr 1fr;
+margin:auto;
+width: 100vw;
+height: 100vh;
+overflow-y: hidden;
+@media only screen and (max-width: $bp-bigger) {
+   overflow: visible;
+   overflow-y: auto;
+   overflow-x: auto;
+
+}
+@media only screen and (max-width: $bp-tabmode) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+ 
+     }
+&-1{
+    margin-left: 30rem;
+    margin-top: 3rem;
+    @media only screen and (max-width: $bp-bigger) {
+        margin-left: 20rem;
+        margin-right: 3rem;
+        }
+        @media only screen and (max-width: $bp-landbig) {
+            margin-left: 15rem;
+        }
+        @media only screen and (max-width: $bp-land) {
+            margin-right: 6rem;
+            margin-left: 4rem;
+        }    
+        @media only screen and (max-width: $bp-tabmode) {
+margin: auto;
+margin-top: 3rem;
+             }
+             @media only screen and (max-width:$bp-medium) {
+                width: 100% !important;
+                overflow-x: hidden !important;
+                height: 110rem !important;
+                }
+}
+&-2{
+    margin-right: 10rem;
+    margin-top: 3rem;
+    margin-left: 10rem;
+    @media only screen and (max-width: $bp-bigger) {
+        margin-right: 5rem;
+        }
+
+        @media only screen and (max-width: $bp-landbig) {
+        margin-right: 2rem;
+        }
+        @media only screen and (max-width: $bp-tabmode) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin: auto;
+            margin-top: 3rem;
+        }
+        @media only screen and (max-width:$bp-medium) {
+         grid-template-columns: 1fr;
+         grid-template-rows: 1fr;
+        
+            }
+}
+}
+&__budget{
+width: 70rem;
+height: 35rem;
+background-color: var(--backgound-color);
+backdrop-filter: blur(10px);  
+border-radius: 3rem;
+@media only screen and (max-width: $bp-big) {
+    width: 60rem;
+    height: 30rem;
+
+}
+@media only screen and (max-width:$bp-medium) {
+    width: 80vw !important;
+    height: 30rem !important;
+    margin: auto;
+
+    }
+@media only screen and (max-width: $bp-tabmode) {
+
+    width: 80rem;
+    height: 40rem;
+     }
+     @media only screen and (max-width:$bp-phonemode){
+      height: 25rem !important;
+
+            }
+            @media only screen and (max-width:$bp-phonemode-1){
+             height: 30rem !important;
+                      }
+&__heading{
+    font-size: 2rem;
+    text-align: center;
+
+    padding-top: 2rem;
+    color: var(--color-secondary);
+    @media only screen and (max-width: $bp-big) {
+        font-size: 2.3rem;
+    }
+    @media only screen and (max-width: $bp-tabmode) {
+      font-size: 3rem;
+                     }
+    @media only screen and (max-width:$bp-medium) {
+    font-size: 2rem !important;
+        }
+        @media only screen and (max-width:$bp-phonemode-1){
+            font-size: 1.5rem !important;
+      
+                  }
+}
+&__paragraph{
+    font-size: 1.4rem;
+    color: var(--color-secondary);
+    
+}
+&__spendings{
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-top: .4rem;
+}
+
+&__texts{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+&__text{
+
+    text-align: center;
+    margin-top: 2rem;
+}
+&-heading{
+    font-size: 2rem;
+
+    color: var(--color-secondary);
+    text-align: center;
+}
+&__chart{
+    width: 80rem;
+    height: 10rem;
+    
+}
+}
+&__spendings{
+    width: 30rem;
+    height: 20rem;
+    background-color: var(--backgound-color);
+    backdrop-filter: blur(10px);  
+border-radius: 3rem;
+@media only screen and (max-width: $bp-big) {
+    width: 25rem;
+    height: 20rem;
+
+}
+    @media only screen and (max-width:$bp-tabmode) {
+      
+        width: 40rem !important;
+        height: 25rem !important;
+    }
+    @media only screen and (max-width:$bp-medium) {
+        width: 80vw !important;
+        margin: auto !important;
+
+                 }
+&__heading{
+    font-size: 2.6rem;
+    color: var(--color-secondary);
+    padding-top: 1rem;
+    padding-left: 2rem;
+    @media only screen and (max-width: $bp-big) {
+        font-size: 2.2rem;
+    }
+}
+&__addnew{
+    &-box{
+        margin-top: 2rem;
+        
+        
+
+    }
+    &__heading{
+        font-size: 2.5rem;
+        color: var(--color-primary);
+        text-align: center;
+        padding: .4rem 0;
+        margin-bottom: 2rem;
+        @media only screen and (max-width: $bp-tabmode) {
+            font-size: 3rem;
+            height: initial;
+        }
+    }
+    &__button{
+        text-decoration: none;
+        width: 6rem;
+        height: 6rem;
+        border: 2px solid var(--color-primary);
+        text-align: center;
+        outline: none;
+        margin: auto;
+        display: block;
+        cursor: pointer;
+        border-radius: 50%;
+        color: var(--color-primary);
+        font-size: 3.5rem;
+        background: none;
+        @media only screen and (max-width: $bp-tabmode) {
+            width: 8rem;
+            height: 8rem;
+
+        }
+    }
+}
+}
+
+
+&__income{
+    @media only screen and (max-width:$bp-medium) {
+       width: 80vw;
+       height: 30rem;
+   
+            }
+    &-box{
+    width: 70rem;
+    height: 25rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+    @media only screen and (max-width: $bp-tabmode) {
+        width: 80rem !important;
+        height: 35rem;
+    }
+
+    @media only screen and (max-width: $bp-big) {
+        width: 60rem;
+     
+    }
+    @media only screen and (max-width:$bp-medium) {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: 70rem;
+        width: 80vw !important;
+        margin-top: 7rem !important;
+        margin: auto;
+            }
+        margin-top: 3rem;
+    }
+    background-color: var(--backgound-color);
+    backdrop-filter: blur(10px);  
+    border-radius: 3rem;
+    overflow: hidden;
+    overflow-y: scroll;  
+     &::-webkit-scrollbar{
+        width: 0;
+    }
+    &__heading{
+        text-align: center;
+        font-size: 2rem;
+        color: var(--color-secondary);
+        padding-top: 1rem;
+
+    }
+    &__ul{
+        list-style: none;
+    
+
+    }
+    &__li{
+       margin-top: 2.5rem;
+        position: relative;
+
+        &:hover  .dashboard__income__num{
+            margin-right: 5rem;   
+        }
+        &:hover   .dashboard__income__icon{
+            opacity: 1;
+            display: block;
+
+        }
+      
+    }
+    
+    &__box{
+        display: flex;
+        justify-content: space-between;
+
+    }
+    &__text{
+        font-size: 1.7rem;
+        color: var(--color-secondary);
+        margin-left: 2rem;
+        transition: all .2s ease-in-out;
+        @media only screen and (max-width: $bp-tabmode) {
+            font-size: 2rem !important;
+            }
+            @media only screen and (max-width:$bp-mobile){
+                font-size: 1.5rem !important;
+                                }
+    }
+    &__num{
+        color: var(--color-primary);
+        font-size:1.7rem;
+        margin-right: 2rem;
+        transition: all .2s ease-in-out;
+        font-weight: 300;
+        @media only screen and (max-width: $bp-tabmode) {
+            font-size: 2rem !important;
+            }
+            @media only screen and (max-width:$bp-mobile){
+                font-size: 1.5rem !important;
+                                }
+    }
+    &__icon{
+        width: 2rem;
+        height: 2rem;
+        cursor: pointer;
+        text-decoration: none;
+        top: 5%;
+        position:absolute;
+        right: 5%;
+        display: none;
+        opacity: 0;
+        transition: all .3s ease-in-out;
+    }
+}
+&__expence{
+    background-color: var(--backgound-color);
+    backdrop-filter: blur(10px);  
+    border-radius: 3rem;
+    margin-left: 6rem;
+    overflow: hidden;
+    overflow-y: scroll;
+    @media only screen and (max-width:$bp-medium) {
+        width: 80vw;
+        height: 30rem;
+        margin: auto;
+        
+             }
+    &::-webkit-scrollbar{
+        width: 0;
+    }
+}
+&__goals{
+    margin-top: 6rem;
+    width: 30rem;
+    height: 40rem;
+    background-color: var(--backgound-color);
+    backdrop-filter: blur(10px);  
+    border-radius: 3rem;
+    @media only screen and (max-width: $bp-big) {
+        width: 25rem;
+        height: 35rem;
+    }
+    @media only screen and (max-width:$bp-tabmode) {
+        margin-left: 5.5rem;
+        margin-top: 0;
+        width: 35rem !important;
+        height: 45rem !important;
+    }
+    @media only screen and (max-width:$bp-medium){
+        width: 80vw !important;
+        margin: 5rem auto !important;
+        }
+    &__buttons{
+        font-size: 1.2rem;
+        background-color: var(--color-primary);
+        color: var(--color-tertiary);
+        border-radius: 10rem;
+        padding: .5rem 2rem;
+        text-decoration: none;
+        @media only screen and (max-width: $bp-tabmode) {
+            font-size: 1.5rem;
+            }
+        transition: all .2s ease-in-out;
+        &-box{
+            text-align: center;
+        margin-top: 1.5rem;
+        }
+    }
+   &__heading{
+       font-size: 2.5rem;
+       text-align: left;
+       color: var(--color-secondary);
+       padding: 2rem 2rem;
+       @media only screen and (max-width: $bp-tabmode) {
+        font-size: 3rem !important;
+        }
+
+   }
+   &__text{
+       font-size: 2.5rem;
+       color: var(--color-secondary);
+       padding: 1rem 1rem;
+       @media only screen and (max-width: $bp-tabmode) {
+        font-size: 3rem !important;
+        }
+   }
+  
+   &__range{
+    
+    &-label{
+       font-size: 9rem;
+       color: var(--color-primary);
+       @media only screen and (max-width: $bp-tabmode) {
+        font-size: 10rem !important;
+        }
+        width: 100%;
+        @media only screen and (max-width: $bp-big) {
+            font-size: 8rem;
+            }
+        &-1{
+            color: var(--color-secondary);
+            font-size: 2rem;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            margin: 2rem;
+            @media only screen and (max-width: $bp-tabmode) {
+                font-size: 2.4rem !important;
+                }
+            @media only screen and (max-width: $bp-big) {
+                font-size: 1.8rem !important;
+                }
+         
+        }
+        &-2{
+            color: var(--color-secondary);
+            font-size: 2rem;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            margin: 2rem;
+            @media only screen and (max-width: $bp-tabmode) {
+                font-size: 2.4rem !important;
+                }
+            @media only screen and (max-width: $bp-big) {
+                font-size: 1.8rem !important;
+                }
+           
+        }
+    }
+    margin: 1rem 1rem;
+    &-box{
+        display: flex;
+        justify-content: space-between;
+
+    }
+    
+
+    box-sizing: border-box;
+    font-size: 1rem;
+    line-height: 1;
+    height: 2em;
+    background-color: transparent;
+  
+    // * * * RESET * * *
+  
+    -webkit-appearance: none;
+    width: 90%;
+  
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+    }
+    &:focus {
+      outline: none;
+    }
+    &::-ms-track {
+      width: 90%;
+    
+      background: transparent; 
+      border-color: transparent;
+      color: transparent;
+    }
+  
+    // * * * TRUMP * * *
+  
+    &::mx-trange-trump(){
+      width: 2em;
+      height: 2em;
+      margin-top: 0;
+      background-color: var(--color-primary);
+      border-radius: 1em;
+      border: 2px solid var(--color-primary);
+   
+    }
+  
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 2em;
+      height: 2em;
+      margin-top: 0;
+      background-color: var(--color-primary);
+      border-radius: 1em;
+      border: 2px solid var(--color-primary);
+
+    }
+  
+    &::-moz-range-thumb {
+        width: 2em;
+      height: 2em;
+      margin-top: 0;
+      background-color: var(--color-primary);
+      border-radius: 1em;
+      border: 2px solid var(--color-primary);
+     
+    }
+  
+    &::-ms-thumb {
+        width: 2em;
+        height: 2em;
+        margin-top: 0;
+        background-color: var(--color-primary);
+        border-radius: 1em;
+        border: 2px solid var(--color-primary);
+      
+    }
+  
+  
+    // * * * TRACK * * *
+  
+    &::mx-range-track(){
+      width: 100%;
+     
+      height: 1em;
+      border-bottom: 2px solid var(--color-primary);
+      background-color: transparent;
+    }
+  
+  
+    &::-webkit-slider-runnable-track {
+        width: 100%;
+      
+        height: 1em;
+        border-bottom: 2px solid var(--color-primary);
+        background-color: transparent;
+    }
+  
+    &:focus::-webkit-slider-runnable-track {
+  
+    }
+  
+    &::-moz-range-track {
+        width: 100%;
+    
+        height: 1em;
+        border-bottom: 2px solid var(--color-primary);
+        background-color: transparent;
+    }
+  
+    &::-ms-track {
+      background: transparent;
+      border-color: transparent;
+      color: transparent;
+    }
+    &::-ms-fill-lower {
+  
+    }
+    &:focus::-ms-fill-lower {
+  
+    }
+    &::-ms-fill-upper {
+  
+    }
+    &:focus::-ms-fill-upper {
+  
+    }
+    
+   }
+   &__speedometer{
+      
+&-box{
+    position: relative;
+    display: block;
+    margin: 4rem 0;
+    margin-left: 2rem;
+}
+    
+   }
+}
+}

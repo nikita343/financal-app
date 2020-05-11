@@ -1,0 +1,73 @@
+.calendar{
+
+    &__box{
+        display: grid;
+        grid-template-columns: 2fr 1.2fr;
+        margin-left: 10rem;
+        width: 100vw;
+        margin-top: 5rem;
+
+    }
+    &__items{
+        width: 60rem;
+        height: 60rem;
+        background-color: var(--backgound-color);
+        backdrop-filter: blur(10px);  
+        border-radius: 3rem;
+        margin: 1rem auto;
+        display: block;
+        &:nth-child(2){
+          width: 30rem;
+
+        }
+    }   
+    &__clock{
+      display: table;   /* Allow the centering to work */
+      margin: 0 auto;
+      margin-top: 3rem;
+
+    }
+    &__ul{
+      list-style: none;
+      text-align: center;
+
+    }
+    &__ul &__time{
+      display: inline;
+      
+    }
+    &__time{
+      font-size: 6rem;
+      color: var(--color-primary);
+
+    }
+
+    &__date{
+      font-size:2.5rem;
+      color: var(--color-secondary);
+      text-align: center;
+    }
+    &__heading{
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      text-align: center;
+      padding: 1rem 0;
+    }
+}
+
+
+
+.goals{
+  
+  &__grid{
+    width: 60vw;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 5rem;
+    row-gap: 4rem;
+
+  }
+}
+
+

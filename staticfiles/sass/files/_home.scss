@@ -1,0 +1,101 @@
+.main{
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+   
+    &__img{
+        filter: FlipH; 
+        transform:rotateY(180deg);
+        width: 60rem;
+        float: right;
+    }
+    &__heading{
+        font-size: 5rem;
+        text-align: center;
+        margin-top: 7rem;
+        color:var(--color-secondary);
+
+    }
+    
+    &__text{
+        font-size: 3rem;
+        text-align: center;
+        color: var(--color-secondary);
+        width: 50rem;
+        margin: 3rem auto;
+        &-2{
+            width: 75rem;
+        }
+        &-foo{
+            font-size: 2.5rem;
+            text-align: center;
+        }
+    }
+   
+    &-slider{
+        overflow: hidden;
+        width: 120rem;
+        height: 40rem;
+        margin: 0 auto;
+    }
+
+    &__slides{
+        width: 1200rem;
+        height: 40rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    &__slide{
+        float: left;
+        width: 120rem;
+        height: 40rem;
+       }
+}
+
+.footer{
+    position: relative;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    &__button{
+        text-align: center;
+        font-size: 3rem;
+        text-decoration: none;
+        color: var(--color-tertiary);
+        background-color: var(--color-primary);
+        padding: 2rem 4rem;
+        border-radius: 40rem;
+        margin: 7rem auto;
+        display: block;
+        border: none;
+        transition: transform .2s ease-in-out;
+        outline: none;
+        cursor: pointer;
+        &:hover{
+            transform: rotate(5deg);
+        }
+
+    }
+    &__logo{
+        width: 8vw;
+        margin-top: -4rem;
+    }
+    &__link{
+        font-size: 2.5rem;
+        text-decoration: none;
+        color: var(--color-secondary);
+        margin-right: 7rem;
+        margin-top: 6rem;
+        transition: all .2s;
+        vertical-align: middle;
+        padding-top:2rem ;
+        &:hover{
+            color: var(--color-primary);
+        }
+        &-box{
+           width: 85vw;
+            display: block;
+
+        }
+    }
+}

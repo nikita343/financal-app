@@ -1,0 +1,163 @@
+.memberships{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    @media only screen and (max-width: $bp-landbig) {
+
+        grid-template-columns: 1fr 1fr;
+        row-gap: 7rem;
+        column-gap: 2rem;
+      }
+
+      @media only screen and (max-width: $bp-medium) {
+        grid-template-columns: 1fr;
+        
+      }
+    &__card {
+       // FUNCTIONALITY
+        perspective: 150rem;
+        -moz-perspective: 150rem;
+        position: relative;
+        height: 52rem;
+        width: 70%;
+        margin: auto;
+        &__side {
+            height: 52rem;
+            transition: all .8s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            backface-visibility: hidden;
+            border-radius: 3px;
+            overflow: hidden;
+            box-shadow: 0 1.5rem 4rem rgba(#000000, .15);
+            border-radius: 1.5rem;
+            &--front {
+                background-color: #fff;
+                
+            }
+    
+            &--back {
+                transform: rotateY(180deg);
+          
+                    background-image: linear-gradient(to right bottom, var(--color-primary), var(--color-primary-2)),               
+              
+            }
+            &--front-auth {
+                background-color: var(--backgound-color) !important;           
+                backdrop-filter: blur(10px) !important ;
+                -webkit-backdrop-filter: blur(10px) !important;
+            }
+
+            &--back-auth {  
+                background-image: none !important;
+             background-color: var(--backgound-color) !important;
+            backdrop-filter: blur(10px) !important;
+            -webkit-backdrop-filter: blur(10px) !important;   
+                
+            }
+        }
+
+    
+        &:hover &__side--front {
+            transform: rotateY(-180deg);
+        }
+    
+        &:hover &__side--back {
+            transform: rotateY(0);
+        }
+    
+    
+        // FRONT SIDE STYLING
+        &__heading{
+            font-size: 3rem;
+            color:var(--color-primary);
+            text-align: center;
+            margin-top: 2rem;
+            &-2{
+                font-size: 1.7rem;
+                color: var(--color-secondary);
+                 text-align: center;
+                margin-top: 2rem;
+
+            }
+            &-3{
+                color: var(--color-tertiary) !important;
+            }
+        }
+        &__price{
+            font-size: 5rem;
+            font-weight: 100;
+            color: var(--color-secondary);
+            text-align: center;
+            margin-top: 4rem;
+            &-2{
+                font-size: 2.5rem;
+                font-weight: 100;
+                color: var(--color-secondary);
+                text-align: center;
+                margin-top: 1rem;
+            }
+            &-3{
+                color: var(--color-tertiary) !important;
+            }
+        }
+        
+        &__text{
+            font-size: 1.5rem;
+            text-align: center;
+            color: var(--color-secondary);
+            margin-top: 13rem;
+            display: block;
+            &-3{
+                color: var(--color-primary) !important;
+            }
+            &-2{
+                margin-top: 2rem !important;
+                &:nth-child(1){
+                    margin-top: 5rem;
+                }
+            }
+
+        }
+        &__list{
+            list-style: none;
+        }
+        &__button{
+            width: 20rem;
+            height: 5rem;
+            font-size: 2rem;
+            color: var(--color-primary);
+            background-color: #fff;
+            border: none;
+            border-radius: 5rem;
+            margin: auto;
+            display: block;
+            margin-top: 5rem;
+            cursor: pointer;
+            transition: all .2s ease-in-out;
+
+            &:hover{
+                transform: scale(1.1);
+
+            }
+            &:active{
+                transform: translateY(1rem);
+                transform: scale(1.1);
+            }
+
+        }
+        &__button-auth{
+         
+            margin: auto;
+            display: block;
+            margin-top: 7rem;
+            &-2{
+                color: var(--color-tertiary) !important;
+            }
+       
+
+        }
+    }
+
+}

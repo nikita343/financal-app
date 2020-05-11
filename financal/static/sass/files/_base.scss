@@ -1,0 +1,188 @@
+///////////////////////////
+//  UTILITIES
+//////////////////////////
+
+
+$grid-width: 114rem;
+$gutter-vertical: 8rem;
+$gutter-horizontal: 6rem;
+
+
+$bp-largest: 112.5em;   // 1200px
+$bp-big: 86.250em;
+$bp-bigger: 78.125em;
+$bp-landbig:68.750em;
+$bp-tabmode:66.188em;
+$bp-land:62.500em;
+$bp-land-small:58.125em;
+$bp-medium: 50em;
+$bp-phonemode:40.625em;    // 800px;
+$bp-phonemode-1:32.5em;
+$bp-mobile: 25em;
+$bp-smallest:20.313em;
+
+.null-opacity{
+    opacity: 0 !important;
+    display: none !important;
+}
+.u-center-text{
+    margin: 0 auto !important;
+    text-align: center !important;
+}
+.u-margin-botton-bigger{
+    margin-bottom: 5rem !important;
+}
+.u-margin-botton-big{
+    margin-bottom: 8rem !important;
+    
+    
+}
+.u-margin-top-medium{
+    margin-top: 5rem !important;
+  
+}
+
+
+.margin-bottom-small{
+    margin-bottom: 2rem !important;
+}
+
+.u-margin{
+    margin: 1rem 0;
+}
+.u-minus-margin-bottom-small{
+    margin-top: -2rem !important;
+}
+.u-margin-bottom-small{
+    margin-top: 2rem !important;
+}
+
+.u-margin-botton-top{
+    margin-top: 8rem !important;
+}
+.u-margin-botton-huge{
+    margin-top:18rem !important;
+}
+.margin-top-bottom-small{
+    margin: 2rem 0 !important;
+}
+////////////////////////////
+/// CLASSIC CONTENT
+/////////////////////////// 
+
+*,
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+  //#034FC2
+}
+html{
+ 
+
+    font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
+
+
+    @media only screen and (max-width: bp-land) {
+        font-size: 56.25%; 
+    }
+
+    @media only screen and (max-width: bp-medium) {
+        font-size: 50%;
+    }
+    @media only screen and (max-width: bp-big) {
+        font-size: 75%;
+    }
+
+}
+body{
+    overflow-x: hidden !important;
+    font-family: 'Roboto', sans-serif;
+    --color-primary:#034FC2;
+    --color-primary-2:#00388d;
+    --color-tertiary: #fff;
+    background-color: var(--color-secondary);
+    --color-secondary-home:#272727;
+    
+
+
+}
+.noscroll{
+    overflow-y: hidden;
+    overflow-x: hidden;
+    
+}
+
+
+.schemewhite{
+    --color-secondary: #1a1a1a !important;
+    --backgound-color: rgba(212, 212, 212, 0.349) !important;
+}
+.schemeblack{
+    --color-secondary: rgb(212, 212, 212) !important;
+    --backgound-color: #26262685 !important;
+
+
+}
+
+
+
+/////////////////////////////////////
+/// TEXT OR OBJECT SELECTION ON SITE
+/////////////////////////////////////
+
+
+::selection{
+    background-color:var(--color-primary);
+    // color: var(--color-tertiary);
+
+}
+
+
+
+
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+
+  }
+
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+  }
+  
+  /* Handle on hover */
+
+  
+
+
+
+  
+// MEDIA QUERY MANAGER
+/*
+0 - 600px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+[1200 - 1800] is where our normal styles apply
+1800px + :      Big desktop
+
+$breakpoint arguement choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+ORDER: Base + typography > general layout + grid > page layout > components
+
+1em = 16px
+*/
+
+

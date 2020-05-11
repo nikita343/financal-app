@@ -1,0 +1,235 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block title %}
+| Home page
+{% endblock  %}
+{%block content%}
+    
+<body class="main__container">
+    
+
+<div class="navbar__open">&nbsp;</div>
+<div class="navbar__mobile-box">
+    <div class="navbar__mobile-background-1">
+        <div class="navbar__close">&nbsp;</div>
+        <a  href="{% url 'blog'%}"  class="navbar__mobile-link">Blog</a>
+    </div>
+    <div class="navbar__mobile-background-2">
+        <a  href="{% url 'login'%}" class="navbar__mobile-link navbar__mobile-link-2">Log in</a>
+    </div>
+    <div class="navbar__mobile-background-3">
+        <a href="{% url 'registration'%}" class="navbar__mobile-link">Sign up</a>
+    </div>
+    <div class="navbar__mobile-background-4">
+        <img src="{% static 'img/logo.svg' %}" alt="" class="navbar__mobile-logo">
+    </div>
+   </div>
+   <nav class="header__nav">
+    <img src="{% static 'img/logo.svg' %}" alt="Main logo" class="header__nav-logo">
+   </nav>
+   <header class="header">
+
+
+   </header>
+
+   
+<main class="main">
+
+
+    <div class="main__header ">
+        <div class="header__box">
+        <p class="header__heading">
+            Personal Spending Diary <br> With Full Personalisation 
+            </p>
+
+       <div class="header__button-box">
+            <button href="#" id="scrolldown" class="header__button">View more</button>
+            <form action="{% url 'registration'%}">
+            <button class="header__button">Sign up</button>
+        </form>
+        </div>
+    </div>
+</div>
+<div class="main__header-2">
+
+ <img src="{% static 'img/Mockup-laptop-2.png' %}" alt="" class="header__img">
+</div>
+<div class="u-margin-botton-bigger"></div>
+<div class="u-margin-botton-bigger"></div>
+   <div class="main__1 u-margin-botton-big">
+           <img src="{% static 'img/Mockup-phone.png' %}" alt="" class="main__img">
+  
+        </div>
+
+
+
+
+   <div class="main__1">
+    <h2 class="main__heading">Smart Calculations</h2>
+    <p class="main__text">Our engineers made smart calculation system for Balance . This system will help you to count your finances .
+        Also we provide you to-buy lists
+    </p>
+
+   </div>
+ 
+   <div class="main__1">
+    <img src="{%static 'img/Mockup-tablet.png'%}" alt="" class="main__img">
+</div>
+    <div class="main__1">
+      
+        <h2 class="main__heading">Nice Interface</h2>
+        <p class="main__text">
+            
+        </div>
+             
+
+    <div class="main__1">
+        <img src="{%static 'img/Mockup-laptop-4.png'%}" alt="" class="main__img main__img-2">
+         
+        </div>
+        <div class="main__1">   <h2 class="main__heading">Money Goals</h2>
+            <p class="main__text">
+                Our engineers made smart money goals system . 
+            </p></div>
+
+      
+    
+    
+    
+    
+
+    
+</main>
+
+
+
+
+
+
+<div class="main-2">
+    <p class="main__about-text" id="click">What will you get with full membership</p>
+    <div class="main__image-box" id="main-slider">
+
+       <img src="{%static 'img/4.gif'%}" alt="" class="main__image">
+       <img src="{%static 'img/5.gif'%}" alt="" class="main__image main__image-2">
+        <div class="main__about-box">
+            <a href="#click" class="main__about-click main__about-click-1">&nbsp;</a>
+            <a href="#click" class="main__about-click main__about-click-2">&nbsp;</a>
+            <a href="#click" class="main__about-click main__about-click-3">&nbsp;</a>
+            <a href="#click" class="main__about-click main__about-click-4">&nbsp;</a>
+            <a href="#click" class="main__about-click main__about-click-5">&nbsp;</a>
+            <a href="#click" class="main__about-click main__about-click-6">&nbsp;</a>
+            <a href="#click" class="main__about-click main__about-click-7">&nbsp;</a>
+            
+            <a href="#click" class="main__about-click main__about-click-9">&nbsp;</a>
+            <a href="#click" class="main__about-click main__about-click-10">&nbsp;</a>
+        
+        </div>
+
+    </div>
+   
+    
+</div>
+       
+        
+<h2 class="main__heading ">Financal Blog</h2>
+              
+
+<div class="blog">
+    {% if blog %}
+    {% for blo in blog %}
+<div class="blog__item">
+
+    <a href="{% url 'blogext' blo.id %}" class="blog__link">
+    <div class="blog__photo-box">
+    <img src="{{blo.photo.url}}" alt="" class="blog__photo">
+</div>
+    <h1 class="blog__heading">{{blo.title}}</h1>
+    <p class="blog__date">{{blo.date}}</p>
+</a>
+</div>
+
+{% endfor %}
+{% else %}
+
+{% endif %}
+
+</div>
+<h2 class="main__heading ">Find Right Plan For You !</h2>
+
+
+<div class="memberships u-margin-botton-top">
+    {% for membership in memberships %}
+    <div class="memberships__card">
+        
+            <div class="memberships__card__side memberships__card__side--front memberships__card__side--front">
+        <h2 class="memberships__card__heading">{{ membership.membership_type }}</h2>
+
+        <h1 class="memberships__card__heading-2 ">What Will You Get</h1>
+
+        {% if membership.membership_type == 'Free' %}
+            <ul>
+                <li class="membership__card__list">
+                    <p class="memberships__card__text memberships__card__text-2">Smart Calculations of Incomes and Expences and Balance</p>
+                </li>
+                <li class="membership__card__list">
+                    <p class="memberships__card__text memberships__card__text-2">Custom Background that User Choose</p>
+                </li>
+                <li class="membership__card__list">
+                    <p class="memberships__card__text memberships__card__text-2">User's custom categories</p>
+                </li>
+                <li class="membership__card__list">
+                    <p class="memberships__card__text memberships__card__text-2">Dark and Light Themes</p>
+                </li>	
+                <li class="membership__card__list">
+                    <p class="memberships__card__text memberships__card__text-2">Custom Text Colour That User Choose</p>
+                </li>
+
+
+            </ul>
+            {% endif %}	
+            {% if membership.membership_type != 'Free' %}
+            <ul>
+                <li class="membership__card__list">
+                    <p class="memberships__card__text memberships__card__text-2 memberships__card__text-3"><strong>All Free Features And Also</strong></p>
+                </li>
+                <li class="membership__card__list">
+                    <p class="memberships__card__text memberships__card__text-2">Smart Goals Feature</p>
+                </li>
+                <li class="membership__card__list">
+                    <p class="memberships__card__text memberships__card__text-2">Smart To Buy Lists Feature</p>
+                </li>
+                <li class="membership__card__list">
+                    <p class="memberships__card__text memberships__card__text-2">Custom Currencies for Your Convenience</p>
+                </li>
+            </ul>
+            {% endif %}	
+        </div>
+        <div class="memberships__card__side memberships__card__side--back memberships__card__side--back">
+            <h1 class="memberships__card__heading-2 memberships__card__heading-3 u-margin-botton-top">Only</h1>
+            {% if membership.membership_type == 'Enterprise' %}
+            <p class="memberships__card__price memberships__card__price-3">${{ membership.price }}<small class="memberships__card__price-2 memberships__card__price-3"> /year</small></p>
+            <p class="memberships__card__price-2 memberships__card__price-3">Just $2.08 /month</p>
+            {%else%}
+            <p class="memberships__card__price memberships__card__price-3">${{ membership.price }}<small class="memberships__card__price-2" memberships__card__price-3> /month</small></p>
+
+            {% endif %}	
+          
+            <form  action="{% url 'registration' %}">
+                <div class="u-text-center">
+                    <button class="dashboard__popup-button memberships__card__button-auth memberships__card__button-auth-2">Select <span>&rarr;</span></button>
+            </div>
+            </form>			
+ 
+
+        
+    </div>
+</div>
+    {% endfor %}
+</div>
+
+
+{% include 'partials/_footer.html' %}
+
+</body>
+{% endblock  %}

@@ -1,0 +1,12 @@
+@keyframes topToBottom{
+	0% { opacity: 0; }
+	5% { opacity: 0;  transform: translateY(-5rem); }
+	10% { opacity: 1; transform: translateY(0px); }
+	25% { opacity: 1; transform: translateY(0px); }
+	30% { opacity: 0; transform: translateY(5rem); }
+	80% { opacity: 0; }
+	100% { opacity: 0; }
+}
+
+
+

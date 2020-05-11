@@ -1,0 +1,223 @@
+.calendar{
+
+    &__box{
+        display: grid;
+        grid-template-columns: 2fr 1.2fr;
+        margin-left: 10rem;
+        width: 100vw;
+        margin-top: 5rem;
+
+    }
+    &__items{
+        width: 60rem;
+        height: 60rem;
+        background-color: var(--backgound-color);
+        backdrop-filter: blur(10px);  
+        border-radius: 3rem;
+        margin: 1rem auto;
+        display: block;
+        &:nth-child(2){
+          width: 30rem;
+
+        }
+    }   
+    &__clock{
+      display: table;   /* Allow the centering to work */
+      margin: 0 auto;
+      margin-top: 3rem;
+
+    }
+    &__ul{
+      list-style: none;
+      text-align: center;
+
+    }
+    &__ul &__time{
+      display: inline;
+      
+    }
+    &__time{
+      font-size: 6rem;
+      color: var(--color-primary);
+
+    }
+
+    &__date{
+      font-size:2.5rem;
+      color: var(--color-secondary);
+      text-align: center;
+    }
+    &__heading{
+      font-size: 2rem;
+      color: var(--color-secondary);
+      text-align: center;
+      padding: 1rem 0;
+
+      &-2{
+        font-size: 6rem;
+        color: var(--color-primary);
+      }
+      
+    }
+}
+
+
+
+
+
+
+
+.text-center {
+  text-align: center; }
+
+.text-right {
+  text-align: right; }
+
+.cursor-pointer {
+  cursor: pointer; }
+
+.disable-selection {
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer */
+  -khtml-user-select: none;
+  /* KHTML browsers (e.g. Konqueror) */
+  -webkit-user-select: none;
+  /* Chrome, Safari, and Opera */
+  -webkit-touch-callout: none;
+  
+  /* Disable Android and iOS callouts*/ }
+
+.calendar, .calendar .add-event-day .add-event-day-field-btn, .calendar .calendar-days li:after {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto; }
+
+.calendar {
+  width:100%;
+  height:100%;
+  border-radius: 10px;
+  overflow: hidden; }
+  .calendar .calendar-left-side-day-of-week, .calendar .current-day-events ul, .calendar .add-event-day, .calendar .calendar-change-year, .calendar .calendar-days li {
+    position: relative; }
+
+  .calendar .calendar-left-side-day-of-week, .calendar .calendar-week {
+    text-transform: uppercase; }
+  .calendar .right-side, .calendar .left-side {
+    padding: 30px;
+    height: 100%; }
+  
+  .calendar .current-day, .calendar .current-day-events {
+    padding-top: 40px; }
+  .calendar .current-day-events {
+    height: 215px; }
+  .calendar .current-day-events ul {
+   
+    list-style: none; }
+    .calendar .current-day-events ul li::before {
+      content: '-';
+      position: absolute;
+      left: 3px; }
+
+
+  .calendar .calendar-change-year {
+    font-size: 20px; }
+    .calendar .calendar-change-year .calendar-change-year-slider {
+      margin: 15px 0;
+      color: var(--color-primary); }
+      
+    .calendar .calendar-change-year .calendar-change-year-slider{
+      color: var(--color-primary); }
+      .calendar  .fa:hover {
+        color: var(--color-secondary);
+        transition: all .1s ease-in-out;
+      }
+  .calendar .calendar-days, .calendar .calendar-week, .calendar .calendar-month {
+    list-style: none;
+    font-size: 0; }
+    .calendar .calendar-days li, .calendar .calendar-week li, .calendar .calendar-month li {
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+      font-size: 1.6rem; }
+  .calendar .calendar-month li {
+    width: calc(100% / 12);
+    height: 4rem;
+    line-height: 30px;
+    color:  var(--color-secondary);
+    transition: all .2s ease-in-out;
+    &:hover {
+      color: var(--color-primary);
+     }
+    font-size: 1.4rem }
+    .calendar .calendar-month li.active {
+      color: var(--color-primary); 
+      font-weight: 600; }
+  .calendar .calendar-days li {
+    width: calc(100% / 7);
+    height: 5rem;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+
+    line-height: 50px; }
+    .calendar .calendar-days li:after {
+      content: attr(data-day);
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      color: var(--color-secondary); }
+      .calendar .calendar-days li::before{
+        transition: all .2s ease-in-out;
+        content: "";
+        height: .21rem;
+        display: inline-block;
+        width: 40%;
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        -webkit-transform-origin: 50%;
+        transform-origin: 50%;
+        -webkit-transition-property: transform;
+        transition-property: transform;
+        margin: auto;
+        position: absolute;
+        top: 85%;
+        left: 30%;
+        background-color: var(--color-primary);
+      }
+    .calendar .calendar-days li.another-month:after {
+
+      color: var(--color-primary);  }
+      
+   
+    .calendar .calendar-days li:hover:after, .calendar .calendar-days li.selected-day::before {
+      -webkit-transform: scaleX(1);
+      transform: scaleX(1);
+    }
+    .calendar .calendar-days li:hover:after, .calendar .calendar-days li:hover::before {
+      -webkit-transform: scaleX(1);
+      transform: scaleX(1);
+    }
+    .calendar .calendar-days li.active-day:after {
+      color: var(--color-primary);
+     }
+  .calendar .calendar-week {
+    margin-bottom: 30px;
+    font-weight: 600;
+    color: var(--color-secondary);
+    border-top: 1px solid var(--color-secondary); 
+   
+  }
+  
+    .calendar .calendar-week li {
+      width: calc(100% / 7);
+      margin-top: 2rem;
+      height: 2rem;
+      line-height: 30px;
+      cursor: default !important; }
+  

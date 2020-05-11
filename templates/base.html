@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="theme-color" content="{{user.usermembership.color}}"> 
+<title>Financal
+    {%block title%}
+
+
+    {%endblock%}</title>
+<link rel="stylesheet" href="{% static 'css/style.css'%}">
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="{% static 'js/main.js'%}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@jaames/iro/dist/iro.min.js"></script>
+<link rel="shortcut icon" href="{% static 'img/favicon.png'%}" type="image/x-icon">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+
+
+
+    {%block content%}
+                               
+
+
+    {%endblock%}
+
+
+</body>
+</html>

@@ -1,0 +1,1478 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block title %}
+| Dashboard
+{% endblock  %}
+{%block content%}
+
+{% if user.usermembership.language.id == 1 %}
+
+
+<div class="dashboard__popup" id="dashboardpopup">
+
+    <div class="dashboard__popup-close" id="closeButton">&times;</div>
+            <div class="dashboard__popup-2" id="dashboardpopup-2">
+                  
+        <form  method="POST" name="create_incomefrm" id="create_incomefrm" action="{% url 'create_income_record' %}">
+            {% csrf_token %}
+            <p class="dashboard__popup-heading">Add Income</p>
+            <div class="select" >   
+            {{ addincome_html.category }}
+        </div>
+            <div class="dashboard__popup-input-box">
+            <input type="text" name="title" class="dashboard__popup-input titlefocus" placeholder="Add Title" maxlength="200" required="" id="id_title">
+            <label class="dashboard__popup__label" for="id_title">Add Title</label>
+            </div>
+            <div class="dashboard__popup-input-box">
+            
+                <input type="number" name="value" class="dashboard__popup-input popupvalue" placeholder="Add Value" min="1" required="" id="id_value">
+            <div class="dashboard__popup-addbtn-box">
+                <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepUp()" class="dashboard__popup-addbtn">+</p>
+                <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepDown()" class="dashboard__popup-addbtn">-</p>
+            </div>
+
+            <label class="dashboard__popup__label" for="id_value">Add Value</label>
+        </div>
+            <p style="opacity: 0;visibility: hidden;" id="user-currency">{{user.usermembership.currency}}</p>
+            <input type='hidden' id="income-hidden" name='form_type' value='income'>
+           
+            <button type="submit" id="popup-button-2" class="dashboard__popup-button" name="createincomefrmbtn">Add <span>&rarr;</span></button>    
+          </form>
+        </div>
+    
+
+         <div class="dashboard__popup-2" id="dashboardpopup-4">
+                  
+          <form  method="POST" name="create_expencefrm" id="create_expencefrm" action="{% url 'create_expence_record' %}">
+            {% csrf_token %}
+            <p class="dashboard__popup-heading">Add Expense</p>
+            <div class="select" >   
+                {{ addexpence_html.category_exp}}
+            </div>
+            <div class="dashboard__popup-input-box">
+                <input type="text" name="title_exp" class="dashboard__popup-input titlefocus" placeholder="Add Title" maxlength="200" required="" id="id_title_exp">
+            <label class="dashboard__popup__label" for="id_title">Add Title</label>
+            </div>
+            <div class="dashboard__popup-input-box">
+            
+                <input type="number" name="value_exp" class="dashboard__popup-input popupvalue" placeholder="Add Value" min="1" required="" id="id_value_exp">
+            <div class="dashboard__popup-addbtn-box">
+                <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepUp()" class="dashboard__popup-addbtn">+</p>
+                <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepDown()" class="dashboard__popup-addbtn">-</p>
+            </div>
+            
+            <label class="dashboard__popup__label" for="id_value">Add Value</label>
+        </div>
+        <p style="opacity: 0;visibility: hidden;" id="user-currency_exp">{{user.usermembership.currency}}</p>
+        <input type='hidden' id="expence-hidden" name='form_type' value='expence'>
+
+            <button type="submit" id="popup-button-3" class="dashboard__popup-button" name="createexpencefrmbtn">Add <span>&rarr;</span></button>    
+          </form>
+        </div>
+     
+
+        <div class="dashboard__popup-2" id="dashboardpopup-3">
+                  
+            <form  method="POST" name="create_goalfrm" id="create_goalfrm" action="{% url 'create_goal_record' %}">
+              {% csrf_token %}
+              <p class="dashboard__popup-heading">Add Goal</p>
+              
+              <div class="dashboard__popup-input-box">
+                <input type="text" name="title_goal" class="dashboard__popup-input titlefocus" placeholder="Add Title" maxlength="200" required="" id="id_title_goal">
+              <label class="dashboard__popup__label" for="id_title">Add Title</label>
+              </div>
+              <div class="dashboard__popup-input-box">
+
+                <input type="number" name="value_goal" value="1" class="dashboard__popup-input popupvalue" placeholder="Add Value" min="1" required="" id="id_value_goal">
+              <div class="dashboard__popup-addbtn-box">
+                  <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepUp()" class="dashboard__popup-addbtn">+</p>
+                  <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepDown()" class="dashboard__popup-addbtn">-</p>
+              </div>
+              
+              <label class="dashboard__popup__label" for="id_value">Add Value</label>
+          </div>
+          <p style="opacity: 0;visibility: hidden;" id="user-currency_goal">{{user.usermembership.currency}}</p>
+          <input type='hidden' id="goal-hidden" name='form_type' value='goal'>
+                 <button type="submit" id="popup-button-3" class="dashboard__popup-button" name="creategoalfrmbtn">Add <span>&rarr;</span></button>    
+     
+            </form>
+          </div>
+
+
+          <div class="dashboard__popup-2" id="dashboardpopup-5">
+                  
+            <form  method="POST" name="create_categoryfrm" id="create_categoryfrm" action="{% url 'create_category_record' %}">
+              {% csrf_token %}
+              <p class="dashboard__popup-heading">Add Category</p>
+              
+              <div class="dashboard__popup-input-box">
+            <input type="text" name="title_c" class="dashboard__popup-input titlefocus" placeholder="Add Title" maxlength="200" required="" id="id_title_c">
+              <label class="dashboard__popup__label" for="id_title_c">Add Title</label>
+              </div>
+            
+          <input type='hidden' id="category-hidden" name='form_type' value='category'>
+  
+              <button type="submit" id="popup-button-3" class="dashboard__popup-button" name="createcategoryfrmbtn">Add <span>&rarr;</span></button>    
+            </form>
+          </div>
+</div>
+
+<body class="dashboard"> 
+    
+
+    {% include 'partials/_menu.html' %}
+   <div class="dashboard">
+   
+    <div class="dashboard__gridbox">
+    <div class="dashboard__gridbox-1">
+        <div id="budget-drag" class="dashboard__budget">
+           
+        <div class="dashboard__budget__texts">
+            <div class="dashboard__budget__text">
+<p class="dashboard__budget__paragraph">Income :</p>
+<p class="dashboard__budget__spendings" ><span class="dashboard__plus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency"  id="budget-income">0</span></p>
+</div>
+<div class="dashboard__budget__text">
+    <p class="dashboard__budget__paragraph dashboard__budget__paragraph-main">Balance :</p>
+    <p class="dashboard__budget__spendings dashboard__budget__spendings-main"><span class="dashboard__plus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency budget">0</span></p>
+    </div>
+    <div class="dashboard__budget__text">
+        <p class="dashboard__budget__paragraph">Expense :</p>
+        <p class="dashboard__budget__spendings" ><span class="dashboard__minus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency" id="budget-expence">0</span></p>
+
+        </div>
+
+</div>
+
+<div class="dashboard__budget__button-box">
+    <a href="#" class="dashboard__budget__button addIncome">Add Income</a>
+    <a href="#" class="dashboard__budget__button addExpence" >Add Expense</a>
+    <a href="#" class="dashboard__budget__button addGoal">Add Goal</a>
+    <a href="#" class="dashboard__budget__button addCategory" i>Add Category</a>
+</div>
+
+</div>
+        <div class="dashboard__income-box">
+      
+                <div class="dashboard__income" id="budget-income">
+                    <p class="dashboard__income__heading">Income</p>
+                
+                    <ul class="dashboard__income__ul">
+                        <div id="add-income"></div>
+                        {% if income %}
+                        {% for incom in income %}
+                  
+                        <li class="dashboard__income__li noneIncome" id="li-icnome">
+                            <div class="noneIncomes null-opacity">1</div>
+                                <div class="dashboard__income__box">
+                                <p class="dashboard__income__text">
+                                    {{incom.title}} ( {{incom.category}} )
+                                </p>
+                                <div class="dashboard__income__num-box">
+                                <p class="dashboard__income__num" >+ <span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency li-income-val" >{{incom.value}}</span></p>
+                                <p class="dashboard__income__delete-inc" id="{{ incom.id }}">
+
+                                &times;
+                                </p>
+                                </div>
+                            </div>
+                            </li>
+
+                       
+                            
+                            {% endfor %}
+                            {% else %}
+                          
+                            {% endif %}
+                            <div class="dashboard__income__heading-2-box noneIncomesHeading">
+                                <p class="dashboard__income__heading dashboard__income__heading-2">No Incomes</p>
+                                <a href="#" class="dashboard__budget__button u-center-text  addIncome ">Create Income</a>
+                            </div>
+                    </ul>
+                    
+                  
+                </div>
+    
+                <div class="dashboard__expence" id="budget-expence">
+                        <p class="dashboard__income__heading">Expense</p>
+
+                     
+                    <ul class="dashboard__income__ul">
+                        <div id="add-expence"></div>
+                        {% if expence %}
+                        {% for expenc in expence %}
+                      
+                    
+                        <li  class="dashboard__income__li " id="{{expenc.date}}">
+                            <div class="noneExpence null-opacity">1</div>
+                            <div class="dashboard__income__box">
+                            <p class="dashboard__income__text">
+                                {{expenc.title_exp}} ( {{expenc.category_exp}} )
+                            </p>
+                            <div class="dashboard__income__num-box">
+                            <p class="dashboard__income__num" >- <span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency li-expence-val">{{expenc.value_exp}}</span></p>
+                            <p class="dashboard__income__delete-exp" id="{{ expenc.id }}">&times;</p>
+                        </div>
+                        </div>
+                        </li>
+                            {% endfor %}
+                            {% else %}
+                           
+               
+                            {% endif %}
+                            <div class="dashboard__income__heading-2-box noneExpenceHeading ">
+                                <p class="dashboard__income__heading dashboard__income__heading-2">No Expences</p>
+                                <a href="#" class="dashboard__budget__button u-center-text  addExpence ">Create Expence</a>
+                                </div>
+                        </ul>
+                </div>
+                </div>
+        
+    </div>
+
+    <div class="dashboard__gridbox-2">
+
+        
+          <div class="dashboard__spendings" id="budget-add">
+     
+            <p class="dashboard__income__heading">Categories</p>
+            <div class="dashboard__spendings-grid"id="addCategory">
+                {% if category %}
+                {% for categor in category %}
+            
+            <div class="dashboard__spendings-text-box">
+                <p class="dashboard__income__text dashboard__income__text-2 dashboard__spendings-text">{{categor.title_c}}</p>
+                <div class="noneCategory null-opacity">1</div>
+             <p class="dashboard__income__delete-exp dashboard__spendings-delete"id="{{ categor.id }}">
+             &times;
+
+             </p>
+            </div>
+                    {% endfor %}
+                    {% else %}
+                    
+                
+                    {% endif %}
+                </div>
+                <div class="dashboard__income__heading-2-box noneCategoryHeading">
+                    <p class="dashboard__income__heading dashboard__income__heading-2">No Categories</p>
+                    <a href="#" class="dashboard__budget__button u-center-text  addCategory ">Create Category</a>
+                </div>
+
+                        </div> 
+                            
+                       
+                       
+                        {% if object is not None %}
+                    <div id="add-goal">
+                        {% if goalss %}
+                        {% for goals in goalss %}
+
+                        <div class="noneGoals null-opacity">1</div>
+                        <div class="dashboard__goals" id="budget-goals">
+
+                            <p class="dashboard__goals__heading">{{goals.title_goal}}</p>
+                            
+                 
+                            <div id="goalsDelete">
+                            <div class="dashboard__goals__speedometer-box">
+                                <output class="dashboard__goals__range-label" id="output-per">0 %</output>
+                            </div>
+                          
+
+                            <div class="dashboard__goals__range-box">
+                    
+                                
+                            <input type="range" class="dashboard__goals__range" id="slider-per" value=".64" disabled  min="0" max="100" step="0.1" >
+                        </div>   
+                    </div>
+                            <p class="dashboard__goals__text" id="goal_text">Keep going !</p>
+                        <a href="#" class="goalsAppend dashboard__budget__button dashboard__spendings-button addGoal ">Create New Goal</a>
+               
+                            <div class="dashboard__goals__range-label-box">
+                              <p class="dashboard__goals__range-label-2" id="ebudget__main"><span class="dashboard__plus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency" id="budget_goal">0</span> earned</p>
+
+                         
+                              <p class="dashboard__goals__range-label-2"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency" id="goal_budget_left">{{goals.value_goal}}</span> left</p>
+                          
+                            </div>
+                    </div>
+                
+                     <p id="goal_value_goal">{{goals.value_goal}}</p>
+                        </div>
+                        </div>
+                        
+                    </div>
+                            
+                            {% endfor %}
+                            {% else %}
+                           
+                            {%endif%}
+                      
+                            <div class="dashboard__goals noneGoalsHeading">
+                                
+                                <p class="dashboard__goals__heading">No goals</p>
+                                <a href="#" class="dashboard__budget__button dashboard__spendings-button dashboard__spendings-button-2 addGoal ">Create Goal</a>
+                   
+                                </div>
+                          
+                            
+                            {% else %}
+                            <div class="dashboard__goals noneGoalsHeading">
+                                <p class="settings__heading-2">Upgrade Membership <br> To Get Goals Feature</p>
+                                <p class="settings__heading-2 u-margin-bottom-small">
+                                    Your current <br> Membership is <br>
+                                    <span class="settings__heading-span">{{ user.usermembership.membership}}</span>
+                                </p>
+                            
+                                <div class="dashboard__popup-button-3-box">
+                                    <form action="{%url 'select'%}">
+                                    <button type="submit" class="dashboard__popup-button dashboard__popup-button-3" >Upgrade Membership <span>&rarr;</span></button>    
+                                   </form>   
+                                </div>
+                               
+                                </div>
+                            {% endif %}
+
+                           
+
+    </div>
+
+</div>
+
+
+{% endif %}
+{% if user.usermembership.language.id == 2 %}
+
+<div class="dashboard__popup" id="dashboardpopup">
+
+    <div class="dashboard__popup-close" id="closeButton">&times;</div>
+            <div class="dashboard__popup-2" id="dashboardpopup-2">
+                  
+        <form  method="POST" name="create_incomefrm" id="create_incomefrm" action="{% url 'create_income_record' %}">
+            {% csrf_token %}
+            <p class="dashboard__popup-heading">Добавить Прибыль</p>
+            <div class="select" >   
+            {{ addincome_html.category }}
+        </div>
+            <div class="dashboard__popup-input-box">
+                <input type="text" name="title" class="dashboard__popup-input titlefocus" placeholder="Добавте Название" maxlength="200" required id="id_title">
+            <label class="dashboard__popup__label" for="id_title">Добавте Название</label>
+            </div>
+            <div class="dashboard__popup-input-box">
+            
+                <input type="number" name="value" class="dashboard__popup-input popupvalue" placeholder="Добавте Суму" min="1" required id="id_value">
+
+            <div class="dashboard__popup-addbtn-box">
+                <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepUp()" class="dashboard__popup-addbtn">+</p>
+                <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepDown()" class="dashboard__popup-addbtn">-</p>
+            </div>
+
+            <label class="dashboard__popup__label" for="id_value">Добавте Сумму</label>
+        </div>
+            <p style="opacity: 0;visibility: hidden;" id="user-currency">{{user.usermembership.currency}}</p>
+            <input type='hidden' id="income-hidden" name='form_type' value='income'>
+           
+            <button type="submit" id="popup-button-2" class="dashboard__popup-button" name="createincomefrmbtn">Добавить <span>&rarr;</span></button>    
+          </form>
+        </div>
+    
+
+         <div class="dashboard__popup-2" id="dashboardpopup-4">
+                  
+          <form  method="POST" name="create_expencefrm" id="create_expencefrm" action="{% url 'create_expence_record' %}">
+            {% csrf_token %}
+            <p class="dashboard__popup-heading">Добавить Разход</p>
+            <div class="select" >   
+                {{ addexpence_html.category_exp}}
+            </div>
+            <div class="dashboard__popup-input-box">
+            <input type="text" name="title_exp" class="dashboard__popup-input titlefocus" placeholder="Добавте Название" maxlength="200" required="" id="id_title_exp">
+            <label class="dashboard__popup__label" for="id_title">Добавте Название</label>
+            </div>
+            <div class="dashboard__popup-input-box">
+            
+                <input type="number" name="value_exp" class="dashboard__popup-input popupvalue" placeholder="Добавте Сумму" min="1" required="" id="id_value_exp">
+            <div class="dashboard__popup-addbtn-box">
+                <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepUp()" class="dashboard__popup-addbtn">+</p>
+                <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepDown()" class="dashboard__popup-addbtn">-</p>
+            </div>
+            
+            <label class="dashboard__popup__label" for="id_value">Добавте Сумму</label>
+        </div>
+        <p style="opacity: 0;visibility: hidden;" id="user-currency_exp">{{user.usermembership.currency}}</p>
+        <input type='hidden' id="expence-hidden" name='form_type' value='expence'>
+
+            <button type="submit" id="popup-button-3" class="dashboard__popup-button" name="createexpencefrmbtn">Добавить <span>&rarr;</span></button>    
+          </form>
+        </div>
+     
+
+        <div class="dashboard__popup-2" id="dashboardpopup-3">
+                  
+            <form  method="POST" name="create_goalfrm" id="create_goalfrm" action="{% url 'create_goal_record' %}">
+              {% csrf_token %}
+              <p class="dashboard__popup-heading">Добавить Цель</p>
+              
+              <div class="dashboard__popup-input-box">
+                <input type="text" name="title_goal" class="dashboard__popup-input titlefocus" placeholder="Добавте Название" maxlength="200" required="" id="id_title_goal">
+              <label class="dashboard__popup__label" for="id_title">Добавте Название</label>
+              </div>
+              <div class="dashboard__popup-input-box">
+              
+                <input type="number" name="value_goal" value="1" class="dashboard__popup-input popupvalue" placeholder="Добавте Сумму" min="1" required="" id="id_value_goal">
+              <div class="dashboard__popup-addbtn-box">
+                  <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepUp()" class="dashboard__popup-addbtn">+</p>
+                  <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepDown()" class="dashboard__popup-addbtn">-</p>
+              </div>
+              
+              <label class="dashboard__popup__label" for="id_value">Добавте Сумму</label>
+          </div>
+          <p style="opacity: 0;visibility: hidden;" id="user-currency_goal">{{user.usermembership.currency}}</p>
+          <input type='hidden' id="goal-hidden" name='form_type' value='goal'>
+                 <button type="submit" id="popup-button-3" class="dashboard__popup-button" name="creategoalfrmbtn">Добавить <span>&rarr;</span></button>    
+     
+            </form>
+          </div>
+
+
+          <div class="dashboard__popup-2" id="dashboardpopup-5">
+                  
+            <form  method="POST" name="create_categoryfrm" id="create_categoryfrm" action="{% url 'create_category_record' %}">
+              {% csrf_token %}
+              <p class="dashboard__popup-heading">Добавить Категорию</p>
+              
+              <div class="dashboard__popup-input-box">
+                <input type="text" name="title_c" class="dashboard__popup-input titlefocus" placeholder="Добавте Название" maxlength="200" required="" id="id_title_c">
+              <label class="dashboard__popup__label" for="id_title_c">Добавте Название</label>
+              </div>
+            
+          <input type='hidden' id="category-hidden" name='form_type' value='category'>
+  
+              <button type="submit" id="popup-button-3" class="dashboard__popup-button" name="createcategoryfrmbtn">Добавить <span>&rarr;</span></button>    
+            </form>
+          </div>
+</div>
+
+<body class="dashboard"> 
+    
+
+    {% include 'partials/_menu.html' %}
+   <div class="dashboard">
+   
+    <div class="dashboard__gridbox">
+    <div class="dashboard__gridbox-1">
+        <div id="budget-drag" class="dashboard__budget">
+           
+        <div class="dashboard__budget__texts">
+            <div class="dashboard__budget__text">
+<p class="dashboard__budget__paragraph">Прибыль :</p>
+<p class="dashboard__budget__spendings" ><span class="dashboard__plus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency"  id="budget-income">0</span></p>
+</div>
+<div class="dashboard__budget__text">
+    <p class="dashboard__budget__paragraph dashboard__budget__paragraph-main">Баланс :</p>
+    <p class="dashboard__budget__spendings dashboard__budget__spendings-main"><span class="dashboard__plus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency budget">0</span></p>
+    </div>
+    <div class="dashboard__budget__text">
+        <p class="dashboard__budget__paragraph">Разходы :</p>
+        <p class="dashboard__budget__spendings" ><span class="dashboard__minus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency" id="budget-expence">0</span></p>
+
+        </div>
+
+</div>
+
+<div class="dashboard__budget__button-box">
+    <a href="#" class="dashboard__budget__button addIncome">Добавить Прибыль</a>
+    <a href="#" class="dashboard__budget__button addExpence" >Добавить Разход</a>
+    <a href="#" class="dashboard__budget__button addGoal">Добавить Цель</a>
+    <a href="#" class="dashboard__budget__button addCategory" i>Добавить Категорию</a>
+</div>
+
+</div>
+        <div class="dashboard__income-box">
+      
+                <div class="dashboard__income" id="budget-income">
+                    <p class="dashboard__income__heading">Прибыль</p>
+                
+                    <ul class="dashboard__income__ul">
+                        <div id="add-income"></div>
+                        {% if income %}
+                        {% for incom in income %}
+                  
+                        <li class="dashboard__income__li noneIncome" id="li-icnome">
+                            <div class="noneIncomes null-opacity">1</div>
+                                <div class="dashboard__income__box">
+                                <p class="dashboard__income__text">
+                                    {{incom.title}} ( {{incom.category}} )
+                                </p>
+                                <div class="dashboard__income__num-box">
+                                <p class="dashboard__income__num" >+ <span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency li-income-val" >{{incom.value}}</span></p>
+                                <p class="dashboard__income__delete-inc" id="{{ incom.id }}">
+
+                                &times;
+                                </p>
+                                </div>
+                            </div>
+                            </li>
+
+                       
+                            
+                            {% endfor %}
+                            {% else %}
+                          
+                            {% endif %}
+                            <div class="dashboard__income__heading-2-box noneIncomesHeading">
+                                <p class="dashboard__income__heading dashboard__income__heading-2">Прибылей Нет</p>
+                                <a href="#" class="dashboard__budget__button u-center-text  addIncome ">Создать Прибыль</a>
+                            </div>
+                    </ul>
+                    
+                  
+                </div>
+    
+                <div class="dashboard__expence" id="budget-expence">
+                        <p class="dashboard__income__heading">Разходы</p>
+
+                     
+                    <ul class="dashboard__income__ul">
+                        <div id="add-expence"></div>
+                        {% if expence %}
+                        {% for expenc in expence %}
+                      
+                    
+                        <li  class="dashboard__income__li " id="{{expenc.date}}">
+                            <div class="noneExpence null-opacity">1</div>
+                            <div class="dashboard__income__box">
+                            <p class="dashboard__income__text">
+                                {{expenc.title_exp}} ( {{expenc.category_exp}} )
+                            </p>
+                            <div class="dashboard__income__num-box">
+                            <p class="dashboard__income__num" >- <span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency li-expence-val">{{expenc.value_exp}}</span></p>
+                            <p class="dashboard__income__delete-exp" id="{{ expenc.id }}">&times;</p>
+                        </div>
+                        </div>
+                        </li>
+                            {% endfor %}
+                            {% else %}
+                           
+               
+                            {% endif %}
+                            <div class="dashboard__income__heading-2-box noneExpenceHeading ">
+                                <p class="dashboard__income__heading dashboard__income__heading-2">Разходов Нет</p>
+                                <a href="#" class="dashboard__budget__button u-center-text  addExpence ">Добавить Разход</a>
+                                </div>
+                        </ul>
+                </div>
+                </div>
+        
+    </div>
+
+    <div class="dashboard__gridbox-2">
+
+        
+          <div class="dashboard__spendings" id="budget-add">
+     
+            <p class="dashboard__income__heading">Категории</p>
+            <div class="dashboard__spendings-grid"id="addCategory">
+                {% if category %}
+                {% for categor in category %}
+            
+            <div class="dashboard__spendings-text-box">
+                <p class="dashboard__income__text dashboard__income__text-2 dashboard__spendings-text">{{categor.title_c}}</p>
+                <div class="noneCategory null-opacity">1</div>
+             <p class="dashboard__income__delete-exp dashboard__spendings-delete"id="{{ categor.id }}">
+             &times;
+
+             </p>
+            </div>
+                    {% endfor %}
+                    {% else %}
+                    
+                
+                    {% endif %}
+                </div>
+                <div class="dashboard__income__heading-2-box noneCategoryHeading">
+                    <p class="dashboard__income__heading dashboard__income__heading-2">Категорий Нет</p>
+                    <a href="#" class="dashboard__budget__button u-center-text  addCategory ">Создать Категорию</a>
+                </div>
+
+                        </div> 
+                            
+                       
+                       
+                        {% if object is not None %}
+                    <div id="add-goal">
+                        {% if goalss %}
+                        {% for goals in goalss %}
+
+                        <div class="noneGoals null-opacity">1</div>
+                        <div class="dashboard__goals" id="budget-goals">
+
+                            <p class="dashboard__goals__heading">{{goals.title_goal}}</p>
+                            
+                 
+                            <div id="goalsDelete">
+                            <div class="dashboard__goals__speedometer-box">
+                                <output class="dashboard__goals__range-label" id="output-per">0 %</output>
+                            </div>
+                          
+
+                            <div class="dashboard__goals__range-box">
+                    
+                                
+                            <input type="range" class="dashboard__goals__range" id="slider-per" value=".64" disabled  min="0" max="100" step="0.1" >
+                        </div>   
+                    </div>
+                            <p class="dashboard__goals__text" id="goal_text">Так держать !</p>
+                        <a href="#" class="goalsAppend dashboard__budget__button dashboard__spendings-button addGoal ">Создать Новую Цель</a>
+               
+                            <div class="dashboard__goals__range-label-box">
+                              <p class="dashboard__goals__range-label-2" id="ebudget__main"><span class="dashboard__plus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency" id="budget_goal">0</span> заработано</p>
+
+                         
+                              <p class="dashboard__goals__range-label-2"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency" id="goal_budget_left">{{goals.value_goal}}</span> осталось</p>
+                          
+                            </div>
+                    </div>
+                
+                     <p id="goal_value_goal">{{goals.value_goal}}</p>
+                        </div>
+                        </div>
+                        
+                    </div>
+                            
+                            {% endfor %}
+                            {% else %}
+                           
+                            {%endif%}
+                      
+                            <div class="dashboard__goals noneGoalsHeading">
+                                
+                                <p class="dashboard__goals__heading">Целей Нет</p>
+                                <a href="#" class="dashboard__budget__button dashboard__spendings-button dashboard__spendings-button-2 addGoal ">Создать Цель</a>
+                   
+                                </div>
+                          
+                            
+                            {% else %}
+                            <div class="dashboard__goals noneGoalsHeading">
+                                <p class="settings__heading-2">Улучшите Подписку <br> Чтобы Получить Функцию Целей</p>
+                                <p class="settings__heading-2 u-margin-bottom-small">
+                                    Ваша Текущая <br> Подписка <br>
+                                    <span class="settings__heading-span">{{ user.usermembership.membership}}</span>
+                                </p>
+                            
+                                <div class="dashboard__popup-button-3-box">
+                                    <form action="{%url 'select'%}">
+                                    <button type="submit" class="dashboard__popup-button dashboard__popup-button-3" >Улучшить Подписку <span>&rarr;</span></button>    
+                                   </form>   
+                                </div>
+                               
+                                </div>
+                            {% endif %}
+
+                           
+
+    </div>
+
+</div>
+{% endif %}
+
+
+{% if user.usermembership.language.id == 4 %}
+
+<div class="dashboard__popup" id="dashboardpopup">
+
+    <div class="dashboard__popup-close" id="closeButton">&times;</div>
+            <div class="dashboard__popup-2" id="dashboardpopup-2">
+                  
+        <form  method="POST" name="create_incomefrm" id="create_incomefrm" action="{% url 'create_income_record' %}">
+            {% csrf_token %}
+            <p class="dashboard__popup-heading">Додати Прибуток</p>
+            <div class="select" >   
+            {{ addincome_html.category }}
+        </div>
+            <div class="dashboard__popup-input-box">
+                <input type="text" name="title" class="dashboard__popup-input titlefocus" placeholder="Добавте Назву" maxlength="200" required id="id_title">
+            <label class="dashboard__popup__label" for="id_title">Додайте Назву</label>
+            </div>
+            <div class="dashboard__popup-input-box">
+            
+                <input type="number" name="value" class="dashboard__popup-input popupvalue" placeholder="Додайте Суму" min="1" required id="id_value">
+
+            <div class="dashboard__popup-addbtn-box">
+                <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepUp()" class="dashboard__popup-addbtn">+</p>
+                <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepDown()" class="dashboard__popup-addbtn">-</p>
+            </div>
+
+            <label class="dashboard__popup__label" for="id_value">Додайте Суму</label>
+        </div>
+            <p style="opacity: 0;visibility: hidden;" id="user-currency">{{user.usermembership.currency}}</p>
+            <input type='hidden' id="income-hidden" name='form_type' value='income'>
+           
+            <button type="submit" id="popup-button-2" class="dashboard__popup-button" name="createincomefrmbtn">Додати <span>&rarr;</span></button>    
+          </form>
+        </div>
+    
+
+         <div class="dashboard__popup-2" id="dashboardpopup-4">
+                  
+          <form  method="POST" name="create_expencefrm" id="create_expencefrm" action="{% url 'create_expence_record' %}">
+            {% csrf_token %}
+            <p class="dashboard__popup-heading">Додати Витрату</p>
+            <div class="select" >   
+                {{ addexpence_html.category_exp}}
+            </div>
+            <div class="dashboard__popup-input-box">
+            <input type="text" name="title_exp" class="dashboard__popup-input titlefocus" placeholder="Додайте Назву" maxlength="200" required="" id="id_title_exp">
+            <label class="dashboard__popup__label" for="id_title">Додайте Назву</label>
+            </div>
+            <div class="dashboard__popup-input-box">
+            
+                <input type="number" name="value_exp" class="dashboard__popup-input popupvalue" placeholder="Додайте Суму" min="1" required="" id="id_value_exp">
+            <div class="dashboard__popup-addbtn-box">
+                <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepUp()" class="dashboard__popup-addbtn">+</p>
+                <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepDown()" class="dashboard__popup-addbtn">-</p>
+            </div>
+            
+            <label class="dashboard__popup__label" for="id_value">Додайте Суму</label>
+        </div>
+        <p style="opacity: 0;visibility: hidden;" id="user-currency_exp">{{user.usermembership.currency}}</p>
+        <input type='hidden' id="expence-hidden" name='form_type' value='expence'>
+
+            <button type="submit" id="popup-button-3" class="dashboard__popup-button" name="createexpencefrmbtn">Додати <span>&rarr;</span></button>    
+          </form>
+        </div>
+     
+
+        <div class="dashboard__popup-2" id="dashboardpopup-3">
+                  
+            <form  method="POST" name="create_goalfrm" id="create_goalfrm" action="{% url 'create_goal_record' %}">
+              {% csrf_token %}
+              <p class="dashboard__popup-heading">Додати Ціль</p>
+              
+              <div class="dashboard__popup-input-box">
+                <input type="text" name="title_goal" class="dashboard__popup-input titlefocus" placeholder="Додайте Назву" maxlength="200" required="" id="id_title_goal">
+              <label class="dashboard__popup__label" for="id_title">Додайте Назву</label>
+              </div>
+              <div class="dashboard__popup-input-box">
+              
+                <input type="number" name="value_goal" value="1" class="dashboard__popup-input popupvalue" placeholder="Добавте Сумму" min="1" required="" id="id_value_goal">
+              <div class="dashboard__popup-addbtn-box">
+                  <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepUp()" class="dashboard__popup-addbtn">+</p>
+                  <p onclick="this.parentNode.parentNode.querySelector('.dashboard__popup-input').stepDown()" class="dashboard__popup-addbtn">-</p>
+              </div>
+              
+              <label class="dashboard__popup__label" for="id_value">Додайте Суму</label>
+          </div>
+          <p style="opacity: 0;visibility: hidden;" id="user-currency_goal">{{user.usermembership.currency}}</p>
+          <input type='hidden' id="goal-hidden" name='form_type' value='goal'>
+                 <button type="submit" id="popup-button-3" class="dashboard__popup-button" name="creategoalfrmbtn">Додати <span>&rarr;</span></button>    
+     
+            </form>
+          </div>
+
+
+          <div class="dashboard__popup-2" id="dashboardpopup-5">
+                  
+            <form  method="POST" name="create_categoryfrm" id="create_categoryfrm" action="{% url 'create_category_record' %}">
+              {% csrf_token %}
+              <p class="dashboard__popup-heading">Додайте Категорію</p>
+              
+              <div class="dashboard__popup-input-box">
+                <input type="text" name="title_c" class="dashboard__popup-input titlefocus" placeholder="Додайте Назву" maxlength="200" required="" id="id_title_c">
+              <label class="dashboard__popup__label" for="id_title_c">Додайте Назву</label>
+              </div>
+            
+          <input type='hidden' id="category-hidden" name='form_type' value='category'>
+  
+              <button type="submit" id="popup-button-3" class="dashboard__popup-button" name="createcategoryfrmbtn">Додати <span>&rarr;</span></button>    
+            </form>
+          </div>
+</div>
+
+<body class="dashboard"> 
+    
+
+    {% include 'partials/_menu.html' %}
+   <div class="dashboard">
+   
+    <div class="dashboard__gridbox">
+    <div class="dashboard__gridbox-1">
+        <div id="budget-drag" class="dashboard__budget">
+           
+        <div class="dashboard__budget__texts">
+            <div class="dashboard__budget__text">
+<p class="dashboard__budget__paragraph">Прибуток :</p>
+<p class="dashboard__budget__spendings" ><span class="dashboard__plus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency"  id="budget-income">0</span></p>
+</div>
+<div class="dashboard__budget__text">
+    <p class="dashboard__budget__paragraph dashboard__budget__paragraph-main">Баланс :</p>
+    <p class="dashboard__budget__spendings dashboard__budget__spendings-main"><span class="dashboard__plus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency budget">0</span></p>
+    </div>
+    <div class="dashboard__budget__text">
+        <p class="dashboard__budget__paragraph">Витрати :</p>
+        <p class="dashboard__budget__spendings" ><span class="dashboard__minus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency" id="budget-expence">0</span></p>
+
+        </div>
+
+</div>
+
+<div class="dashboard__budget__button-box">
+    <a href="#" class="dashboard__budget__button addIncome">Додати Прибуток</a>
+    <a href="#" class="dashboard__budget__button addExpence" >Додати Витрату</a>
+    <a href="#" class="dashboard__budget__button addGoal">Додати Ціль</a>
+    <a href="#" class="dashboard__budget__button addCategory" i>Додати Категорію</a>
+</div>
+
+</div>
+        <div class="dashboard__income-box">
+      
+                <div class="dashboard__income" id="budget-income">
+                    <p class="dashboard__income__heading">Прибуток</p>
+                
+                    <ul class="dashboard__income__ul">
+                        <div id="add-income"></div>
+                        {% if income %}
+                        {% for incom in income %}
+                  
+                        <li class="dashboard__income__li noneIncome" id="li-icnome">
+                            <div class="noneIncomes null-opacity">1</div>
+                                <div class="dashboard__income__box">
+                                <p class="dashboard__income__text">
+                                    {{incom.title}} ( {{incom.category}} )
+                                </p>
+                                <div class="dashboard__income__num-box">
+                                <p class="dashboard__income__num" >+ <span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency li-income-val" >{{incom.value}}</span></p>
+                                <p class="dashboard__income__delete-inc" id="{{ incom.id }}">
+
+                                &times;
+                                </p>
+                                </div>
+                            </div>
+                            </li>
+
+                       
+                            
+                            {% endfor %}
+                            {% else %}
+                          
+                            {% endif %}
+                            <div class="dashboard__income__heading-2-box noneIncomesHeading">
+                                <p class="dashboard__income__heading dashboard__income__heading-2">Прибутків Нема</p>
+                                <a href="#" class="dashboard__budget__button u-center-text  addIncome ">Створити Прибуток</a>
+                            </div>
+                    </ul>
+                    
+                  
+                </div>
+    
+                <div class="dashboard__expence" id="budget-expence">
+                        <p class="dashboard__income__heading">Витрати</p>
+
+                     
+                    <ul class="dashboard__income__ul">
+                        <div id="add-expence"></div>
+                        {% if expence %}
+                        {% for expenc in expence %}
+                      
+                    
+                        <li  class="dashboard__income__li " id="{{expenc.date}}">
+                            <div class="noneExpence null-opacity">1</div>
+                            <div class="dashboard__income__box">
+                            <p class="dashboard__income__text">
+                                {{expenc.title_exp}} ( {{expenc.category_exp}} )
+                            </p>
+                            <div class="dashboard__income__num-box">
+                            <p class="dashboard__income__num" >- <span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency li-expence-val">{{expenc.value_exp}}</span></p>
+                            <p class="dashboard__income__delete-exp" id="{{ expenc.id }}">&times;</p>
+                        </div>
+                        </div>
+                        </li>
+                            {% endfor %}
+                            {% else %}
+                           
+               
+                            {% endif %}
+                            <div class="dashboard__income__heading-2-box noneExpenceHeading ">
+                                <p class="dashboard__income__heading dashboard__income__heading-2">Витрат Нема</p>
+                                <a href="#" class="dashboard__budget__button u-center-text  addExpence ">Створити Витрату</a>
+                                </div>
+                        </ul>
+                </div>
+                </div>
+        
+    </div>
+
+    <div class="dashboard__gridbox-2">
+
+        
+          <div class="dashboard__spendings" id="budget-add">
+     
+            <p class="dashboard__income__heading">Категорії</p>
+            <div class="dashboard__spendings-grid"id="addCategory">
+                {% if category %}
+                {% for categor in category %}
+            
+            <div class="dashboard__spendings-text-box">
+                <p class="dashboard__income__text dashboard__income__text-2 dashboard__spendings-text">{{categor.title_c}}</p>
+                <div class="noneCategory null-opacity">1</div>
+             <p class="dashboard__income__delete-exp dashboard__spendings-delete"id="{{ categor.id }}">
+             &times;
+
+             </p>
+            </div>
+                    {% endfor %}
+                    {% else %}
+                    
+                
+                    {% endif %}
+                </div>
+                <div class="dashboard__income__heading-2-box noneCategoryHeading">
+                    <p class="dashboard__income__heading dashboard__income__heading-2">Категорій Нема</p>
+                    <a href="#" class="dashboard__budget__button u-center-text  addCategory ">Створити Категорію</a>
+                </div>
+
+                        </div> 
+                            
+                       
+                       
+                        {% if object is not None %}
+                    <div id="add-goal">
+                        {% if goalss %}
+                        {% for goals in goalss %}
+
+                        <div class="noneGoals null-opacity">1</div>
+                        <div class="dashboard__goals" id="budget-goals">
+
+                            <p class="dashboard__goals__heading">{{goals.title_goal}}</p>
+                            
+                 
+                            <div id="goalsDelete">
+                            <div class="dashboard__goals__speedometer-box">
+                                <output class="dashboard__goals__range-label" id="output-per">0 %</output>
+                            </div>
+                          
+
+                            <div class="dashboard__goals__range-box">
+                    
+                                
+                            <input type="range" class="dashboard__goals__range" id="slider-per" value=".64" disabled  min="0" max="100" step="0.1" >
+                        </div>   
+                    </div>
+                            <p class="dashboard__goals__text" id="goal_text">Так тримати !</p>
+                        <a href="#" class="goalsAppend dashboard__budget__button dashboard__spendings-button addGoal ">Створити Нову Ціль</a>
+               
+                            <div class="dashboard__goals__range-label-box">
+                              <p class="dashboard__goals__range-label-2" id="ebudget__main"><span class="dashboard__plus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency" id="budget_goal">0</span> зароблено</p>
+
+                         
+                              <p class="dashboard__goals__range-label-2"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency" id="goal_budget_left">{{goals.value_goal}}</span> залишилось</p>
+                          
+                            </div>
+                    </div>
+                
+                     <p id="goal_value_goal">{{goals.value_goal}}</p>
+                        </div>
+                        </div>
+                        
+                    </div>
+                            
+                            {% endfor %}
+                            {% else %}
+                           
+                            {%endif%}
+                      
+                            <div class="dashboard__goals noneGoalsHeading">
+                                
+                                <p class="dashboard__goals__heading">Цілей Нема</p>
+                                <a href="#" class="dashboard__budget__button dashboard__spendings-button dashboard__spendings-button-2 addGoal ">Створити Ціль</a>
+                   
+                                </div>
+                          
+                            
+                            {% else %}
+                            <div class="dashboard__goals noneGoalsHeading">
+                                <p class="settings__heading-2">Поліпшите Підписку  <br> Щоб Отримати Функцію Цілей</p>
+                                <p class="settings__heading-2 u-margin-bottom-small">
+                                    Ваша Поточна <br> Підписка <br>
+                                    <span class="settings__heading-span">{{ user.usermembership.membership}}</span>
+                                </p>
+                            
+                                <div class="dashboard__popup-button-3-box">
+                                    <form action="{%url 'select'%}">
+                                    <button type="submit" class="dashboard__popup-button dashboard__popup-button-3" >Поліпшите Підписку <span>&rarr;</span></button>    
+                                   </form>   
+                                </div>
+                               
+                                </div>
+                            {% endif %}
+
+                           
+
+    </div>
+
+</div>
+{% endif %}
+
+
+<script>
+
+
+
+
+
+
+    {% if user.usermembership.language.id == 1 %}
+    function displayPersenteges(){
+    let budget = $(".budget").text();
+    let budgetGoalValue = $("#goal_value_goal").text();
+    let displayRangeSlider = $("#output-per")
+    let rangeSlider= $("#slider-per");
+    let budgetGoalLeft = $("#goal_budget_left");
+    $("#budget_goal").text(budget);
+let calculatePersentages = budget / budgetGoalValue * 100;
+let newCalculatePersentages = calculatePersentages.toFixed(1);  
+rangeSlider.val(newCalculatePersentages);
+
+let budgetLeft = budgetGoalValue - budget;
+
+displayRangeSlider.text(newCalculatePersentages + " %");
+if (budget <= 0){
+  displayRangeSlider.text("0  %");
+}
+if (budget >= 0){
+  budgetGoalLeft.text(budgetLeft);
+}
+else{
+  budgetGoalLeft.text($("#goal_budget_left"));
+}
+if ( 0 == newCalculatePersentages ){
+  $("#goal_text").text("Let's Start !");
+  $("#goalsDelete").css({
+    "opacity":"1",
+    "display":"block"
+  })
+  $(".goalsAppend").css({
+    "opacity":"0",
+    "display":"none"
+  })
+  $("#goal_text").css({
+    "line-height":"2px",
+    "padding-top": "10px"
+  })
+  
+}
+if ( 50 == newCalculatePersentages ){
+  $("#goal_text").text("Half Of The Way !");
+  $("#goalsDelete").css({
+    "opacity":"1",
+    "display":"block"
+  })
+  $(".goalsAppend").css({
+    "opacity":"0",
+    "display":"none"
+  })
+  $("#goal_text").css({
+    "line-height":"2px",
+    "padding-top": "10px"
+  })
+
+}
+if ( 1 <= newCalculatePersentages  && 25 >= newCalculatePersentages ){
+  $("#goal_text").text("Nice Start !");
+  $("#goalsDelete").css({
+    "opacity":"1",
+    "display":"block"
+  })
+  $(".goalsAppend").css({
+    "opacity":"0",
+    "display":"none"
+  })
+  $("#goal_text").css({
+    "line-height":"2px",
+    "padding-top": "10px"
+  })
+ 
+}
+if ( 25 <= newCalculatePersentages && 49 >= newCalculatePersentages ){
+  $("#goal_text").text("You Are On The Right Way !");
+  $("#goalsDelete").css({
+    "opacity":"1",
+    "display":"block"
+  })
+  $(".goalsAppend").css({
+    "opacity":"0",
+    "display":"none"
+  })
+  $("#goal_text").css({
+    "line-height":"2px",
+    "padding-top": "10px"
+  })
+
+}
+
+if ( 51 <= newCalculatePersentages && 75 >= newCalculatePersentages ){
+  $("#goal_text").text("Keep Going !");
+  $("#goalsDelete").css({
+    "opacity":"1",
+    "display":"block"
+  })
+  $(".goalsAppend").css({
+    "opacity":"0",
+    "display":"none"
+  })
+  $("#goal_text").css({
+    "line-height":"2px",
+    "padding-top": "10px"
+  })
+
+}
+if ( 75 <= newCalculatePersentages && 99 >= newCalculatePersentages ){
+  $("#goal_text").text("Almost Done !");
+  $("#goal_text").css({
+    "line-height":"2px",
+    "padding-top": "10px"
+  })
+  $("#goalsDelete").css({
+    "opacity":"1",
+    "display":"block"
+  })
+  $(".goalsAppend").css({
+    "opacity":"0",
+    "display":"none"
+  })
+
+
+}
+if (100 <= newCalculatePersentages && 10000000000000 >= newCalculatePersentages){
+  budgetGoalLeft.text(0.00);
+  $("#goal_text").css({
+    "line-height":"40px",
+    "padding-top": "50px"
+  }).multiline("Congratulations ! \n You Complete This Goal !")
+  $(".goalsAppend").css({
+    "opacity":"1",
+    "display":"block"
+  })
+
+  
+  $("#goalsDelete").css({
+    "opacity":"0",
+    "display":"none"
+  })
+
+}
+
+}
+
+{% endif %}
+
+{% if user.usermembership.language.id == 2 %}
+    function displayPersenteges(){
+    let budget = $(".budget").text();
+    let budgetGoalValue = $("#goal_value_goal").text();
+    let displayRangeSlider = $("#output-per")
+    let rangeSlider= $("#slider-per");
+    let budgetGoalLeft = $("#goal_budget_left");
+    $("#budget_goal").text(budget);
+let calculatePersentages = budget / budgetGoalValue * 100;
+let newCalculatePersentages = calculatePersentages.toFixed(1);  
+rangeSlider.val(newCalculatePersentages);
+
+let budgetLeft = budgetGoalValue - budget;
+
+displayRangeSlider.text(newCalculatePersentages + " %");
+if (budget <= 0){
+  displayRangeSlider.text("0  %");
+}
+if (budget >= 0){
+  budgetGoalLeft.text(budgetLeft);
+}
+else{
+  budgetGoalLeft.text(0.00);
+}
+if ( 0 == newCalculatePersentages ){
+  $("#goal_text").text("Давайте Начнем !");
+  $("#goalsDelete").css({
+    "opacity":"1",
+    "display":"block"
+  })
+  $(".goalsAppend").css({
+    "opacity":"0",
+    "display":"none"
+  })
+  $("#goal_text").css({
+    "line-height":"2px",
+    "padding-top": "10px"
+  })
+  
+}
+if ( 50 == newCalculatePersentages ){
+  $("#goal_text").text("Половина Пути !");
+  $("#goalsDelete").css({
+    "opacity":"1",
+    "display":"block"
+  })
+  $(".goalsAppend").css({
+    "opacity":"0",
+    "display":"none"
+  })
+  $("#goal_text").css({
+    "line-height":"2px",
+    "padding-top": "10px"
+  })
+
+}
+if ( 1 <= newCalculatePersentages  && 25 >= newCalculatePersentages ){
+    $(".goal_text").text("Хорошое Начало !");
+  $("#goalsDelete").css({
+    "opacity":"1",
+    "display":"block"
+  })
+  $(".goalsAppend").css({
+    "opacity":"0",
+    "display":"none"
+  })
+  $("#goal_text").css({
+    "line-height":"2px",
+    "padding-top": "10px"
+  })
+ 
+}
+if ( 25 <= newCalculatePersentages && 49 >= newCalculatePersentages ){
+  $("#goal_text").text("Вы На Правильном Пути !");
+  $("#goalsDelete").css({
+    "opacity":"1",
+    "display":"block"
+  })
+  $(".goalsAppend").css({
+    "opacity":"0",
+    "display":"none"
+  })
+  $("#goal_text").css({
+    "line-height":"2px",
+    "padding-top": "10px"
+  })
+
+}
+
+if ( 51 <= newCalculatePersentages && 75 >= newCalculatePersentages ){
+  $("#goal_text").text("Так Держать !");
+  $("#goalsDelete").css({
+    "opacity":"1",
+    "display":"block"
+  })
+  $(".goalsAppend").css({
+    "opacity":"0",
+    "display":"none"
+  })
+  $("#goal_text").css({
+    "line-height":"2px",
+    "padding-top": "10px"
+  })
+
+}
+if ( 75 <= newCalculatePersentages && 99 >= newCalculatePersentages ){
+  $("#goal_text").text("Почти Сделано !");
+  $("#goal_text").css({
+    "line-height":"2px",
+    "padding-top": "10px"
+  })
+  $("#goalsDelete").css({
+    "opacity":"1",
+    "display":"block"
+  })
+  $(".goalsAppend").css({
+    "opacity":"0",
+    "display":"none"
+  })
+
+
+}
+if (100 <= newCalculatePersentages && 10000000000000 >= newCalculatePersentages){
+  budgetGoalLeft.text(0.00);
+  $("#goal_text").css({
+    "line-height":"40px",
+    "padding-top": "50px"
+  }).multiline("Поздравление ! \n Вы Завершили Эту Цель !")
+  $(".goalsAppend").css({
+    "opacity":"1",
+    "display":"block"
+  })
+
+  
+  $("#goalsDelete").css({
+    "opacity":"0",
+    "display":"none"
+  })
+
+}
+
+}
+
+{% endif %}
+
+{% if user.usermembership.language.id == 4 %}
+    function displayPersenteges(){
+    let budget = $(".budget").text();
+    let budgetGoalValue = $("#goal_value_goal").text();
+    let displayRangeSlider = $("#output-per")
+    let rangeSlider= $("#slider-per");
+    let budgetGoalLeft = $("#goal_budget_left");
+    $("#budget_goal").text(budget);
+let calculatePersentages = budget / budgetGoalValue * 100;
+let newCalculatePersentages = calculatePersentages.toFixed(1);  
+rangeSlider.val(newCalculatePersentages);
+
+let budgetLeft = budgetGoalValue - budget;
+
+displayRangeSlider.text(newCalculatePersentages + " %");
+if (budget <= 0){
+  displayRangeSlider.text("0  %");
+}
+if (budget >= 0){
+  budgetGoalLeft.text(budgetLeft);
+}
+else{
+  budgetGoalLeft.text(0.00);
+}
+if ( 0 == newCalculatePersentages ){
+  $("#goal_text").text("Давайте Почнем !");
+  $("#goalsDelete").css({
+    "opacity":"1",
+    "display":"block"
+  })
+  $(".goalsAppend").css({
+    "opacity":"0",
+    "display":"none"
+  })
+  $("#goal_text").css({
+    "line-height":"2px",
+    "padding-top": "10px"
+  })
+  
+}
+if ( 50 == newCalculatePersentages ){
+  $("#goal_text").text("Половина Шляху !");
+  $("#goalsDelete").css({
+    "opacity":"1",
+    "display":"block"
+  })
+  $(".goalsAppend").css({
+    "opacity":"0",
+    "display":"none"
+  })
+  $("#goal_text").css({
+    "line-height":"2px",
+    "padding-top": "10px"
+  })
+
+}
+if ( 1 <= newCalculatePersentages  && 25 >= newCalculatePersentages ){
+    $(".goal_text").text("Хороший Початок !");
+  $("#goalsDelete").css({
+    "opacity":"1",
+    "display":"block"
+  })
+  $(".goalsAppend").css({
+    "opacity":"0",
+    "display":"none"
+  })
+  $("#goal_text").css({
+    "line-height":"2px",
+    "padding-top": "10px"
+  })
+ 
+}
+if ( 25 <= newCalculatePersentages && 49 >= newCalculatePersentages ){
+  $("#goal_text").text("Ви На Правильному Шляху !");
+  $("#goalsDelete").css({
+    "opacity":"1",
+    "display":"block"
+  })
+  $(".goalsAppend").css({
+    "opacity":"0",
+    "display":"none"
+  })
+  $("#goal_text").css({
+    "line-height":"2px",
+    "padding-top": "10px"
+  })
+
+}
+
+if ( 51 <= newCalculatePersentages && 75 >= newCalculatePersentages ){
+  $("#goal_text").text("Так Тримати !");
+  $("#goalsDelete").css({
+    "opacity":"1",
+    "display":"block"
+  })
+  $(".goalsAppend").css({
+    "opacity":"0",
+    "display":"none"
+  })
+  $("#goal_text").css({
+    "line-height":"2px",
+    "padding-top": "10px"
+  })
+
+}
+if ( 75 <= newCalculatePersentages && 99 >= newCalculatePersentages ){
+  $("#goal_text").text("Майже Зроблено !");
+  $("#goal_text").css({
+    "line-height":"2px",
+    "padding-top": "10px"
+  })
+  $("#goalsDelete").css({
+    "opacity":"1",
+    "display":"block"
+  })
+  $(".goalsAppend").css({
+    "opacity":"0",
+    "display":"none"
+  })
+
+
+}
+if (100 <= newCalculatePersentages && 10000000000000 >= newCalculatePersentages){
+  budgetGoalLeft.text(0.00);
+  $("#goal_text").css({
+    "line-height":"40px",
+    "padding-top": "50px"
+  }).multiline("Вітання ! \n Ви Завершили Цю Ціль !")
+  $(".goalsAppend").css({
+    "opacity":"1",
+    "display":"block"
+  })
+
+  
+  $("#goalsDelete").css({
+    "opacity":"0",
+    "display":"none"
+  })
+
+}
+
+}
+
+{% endif %}
+
+setInterval(function() {
+  displayPersenteges();
+}, 1000);
+</script>
+
+<script src="{% static 'js/budgetcontroller.js'%}"></script>
+<script src="{% static 'js/dashboard.js'%}"></script>
+<script src="{% static 'js/ajax.js'%}"></script>
+{% include 'partials/_background_image.html' %}
+
+
+
+
+    {% endblock  %}
+
+
+
+  

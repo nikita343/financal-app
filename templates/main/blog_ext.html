@@ -1,0 +1,41 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block title %}
+| {{blog.title}}
+{% endblock  %}
+{%block content%}
+
+
+<div class="navbar">
+    <img src="{%static 'img/logo.svg'%} " alt="Main logo" class="header__logo">
+<div class="navbar__link-box">
+
+<a href="" class="navbar__link">Plans</a>
+<a href="" class="navbar__link">Log in</a>
+<a href="" class="navbar__link navbar__link-main">Sign up</a>
+</div>
+</div>
+
+<h1 class="blog__heading-main">{{blog.title}}</h1>
+<p class="post__date">Published {{blog.date}}</p>
+
+
+
+<img src="{{blog.photo.url}}" class="post__photo" alt="">
+<!-- backend goes here -->
+
+<h1 class="post__heading">{{blog.heading}}</h1>
+{% autoescape off %}
+<p class="post__paragraph">{{blog.paragraph|safe}}</p>
+{% endautoescape %}
+<!-- backend goes here -->
+
+
+
+
+
+    
+{% include 'partials/_footer.html' %}
+
+
+{% endblock  %}

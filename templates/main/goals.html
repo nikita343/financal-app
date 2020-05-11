@@ -1,0 +1,506 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block title %}
+| Goals
+{% endblock  %}
+{%block content%}
+ 
+{% include 'partials/_menu.html' %}
+
+
+
+
+{% csrf_token %}
+<p  class="budget" id="budget" >{{user.usermembership.budget}}</p>
+
+{% if user.usermembership.language.id == 1 %}
+
+   <div class="goals__grid">
+  
+    {% if object is not None %}
+    {% if goalss %}
+    {% for goals in goalss %}
+
+
+    <div class="dashboard__goals">
+           
+
+        <p class="dashboard__income__delete-goal dashboard__goals-delete" id="{{ goals.id }}">&times;</p>
+        <p class="dashboard__goals__heading">{{goals.title_goal}}</p>
+        
+
+        <div id="goalsDelete{{goals.id}}">
+        <div class="dashboard__goals__speedometer-box">
+            <output class="dashboard__goals__range-label" id="output-per{{goals.id}}">0 %</output>
+        </div>
+      
+
+        <div class="dashboard__goals__range-box">
+
+            
+        <input type="range" class="dashboard__goals__range" id="slider-per{{goals.id}}" value=".64" disabled  min="0" max="100" step="0.1" >
+    </div>   
+</div>
+        <p class="dashboard__goals__text goal_text{{goals.id}}">Keep going !</p>
+
+        <div class="dashboard__goals__range-label-box">
+          <p class="dashboard__goals__range-label-2" id="ebudget__main"><span class="dashboard__plus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency" id="budget_goal{{goals.id}}">0</span> earned</p>
+
+  
+          <p class="dashboard__goals__range-label-2"><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency" id="goal_budget_left{{goals.id}}">05</span> left</p>
+      
+        </div>
+        
+</div>
+<p style="opacity: 0;visibility: hidden; display: none;" id="goal_value_goal{{goals.id}}">{{goals.value_goal}}</p>
+
+        {% endfor %}
+        {% else %}
+
+        {%endif%}
+
+                                  
+                            
+        {% else %}
+        <div class="dashboard__goals noneGoalsHeading">
+            <p class="settings__heading-2">Upgrade Membership <br> To Get Goals Feature</p>
+            <p class="settings__heading-2 u-margin-bottom-small">
+                Your current <br> Membership is <br>
+                <span class="settings__heading-span">{{ user.usermembership.membership}}</span>
+            </p>
+        
+            <div class="dashboard__popup-button-3-box">
+                <form action="{%url 'select'%}">
+                <button type="submit" class="dashboard__popup-button dashboard__popup-button-3" >Upgrade Membership <span>&rarr;</span></button>    
+               </form>   
+            </div>
+           
+            </div>
+        {% endif %}
+    </div>
+
+
+    
+
+<script >
+
+
+$(function () {
+  $.fn.multiline = function(text){
+      this.text(text);
+      this.html(this.html().replace(/\n/g,'<br/>'));
+      return this;
+  }
+    {% if goalss %}
+    {% for goals in goalss %}
+
+    function forEachGoal{{goals.id}}(){
+    let budget = $(".budget").text();
+    let budgetGoalValue = $("#goal_value_goal{{goals.id}}").text();
+    let displayRangeSlider = $("#output-per{{goals.id}}")
+    let rangeSlider= $("#slider-per{{goals.id}}");
+    let budgetGoalLeft{{goals.id}} = $("#goal_budget_left{{goals.id}}");
+    $("#budget_goal{{goals.id}}").text(budget);
+
+    function displayPersenteges{{goals.id}}(){
+    let  budgetLeft{{goals.id}} = budgetGoalValue - budget;
+    let calculatePersentages = budget / budgetGoalValue * 100;
+    let newCalculatePersentages = calculatePersentages.toFixed(1);  
+    let textPersentages = parseInt(newCalculatePersentages);
+    rangeSlider.val(newCalculatePersentages);
+    
+    if (budget >= 0 ){
+      budgetGoalLeft{{goals.id}}.text(budgetLeft{{goals.id}});
+    }
+    else{
+      budgetGoalLeft{{goals.id}}.text(0.00);
+    }
+    displayRangeSlider.text(newCalculatePersentages + " %");
+    if (budget <= 0){
+      displayRangeSlider.text("0  %");
+    }
+    if ( 0 == textPersentages ){
+      $(".goal_text{{goals.id}}").text("Let's Start !");
+    }
+    if ( 50 == textPersentages ){
+      $(".goal_text{{goals.id}}").text("Half Of The Way !");
+    }
+    if ( 1 <= textPersentages  && 25 >= textPersentages ){
+      $(".goal_text{{goals.id}}").text("Nice Start !");
+    }
+    if ( 25 <= textPersentages && 49 >= textPersentages ){
+      $(".goal_text{{goals.id}}").text("You Are On The Right Way !");
+    }
+
+    if ( 51 <= textPersentages && 75 >= textPersentages ){
+      $(".goal_text{{goals.id}}").text("Keep Going !");
+    }
+    if ( 75 <= textPersentages && 99 >= textPersentages ){
+      $(".goal_text{{goals.id}}").text("Almost Done !");
+    }
+    if (100 <= textPersentages && 10000000000000 >= textPersentages){
+      budgetGoalLeft{{goals.id}}.text(0.00);
+      $(".goal_text{{goals.id}}").css({
+        "line-height":"40px",
+        "padding-top": "50px"
+      }).multiline("Congratulations ! \n You Complete This Goal !")
+
+      $("#goalsDelete{{goals.id}}").fadeOut(400, function () {
+       $(this).remove();
+
+      });
+    
+    }
+
+  }
+
+  displayPersenteges{{goals.id}}()
+}
+forEachGoal{{goals.id}}()
+
+
+{% endfor %}
+        {% else %}
+
+        {%endif%}
+});
+</script>
+
+
+
+{% endif %}
+
+
+
+
+
+
+{% if user.usermembership.language.id == 2 %}
+
+   <div class="goals__grid">
+  
+    {% if object is not None %}
+    {% if goalss %}
+    {% for goals in goalss %}
+
+
+    <div class="dashboard__goals">
+           
+
+        <p class="dashboard__income__delete-goal dashboard__goals-delete" id="{{ goals.id }}">&times;</p>
+        <p class="dashboard__goals__heading">{{goals.title_goal}}</p>
+        
+
+        <div id="goalsDelete{{goals.id}}">
+        <div class="dashboard__goals__speedometer-box">
+            <output class="dashboard__goals__range-label" id="output-per{{goals.id}}">0 %</output>
+        </div>
+      
+
+        <div class="dashboard__goals__range-box">
+
+            
+        <input type="range" class="dashboard__goals__range" id="slider-per{{goals.id}}" value=".64" disabled  min="0" max="100" step="0.1" >
+    </div>   
+</div>
+        <p class="dashboard__goals__text goal_text{{goals.id}}">Так Держать !</p>
+
+        <div class="dashboard__goals__range-label-box">
+          <p class="dashboard__goals__range-label-2" id="ebudget__main"><span class="dashboard__plus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency" id="budget_goal{{goals.id}}">0</span> заработано</p>
+
+  
+          <p class="dashboard__goals__range-label-2"><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency" id="goal_budget_left{{goals.id}}">05</span> осталось</p>
+      
+        </div>
+        
+</div>
+<p style="opacity: 0;visibility: hidden; display: none;" id="goal_value_goal{{goals.id}}">{{goals.value_goal}}</p>
+
+        {% endfor %}
+        {% else %}
+
+        {%endif%}
+
+                                  
+                            
+        {% else %}
+        <div class="dashboard__goals noneGoalsHeading">
+          <p class="settings__heading-2">Улучшите Подписку <br> Чтобы Получить Функцию Целей</p>
+          <p class="settings__heading-2 u-margin-bottom-small">
+              Ваша Текущая <br> Подписка <br>
+              <span class="settings__heading-span">{{ user.usermembership.membership}}</span>
+          </p>
+      
+          <div class="dashboard__popup-button-3-box">
+              <form action="{%url 'select'%}">
+              <button type="submit" class="dashboard__popup-button dashboard__popup-button-3" >Улучшить Подписку <span>&rarr;</span></button>    
+             </form>   
+          </div>
+         
+          </div>
+
+        {% endif %}
+    </div>
+
+
+    
+
+<script >
+
+
+$(function () {
+  $.fn.multiline = function(text){
+      this.text(text);
+      this.html(this.html().replace(/\n/g,'<br/>'));
+      return this;
+  }
+    {% if goalss %}
+    {% for goals in goalss %}
+
+    function forEachGoal{{goals.id}}(){
+    let budget = $(".budget").text();
+    let budgetGoalValue = $("#goal_value_goal{{goals.id}}").text();
+    let displayRangeSlider = $("#output-per{{goals.id}}")
+    let rangeSlider= $("#slider-per{{goals.id}}");
+    let budgetGoalLeft{{goals.id}} = $("#goal_budget_left{{goals.id}}");
+    $("#budget_goal{{goals.id}}").text(budget);
+
+    function displayPersenteges{{goals.id}}(){
+    let  budgetLeft{{goals.id}} = budgetGoalValue - budget;
+    let calculatePersentages = budget / budgetGoalValue * 100;
+    let newCalculatePersentages = calculatePersentages.toFixed(1);  
+    let textPersentages = parseInt(newCalculatePersentages);
+    rangeSlider.val(newCalculatePersentages);
+    
+
+
+    if (budget >= 0){
+      budgetGoalLeft{{goals.id}}.text(budgetLeft{{goals.id}});
+    }
+    else{
+      budgetGoalLeft{{goals.id}}.text(0.00);
+    }
+    displayRangeSlider.text(newCalculatePersentages + " %");
+    if (budget <= 0){
+      displayRangeSlider.text("0  %");
+    }
+    if ( 0 == textPersentages ){
+      $(".goal_text{{goals.id}}").text("Давайте Начнем !");
+    }
+    if ( 50 == textPersentages ){
+      $(".goal_text{{goals.id}}").text("Половина Пути !");
+    }
+    if ( 1 <= textPersentages  && 25 >= textPersentages ){
+      $(".goal_text{{goals.id}}").text("Хорошое Начало !");
+    }
+    if ( 25 <= textPersentages && 49 >= textPersentages ){
+      $(".goal_text{{goals.id}}").text("Вы На Правильном Пути !");
+    }
+
+    if ( 51 <= textPersentages && 75 >= textPersentages ){
+      $(".goal_text{{goals.id}}").text("Так Держать !");
+    }
+    if ( 75 <= textPersentages && 99 >= textPersentages ){
+      $(".goal_text{{goals.id}}").text("Почти Сделано !");
+    }
+    if (100 <= textPersentages && 10000000000000 >= textPersentages){
+      budgetGoalLeft{{goals.id}}.text(0.00);
+      $(".goal_text{{goals.id}}").css({
+        "line-height":"40px",
+        "padding-top": "50px"
+      }).multiline("Поздравление ! \n Вы Завершили Эту Цель !")
+
+      $("#goalsDelete{{goals.id}}").fadeOut(400, function () {
+       $(this).remove();
+
+      });
+    
+    }
+
+  }
+
+  displayPersenteges{{goals.id}}()
+}
+forEachGoal{{goals.id}}()
+
+
+{% endfor %}
+        {% else %}
+
+        {%endif%}
+});
+</script>
+
+
+
+{% endif %}
+
+
+
+
+
+{% if user.usermembership.language.id == 4 %}
+
+   <div class="goals__grid">
+  
+    {% if object is not None %}
+    {% if goalss %}
+    {% for goals in goalss %}
+
+
+    <div class="dashboard__goals">
+           
+
+        <p class="dashboard__income__delete-goal dashboard__goals-delete" id="{{ goals.id }}">&times;</p>
+        <p class="dashboard__goals__heading">{{goals.title_goal}}</p>
+        
+
+        <div id="goalsDelete{{goals.id}}">
+        <div class="dashboard__goals__speedometer-box">
+            <output class="dashboard__goals__range-label" id="output-per{{goals.id}}">0 %</output>
+        </div>
+      
+
+        <div class="dashboard__goals__range-box">
+
+            
+        <input type="range" class="dashboard__goals__range" id="slider-per{{goals.id}}" value=".64" disabled  min="0" max="100" step="0.1" >
+    </div>   
+</div>
+        <p class="dashboard__goals__text goal_text{{goals.id}}">Так Тримати !</p>
+
+        <div class="dashboard__goals__range-label-box">
+          <p class="dashboard__goals__range-label-2" id="ebudget__main"><span class="dashboard__plus"></span><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency" id="budget_goal{{goals.id}}">0</span> зароблено</p>
+
+  
+          <p class="dashboard__goals__range-label-2"><span class="currency">{{user.usermembership.currency}}</span><span class="dashboard__currency" id="goal_budget_left{{goals.id}}">05</span> залишилось</p>
+      
+        </div>
+        
+</div>
+<p style="opacity: 0;visibility: hidden; display: none;" id="goal_value_goal{{goals.id}}">{{goals.value_goal}}</p>
+
+        {% endfor %}
+        {% else %}
+
+        {%endif%}
+
+                                  
+                            
+        {% else %}
+        <div class="dashboard__goals noneGoalsHeading">
+          <p class="settings__heading-2">Поліпшите Підписку  <br> Щоб Отримати Функцію Цілей</p>
+          <p class="settings__heading-2 u-margin-bottom-small">
+              Ваша Поточна <br> Підписка <br>
+              <span class="settings__heading-span">{{ user.usermembership.membership}}</span>
+          </p>
+      
+          <div class="dashboard__popup-button-3-box">
+              <form action="{%url 'select'%}">
+              <button type="submit" class="dashboard__popup-button dashboard__popup-button-3" >Поліпшите Підписку <span>&rarr;</span></button>    
+             </form>   
+          </div>
+         
+          </div>
+
+        {% endif %}
+    </div>
+
+
+    
+
+<script >
+
+
+$(function () {
+  $.fn.multiline = function(text){
+      this.text(text);
+      this.html(this.html().replace(/\n/g,'<br/>'));
+      return this;
+  }
+    {% if goalss %}
+    {% for goals in goalss %}
+
+    function forEachGoal{{goals.id}}(){
+    let budget = $(".budget").text();
+    let budgetGoalValue = $("#goal_value_goal{{goals.id}}").text();
+    let displayRangeSlider = $("#output-per{{goals.id}}")
+    let rangeSlider= $("#slider-per{{goals.id}}");
+    let budgetGoalLeft{{goals.id}} = $("#goal_budget_left{{goals.id}}");
+    $("#budget_goal{{goals.id}}").text(budget);
+
+    function displayPersenteges{{goals.id}}(){
+    let  budgetLeft{{goals.id}} = budgetGoalValue - budget;
+    let calculatePersentages = budget / budgetGoalValue * 100;
+    let newCalculatePersentages = calculatePersentages.toFixed(1);  
+    let textPersentages = parseInt(newCalculatePersentages);
+    rangeSlider.val(newCalculatePersentages);
+    
+
+
+    if (budget >= 0){
+      budgetGoalLeft{{goals.id}}.text(budgetLeft{{goals.id}});
+    }
+    else{
+      budgetGoalLeft{{goals.id}}.text(0.00);
+    }
+    displayRangeSlider.text(newCalculatePersentages + " %");
+    if (budget <= 0){
+      displayRangeSlider.text("0  %");
+    }
+    if ( 0 == textPersentages ){
+      $(".goal_text{{goals.id}}").text("Давайте Почнем !");
+    }
+    if ( 50 == textPersentages ){
+      $("#goal_text{{goals.id}}").text("Половина Шляху !");
+    }
+    if ( 1 <= textPersentages  && 25 >= textPersentages ){
+      $(".goal_text{{goals.id}}").text("Хороший Початок !");
+    }
+    if ( 25 <= textPersentages && 49 >= textPersentages ){
+      $("#goal_text{{goals.id}}").text("Ви На Правильному Шляху !");
+    }
+
+    if ( 51 <= textPersentages && 75 >= textPersentages ){
+      $("#goal_text{{goals.id}}").text("Так Тримати !");
+    }
+    if ( 75 <= textPersentages && 99 >= textPersentages ){
+      $("#goal_text{{goals.id}}").text("Майже Зроблено !");
+    }
+    if (100 <= textPersentages && 10000000000000 >= textPersentages){
+      budgetGoalLeft{{goals.id}}.text(0.00);
+      $(".goal_text{{goals.id}}").css({
+        "line-height":"40px",
+        "padding-top": "50px"
+      }).multiline("Вітання ! \n Ви Завершили Цю Ціль !")
+
+      $("#goalsDelete{{goals.id}}").fadeOut(400, function () {
+       $(this).remove();
+
+      });
+    
+    }
+
+  }
+
+  displayPersenteges{{goals.id}}()
+}
+forEachGoal{{goals.id}}()
+
+
+{% endfor %}
+        {% else %}
+
+        {%endif%}
+});
+</script>
+
+
+{% endif %}
+
+<script src="{% static 'js/ajax.js'%}"></script>
+
+    {% include 'partials/_background_image.html' %}
+
+
+    {% endblock  %}

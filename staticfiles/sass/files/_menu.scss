@@ -1,0 +1,28 @@
+
+.navbar{
+width: 100%;
+display: flex;
+justify-content: space-between;
+&__link{
+    color: var(--color-secondary);
+    text-decoration: none;
+    font-size: 2rem;
+    margin-right: 3rem;
+    transition: all .2s ease-in-out;
+    &:hover{
+        color: var(--color-primary);
+    }
+    &-box{
+        margin-top: 2rem;
+    }
+    &-main{
+        font-size: 2.3rem;
+        border: 1px solid var(--color-secondary);
+        border-radius: 3rem; 
+        padding: .5rem 2rem;
+        &:hover{
+            border-color: var(--color-primary);
+        }
+    }
+}
+}

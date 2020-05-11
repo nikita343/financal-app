@@ -1,0 +1,490 @@
+<html class="{{user.usermembership.colorscheme}}">
+<body style="--color-primary:{{user.usermembership.image.color}};">
+    
+
+    {% if user.usermembership.language.id == 1 %}
+
+<div class="dashboard__open">&nbsp;</div>
+<div class="dashboard__sidebar" id="budget-sidebar">
+ 
+    <div class="dashboard__username">{{user.usermembership.username}}</div>
+    <ul class="dashboard__sidebar__ul">
+          
+            <li class="dashboard__sidebar__li">
+                {% if 'dashboard' in request.path%}
+                <div class="dashboard__sidebar__box">&nbsp;</div>
+                {%else%}
+                <div class="dashboard__sidebar__box dashboard__sidebar__box-hover">&nbsp;</div>
+                {%endif%}
+        
+                    <a href="{%url 'dashboard'%}" class="dashboard__sidebar__link"> 
+
+                         <svg version="1.1" class="icon dashboard__sidebar__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 1025 1025" style="enable-background:new 0 0 1025 1025;" xml:space="preserve">
+                       
+                       <path class="st0" d="M828.17,974.55L828.17,974.55c-38.07,0-68.94-30.86-68.94-68.94V110.04c0-38.07,30.86-68.94,68.94-68.94h0
+                           c38.07,0,68.94,30.86,68.94,68.94v795.57C897.11,943.69,866.24,974.55,828.17,974.55z"/>
+                       <path class="st0" d="M504.17,974.55L504.17,974.55c-38.07,0-68.94-30.86-68.94-68.94V407.23c0-38.07,30.86-68.94,68.94-68.94h0
+                           c38.07,0,68.94,30.86,68.94,68.94v498.38C573.11,943.69,542.24,974.55,504.17,974.55z"/>
+                       <path class="st0" d="M180.17,968.43L180.17,968.43c-38.07,0-68.94-30.86-68.94-68.94V695.23c0-38.07,30.86-68.94,68.94-68.94h0
+                           c38.07,0,68.94,30.86,68.94,68.94v204.26C249.11,937.56,218.24,968.43,180.17,968.43z"/>
+                       </svg>
+                       
+                    Dashboard</a>
+            </li>
+            <li class="dashboard__sidebar__li">
+                {% if 'calendar' in request.path%}
+                <div class="dashboard__sidebar__box">&nbsp;</div>
+                {%else%}
+                <div class="dashboard__sidebar__box dashboard__sidebar__box-hover">&nbsp;</div>
+                {%endif%}
+                   <a href="{%url 'calendar'%}" class="dashboard__sidebar__link"> 
+
+                        <svg version="1.1" class="icon dashboard__sidebar__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 1025 1025" style="enable-background:new 0 0 1025 1025;" xml:space="preserve">
+                        <g class="st0">
+                                <path class="st1" d="M994.7,86.33v837.2H37.9V86.33h179.4v-59.8h59.8v59.8h478.4v-59.8h59.8v59.8H994.7z M97.7,146.13v119.6h837.2
+                                    v-119.6H815.3v59.8h-59.8v-59.8H277.1v59.8h-59.8v-59.8H97.7z M934.9,863.73v-538.2H97.7v538.2H934.9z M217.3,504.93h59.8v59.8
+                                    h-59.8V504.93z M217.3,624.53h59.8v59.8h-59.8V624.53z M217.3,744.13h59.8v59.8h-59.8V744.13z M396.7,385.33h59.8v59.8h-59.8
+                                    V385.33z M396.7,504.93h59.8v59.8h-59.8V504.93z M396.7,624.53h59.8v59.8h-59.8V624.53z M396.7,744.13h59.8v59.8h-59.8V744.13z
+                                     M576.1,385.33h59.8v59.8h-59.8V385.33z M576.1,504.93h59.8v59.8h-59.8V504.93z M576.1,624.53h59.8v59.8h-59.8V624.53z
+                                     M576.1,744.13h59.8v59.8h-59.8V744.13z M755.5,385.33h59.8v59.8h-59.8V385.33z M755.5,504.93h59.8v59.8h-59.8V504.93z
+                                     M755.5,624.53h59.8v59.8h-59.8V624.53z"/>
+                            </g>
+                            </svg>
+                            
+                   Calendar</a>
+            </li>
+            <li class="dashboard__sidebar__li">
+                {% if 'goals' in request.path%}
+                <div class="dashboard__sidebar__box">&nbsp;</div>
+                {%else%}
+                <div class="dashboard__sidebar__box dashboard__sidebar__box-hover">&nbsp;</div>
+                {%endif%}
+                    <a href="{%url 'goals'%}" class="dashboard__sidebar__link">
+                        
+                        <svg version="1.1"class="icon dashboard__sidebar__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 25 25" style="enable-background:new 0 0 25 25;" xml:space="preserve">
+                        <g class="st0">
+                                <path class="st1" d="M19.9,24.4l-7.4-5.7l-7.4,5.7l2.9-9.2L0.7,9.6h9l2.8-9l2.8,9h9l-7.3,5.6L19.9,24.4z M4.5,10.9l4.9,3.8
+                                    l-1.9,6.1l4.9-3.8l4.9,3.8l-1.9-6.1l4.9-3.8h-6.1L12.5,5l-1.8,5.9C10.7,10.9,4.5,10.9,4.5,10.9z"/>
+                         </g>
+                         </svg>
+                        
+                        Goals</a>
+            </li>
+            <li class="dashboard__sidebar__li">
+                {% if 'lists' in request.path%}
+                <div class="dashboard__sidebar__box">&nbsp;</div>
+                {%else%}
+                <div class="dashboard__sidebar__box dashboard__sidebar__box-hover">&nbsp;</div>
+                {%endif%}
+        
+                    <a href="{%url 'lists'%}" class="dashboard__sidebar__link"> 
+
+                         <svg version="1.1" class="icon dashboard__sidebar__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
+                         <path d="M405.6,491.4H80.1c-19.4,0-35.2-15.8-35.2-35.2V42.5c0-19.4,15.8-35.2,35.2-35.2h325.5c19.4,0,35.2,15.8,35.2,35.2v413.7
+                             C440.7,475.6,425,491.4,405.6,491.4z M80.1,35.7c-3.8,0-6.9,3.1-6.9,6.9v413.7c0,3.8,3.1,6.9,6.9,6.9h325.5c3.8,0,6.9-3.1,6.9-6.9
+                             V42.5c0-3.8-3.1-6.9-6.9-6.9H80.1z"/>
+                         <g>
+                             <path d="M195,96.2h146.6c6.4,0,11.6,5.2,11.6,11.6v3.1c0,6.4-5.2,11.6-11.6,11.6H195c-6.4,0-11.6-5.2-11.6-11.6v-3.1
+                                 C183.3,101.4,188.6,96.2,195,96.2z"/>
+                             <circle cx="138.1" cy="110" r="13.8"/>
+                         </g>
+                         <g>
+                             <path d="M195,184.7h146.6c6.4,0,11.6,5.2,11.6,11.6v3.1c0,6.4-5.2,11.6-11.6,11.6H195c-6.4,0-11.6-5.2-11.6-11.6v-3.1
+                                 C183.3,189.9,188.6,184.7,195,184.7z"/>
+                             <circle cx="138.1" cy="198.5" r="13.8"/>
+                         </g>
+                         <g>
+                             <path d="M195,273.2h146.6c6.4,0,11.6,5.2,11.6,11.6v3.1c0,6.4-5.2,11.6-11.6,11.6H195c-6.4,0-11.6-5.2-11.6-11.6v-3.1
+                                 C183.3,278.4,188.6,273.2,195,273.2z"/>
+                             <circle cx="138.1" cy="287" r="13.8"/>
+                         </g>
+                         <g>
+                             <path d="M195,361.7h146.6c6.4,0,11.6,5.2,11.6,11.6v3.1c0,6.4-5.2,11.6-11.6,11.6H195c-6.4,0-11.6-5.2-11.6-11.6v-3.1
+                                 C183.3,366.9,188.6,361.7,195,361.7z"/>
+                             <circle cx="138.1" cy="375.5" r="13.8"/>
+                         </g>
+                         </svg>
+                         
+                         
+                       
+                    To Buy</a>
+            </li>
+         
+
+            <li class="dashboard__sidebar__li">
+                {% if 'settings' in request.path%}
+                <div class="dashboard__sidebar__box">&nbsp;</div>
+                {%else%}
+                <div class="dashboard__sidebar__box dashboard__sidebar__box-hover">&nbsp;</div>
+                {%endif%}
+                    <a href="{%url 'settings'%}" class="dashboard__sidebar__link">
+                             <svg version="1.1" class="icon dashboard__sidebar__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 1025 1025" style="enable-background:new 0 0 1025 1025;" xml:space="preserve">
+                            <g class="st0">
+                                    <path class="st1" d="M863.4,492.1c0,2.8,0.1,5.7,0.2,8.5c0.2,2.8,0.2,5.7,0.2,8.5c0,2.8-0.1,5.7-0.2,8.5s-0.2,5.7-0.2,8.5
+                                        l122.8,76.3l-75.4,181.6L770,751.9c-7.6,8.2-15.5,16.1-23.7,23.7l32.2,140.8l-181.6,75.4L520.6,869c-2.8,0-5.7,0.1-8.5,0.2
+                                        c-2.8,0.2-5.7,0.2-8.5,0.2s-5.7-0.1-8.5-0.2c-2.8-0.2-5.7-0.2-8.5-0.2l-76.3,122.8l-181.6-75.4l32.2-140.8
+                                        c-8.2-7.6-16.1-15.5-23.7-23.7L96.3,784.2L20.9,602.6l122.8-76.3c0-2.8-0.1-5.7-0.2-8.5s-0.2-5.7-0.2-8.5s0.1-5.7,0.2-8.5
+                                        c0.2-2.8,0.2-5.7,0.2-8.5L20.9,415.8l75.4-181.6l140.8,32.2c7.6-8.2,15.5-16.1,23.7-23.7l-32.2-140.8l181.6-75.4l76.3,122.8
+                                        c2.8,0,5.7-0.1,8.5-0.2c2.8-0.2,5.7-0.2,8.5-0.2s5.7,0.1,8.5,0.2c2.8,0.2,5.7,0.2,8.5,0.2l76.3-122.8l181.6,75.4l-32.2,140.8
+                                        c8.2,7.6,16.1,15.5,23.7,23.7l140.8-32.2l75.4,181.6L863.4,492.1z M807.9,553.8c0.6-7.6,1.3-15.1,1.9-22.5c0.6-7.4,1-14.9,1-22.5
+                                        c0-7.3-0.3-14.7-1-22.3c-0.6-7.6-1.3-15-1.9-22.3l111.9-69.7L879,295.9l-128.5,29.9c-9.8-12-19.8-23.1-30.1-33.2
+                                        c-10.3-10.1-21.4-20.2-33.4-30.3l29.9-128.5l-98.6-40.8l-70.2,111.9c-7.3-0.6-14.7-1.3-22.3-1.9c-7.6-0.6-15-0.9-22.3-0.9
+                                        c-7.6,0-15.1,0.3-22.5,0.9c-7.4,0.6-14.9,1.3-22.5,1.9L388.8,92.9l-98.6,40.8L320,262.2c-12,9.8-23.1,19.8-33.2,30.1
+                                        c-10.1,10.3-20.2,21.4-30.3,33.4L128,295.8l-40.8,98.6l111.9,70.2c-0.6,7.6-1.3,15.1-1.9,22.5c-0.6,7.4-0.9,14.9-0.9,22.5
+                                        c0,7.3,0.3,14.7,0.9,22.3c0.6,7.6,1.3,15,1.9,22.3L87.3,623.9l40.8,98.6l128.5-29.9c9.8,12,19.8,23.1,30.1,33.2
+                                        c10.3,10.1,21.4,20.2,33.4,30.3l-29.9,128.5l98.6,40.8l70.2-111.9c7.3,0.6,14.7,1.3,22.3,1.9c7.6,0.6,15,1,22.3,1
+                                        c7.6,0,15.1-0.3,22.5-1c7.4-0.6,14.9-1.3,22.5-1.9l69.7,111.9l98.6-40.8L687,756.2c12-9.8,23.1-19.8,33.2-30.1
+                                        c10.1-10.3,20.2-21.4,30.3-33.4L879,722.5l40.8-98.6L807.9,553.8z M503.5,330.9c24.7,0,47.8,4.7,69.5,14
+                                        c21.7,9.3,40.5,22,56.7,38.2s28.8,35,38.2,56.7c9.3,21.6,14,44.8,14,69.5c0,24.7-4.7,47.8-14,69.5c-9.3,21.7-22,40.5-38.2,56.7
+                                        s-35,28.8-56.7,38.2c-21.7,9.3-44.8,14-69.5,14s-47.8-4.7-69.5-14c-21.6-9.3-40.5-22-56.7-38.2s-28.9-35-38.2-56.7
+                                        c-9.3-21.7-14-44.8-14-69.5s4.7-47.8,14-69.5c9.3-21.6,22-40.5,38.2-56.7s35-28.8,56.7-38.2C455.7,335.6,478.9,330.9,503.5,330.9z
+                                         M503.5,634.4c17.4,0,33.7-3.2,48.8-9.7c15.2-6.5,28.5-15.4,39.8-26.8s20.3-24.7,26.8-39.8c6.5-15.2,9.7-31.5,9.7-48.8
+                                        s-3.3-33.7-9.7-48.8c-6.5-15.2-15.4-28.5-26.8-39.8c-11.4-11.4-24.7-20.3-39.8-26.8c-15.2-6.5-31.5-9.7-48.8-9.7
+                                        c-17.4,0-33.7,3.2-48.8,9.7s-28.5,15.4-39.8,26.8s-20.3,24.6-26.8,39.8s-9.7,31.5-9.7,48.8c0,17.4,3.2,33.7,9.7,48.8
+                                        c6.5,15.2,15.4,28.5,26.8,39.8s24.6,20.3,39.8,26.8S486.1,634.4,503.5,634.4z"/>
+                                </g>
+                                </svg>
+                                
+                        Settings</a>
+            </li>
+            <li class="dashboard__sidebar__li">
+                <div class="u-center-text">
+                    <button id="dashboard-close"  class="dashboard__popup-button dashboard__popup-button-2"><span>&larr;</span> Close</button> 
+                </div>  
+            </li>
+        </ul>
+      
+            </div>
+</div>
+{% endif %}
+{% if user.usermembership.language.id == 2 %}
+
+
+<div class="dashboard__open">&nbsp;</div>
+<div class="dashboard__sidebar" id="budget-sidebar">
+ 
+    <div class="dashboard__username">{{user.usermembership.username}}</div>
+    <ul class="dashboard__sidebar__ul">
+          
+            <li class="dashboard__sidebar__li">
+                {% if 'dashboard' in request.path%}
+                <div class="dashboard__sidebar__box">&nbsp;</div>
+                {%else%}
+                <div class="dashboard__sidebar__box dashboard__sidebar__box-hover">&nbsp;</div>
+                {%endif%}
+        
+                    <a href="{%url 'dashboard'%}" class="dashboard__sidebar__link"> 
+
+                         <svg version="1.1" class="icon dashboard__sidebar__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 1025 1025" style="enable-background:new 0 0 1025 1025;" xml:space="preserve">
+                       
+                       <path class="st0" d="M828.17,974.55L828.17,974.55c-38.07,0-68.94-30.86-68.94-68.94V110.04c0-38.07,30.86-68.94,68.94-68.94h0
+                           c38.07,0,68.94,30.86,68.94,68.94v795.57C897.11,943.69,866.24,974.55,828.17,974.55z"/>
+                       <path class="st0" d="M504.17,974.55L504.17,974.55c-38.07,0-68.94-30.86-68.94-68.94V407.23c0-38.07,30.86-68.94,68.94-68.94h0
+                           c38.07,0,68.94,30.86,68.94,68.94v498.38C573.11,943.69,542.24,974.55,504.17,974.55z"/>
+                       <path class="st0" d="M180.17,968.43L180.17,968.43c-38.07,0-68.94-30.86-68.94-68.94V695.23c0-38.07,30.86-68.94,68.94-68.94h0
+                           c38.07,0,68.94,30.86,68.94,68.94v204.26C249.11,937.56,218.24,968.43,180.17,968.43z"/>
+                       </svg>
+                       
+                    Панель</a>
+            </li>
+            <li class="dashboard__sidebar__li">
+                {% if 'calendar' in request.path%}
+                <div class="dashboard__sidebar__box">&nbsp;</div>
+                {%else%}
+                <div class="dashboard__sidebar__box dashboard__sidebar__box-hover">&nbsp;</div>
+                {%endif%}
+                   <a href="{%url 'calendar'%}" class="dashboard__sidebar__link"> 
+
+                        <svg version="1.1" class="icon dashboard__sidebar__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 1025 1025" style="enable-background:new 0 0 1025 1025;" xml:space="preserve">
+                        <g class="st0">
+                                <path class="st1" d="M994.7,86.33v837.2H37.9V86.33h179.4v-59.8h59.8v59.8h478.4v-59.8h59.8v59.8H994.7z M97.7,146.13v119.6h837.2
+                                    v-119.6H815.3v59.8h-59.8v-59.8H277.1v59.8h-59.8v-59.8H97.7z M934.9,863.73v-538.2H97.7v538.2H934.9z M217.3,504.93h59.8v59.8
+                                    h-59.8V504.93z M217.3,624.53h59.8v59.8h-59.8V624.53z M217.3,744.13h59.8v59.8h-59.8V744.13z M396.7,385.33h59.8v59.8h-59.8
+                                    V385.33z M396.7,504.93h59.8v59.8h-59.8V504.93z M396.7,624.53h59.8v59.8h-59.8V624.53z M396.7,744.13h59.8v59.8h-59.8V744.13z
+                                     M576.1,385.33h59.8v59.8h-59.8V385.33z M576.1,504.93h59.8v59.8h-59.8V504.93z M576.1,624.53h59.8v59.8h-59.8V624.53z
+                                     M576.1,744.13h59.8v59.8h-59.8V744.13z M755.5,385.33h59.8v59.8h-59.8V385.33z M755.5,504.93h59.8v59.8h-59.8V504.93z
+                                     M755.5,624.53h59.8v59.8h-59.8V624.53z"/>
+                            </g>
+                            </svg>
+                            
+                   Календар</a>
+            </li>
+            <li class="dashboard__sidebar__li">
+                {% if 'goals' in request.path%}
+                <div class="dashboard__sidebar__box">&nbsp;</div>
+                {%else%}
+                <div class="dashboard__sidebar__box dashboard__sidebar__box-hover">&nbsp;</div>
+                {%endif%}
+                    <a href="{%url 'goals'%}" class="dashboard__sidebar__link">
+                        
+                        <svg version="1.1"class="icon dashboard__sidebar__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 25 25" style="enable-background:new 0 0 25 25;" xml:space="preserve">
+                        <g class="st0">
+                                <path class="st1" d="M19.9,24.4l-7.4-5.7l-7.4,5.7l2.9-9.2L0.7,9.6h9l2.8-9l2.8,9h9l-7.3,5.6L19.9,24.4z M4.5,10.9l4.9,3.8
+                                    l-1.9,6.1l4.9-3.8l4.9,3.8l-1.9-6.1l4.9-3.8h-6.1L12.5,5l-1.8,5.9C10.7,10.9,4.5,10.9,4.5,10.9z"/>
+                         </g>
+                         </svg>
+                        
+                        Цели</a>
+            </li>
+            <li class="dashboard__sidebar__li">
+                {% if 'lists' in request.path%}
+                <div class="dashboard__sidebar__box">&nbsp;</div>
+                {%else%}
+                <div class="dashboard__sidebar__box dashboard__sidebar__box-hover">&nbsp;</div>
+                {%endif%}
+        
+                    <a href="{%url 'lists'%}" class="dashboard__sidebar__link"> 
+
+                         <svg version="1.1" class="icon dashboard__sidebar__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
+                         <path d="M405.6,491.4H80.1c-19.4,0-35.2-15.8-35.2-35.2V42.5c0-19.4,15.8-35.2,35.2-35.2h325.5c19.4,0,35.2,15.8,35.2,35.2v413.7
+                             C440.7,475.6,425,491.4,405.6,491.4z M80.1,35.7c-3.8,0-6.9,3.1-6.9,6.9v413.7c0,3.8,3.1,6.9,6.9,6.9h325.5c3.8,0,6.9-3.1,6.9-6.9
+                             V42.5c0-3.8-3.1-6.9-6.9-6.9H80.1z"/>
+                         <g>
+                             <path d="M195,96.2h146.6c6.4,0,11.6,5.2,11.6,11.6v3.1c0,6.4-5.2,11.6-11.6,11.6H195c-6.4,0-11.6-5.2-11.6-11.6v-3.1
+                                 C183.3,101.4,188.6,96.2,195,96.2z"/>
+                             <circle cx="138.1" cy="110" r="13.8"/>
+                         </g>
+                         <g>
+                             <path d="M195,184.7h146.6c6.4,0,11.6,5.2,11.6,11.6v3.1c0,6.4-5.2,11.6-11.6,11.6H195c-6.4,0-11.6-5.2-11.6-11.6v-3.1
+                                 C183.3,189.9,188.6,184.7,195,184.7z"/>
+                             <circle cx="138.1" cy="198.5" r="13.8"/>
+                         </g>
+                         <g>
+                             <path d="M195,273.2h146.6c6.4,0,11.6,5.2,11.6,11.6v3.1c0,6.4-5.2,11.6-11.6,11.6H195c-6.4,0-11.6-5.2-11.6-11.6v-3.1
+                                 C183.3,278.4,188.6,273.2,195,273.2z"/>
+                             <circle cx="138.1" cy="287" r="13.8"/>
+                         </g>
+                         <g>
+                             <path d="M195,361.7h146.6c6.4,0,11.6,5.2,11.6,11.6v3.1c0,6.4-5.2,11.6-11.6,11.6H195c-6.4,0-11.6-5.2-11.6-11.6v-3.1
+                                 C183.3,366.9,188.6,361.7,195,361.7z"/>
+                             <circle cx="138.1" cy="375.5" r="13.8"/>
+                         </g>
+                         </svg>
+                         
+                         
+                       
+                    Список Покупок</a>
+            </li>
+         
+
+            <li class="dashboard__sidebar__li">
+                {% if 'settings' in request.path%}
+                <div class="dashboard__sidebar__box">&nbsp;</div>
+                {%else%}
+                <div class="dashboard__sidebar__box dashboard__sidebar__box-hover">&nbsp;</div>
+                {%endif%}
+                    <a href="{%url 'settings'%}" class="dashboard__sidebar__link">
+                             <svg version="1.1" class="icon dashboard__sidebar__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 1025 1025" style="enable-background:new 0 0 1025 1025;" xml:space="preserve">
+                            <g class="st0">
+                                    <path class="st1" d="M863.4,492.1c0,2.8,0.1,5.7,0.2,8.5c0.2,2.8,0.2,5.7,0.2,8.5c0,2.8-0.1,5.7-0.2,8.5s-0.2,5.7-0.2,8.5
+                                        l122.8,76.3l-75.4,181.6L770,751.9c-7.6,8.2-15.5,16.1-23.7,23.7l32.2,140.8l-181.6,75.4L520.6,869c-2.8,0-5.7,0.1-8.5,0.2
+                                        c-2.8,0.2-5.7,0.2-8.5,0.2s-5.7-0.1-8.5-0.2c-2.8-0.2-5.7-0.2-8.5-0.2l-76.3,122.8l-181.6-75.4l32.2-140.8
+                                        c-8.2-7.6-16.1-15.5-23.7-23.7L96.3,784.2L20.9,602.6l122.8-76.3c0-2.8-0.1-5.7-0.2-8.5s-0.2-5.7-0.2-8.5s0.1-5.7,0.2-8.5
+                                        c0.2-2.8,0.2-5.7,0.2-8.5L20.9,415.8l75.4-181.6l140.8,32.2c7.6-8.2,15.5-16.1,23.7-23.7l-32.2-140.8l181.6-75.4l76.3,122.8
+                                        c2.8,0,5.7-0.1,8.5-0.2c2.8-0.2,5.7-0.2,8.5-0.2s5.7,0.1,8.5,0.2c2.8,0.2,5.7,0.2,8.5,0.2l76.3-122.8l181.6,75.4l-32.2,140.8
+                                        c8.2,7.6,16.1,15.5,23.7,23.7l140.8-32.2l75.4,181.6L863.4,492.1z M807.9,553.8c0.6-7.6,1.3-15.1,1.9-22.5c0.6-7.4,1-14.9,1-22.5
+                                        c0-7.3-0.3-14.7-1-22.3c-0.6-7.6-1.3-15-1.9-22.3l111.9-69.7L879,295.9l-128.5,29.9c-9.8-12-19.8-23.1-30.1-33.2
+                                        c-10.3-10.1-21.4-20.2-33.4-30.3l29.9-128.5l-98.6-40.8l-70.2,111.9c-7.3-0.6-14.7-1.3-22.3-1.9c-7.6-0.6-15-0.9-22.3-0.9
+                                        c-7.6,0-15.1,0.3-22.5,0.9c-7.4,0.6-14.9,1.3-22.5,1.9L388.8,92.9l-98.6,40.8L320,262.2c-12,9.8-23.1,19.8-33.2,30.1
+                                        c-10.1,10.3-20.2,21.4-30.3,33.4L128,295.8l-40.8,98.6l111.9,70.2c-0.6,7.6-1.3,15.1-1.9,22.5c-0.6,7.4-0.9,14.9-0.9,22.5
+                                        c0,7.3,0.3,14.7,0.9,22.3c0.6,7.6,1.3,15,1.9,22.3L87.3,623.9l40.8,98.6l128.5-29.9c9.8,12,19.8,23.1,30.1,33.2
+                                        c10.3,10.1,21.4,20.2,33.4,30.3l-29.9,128.5l98.6,40.8l70.2-111.9c7.3,0.6,14.7,1.3,22.3,1.9c7.6,0.6,15,1,22.3,1
+                                        c7.6,0,15.1-0.3,22.5-1c7.4-0.6,14.9-1.3,22.5-1.9l69.7,111.9l98.6-40.8L687,756.2c12-9.8,23.1-19.8,33.2-30.1
+                                        c10.1-10.3,20.2-21.4,30.3-33.4L879,722.5l40.8-98.6L807.9,553.8z M503.5,330.9c24.7,0,47.8,4.7,69.5,14
+                                        c21.7,9.3,40.5,22,56.7,38.2s28.8,35,38.2,56.7c9.3,21.6,14,44.8,14,69.5c0,24.7-4.7,47.8-14,69.5c-9.3,21.7-22,40.5-38.2,56.7
+                                        s-35,28.8-56.7,38.2c-21.7,9.3-44.8,14-69.5,14s-47.8-4.7-69.5-14c-21.6-9.3-40.5-22-56.7-38.2s-28.9-35-38.2-56.7
+                                        c-9.3-21.7-14-44.8-14-69.5s4.7-47.8,14-69.5c9.3-21.6,22-40.5,38.2-56.7s35-28.8,56.7-38.2C455.7,335.6,478.9,330.9,503.5,330.9z
+                                         M503.5,634.4c17.4,0,33.7-3.2,48.8-9.7c15.2-6.5,28.5-15.4,39.8-26.8s20.3-24.7,26.8-39.8c6.5-15.2,9.7-31.5,9.7-48.8
+                                        s-3.3-33.7-9.7-48.8c-6.5-15.2-15.4-28.5-26.8-39.8c-11.4-11.4-24.7-20.3-39.8-26.8c-15.2-6.5-31.5-9.7-48.8-9.7
+                                        c-17.4,0-33.7,3.2-48.8,9.7s-28.5,15.4-39.8,26.8s-20.3,24.6-26.8,39.8s-9.7,31.5-9.7,48.8c0,17.4,3.2,33.7,9.7,48.8
+                                        c6.5,15.2,15.4,28.5,26.8,39.8s24.6,20.3,39.8,26.8S486.1,634.4,503.5,634.4z"/>
+                                </g>
+                                </svg>
+                                
+                        Настройки</a>
+            </li>
+            <li class="dashboard__sidebar__li">
+                <div class="u-center-text">
+                    <button id="dashboard-close"  class="dashboard__popup-button dashboard__popup-button-2"><span>&larr;</span> Close</button> 
+                </div>  
+            </li>
+        </ul>
+      
+            </div>
+</div>
+
+
+{% endif %}
+{% if user.usermembership.language.id == 4 %}
+
+
+<div class="dashboard__open">&nbsp;</div>
+<div class="dashboard__sidebar" id="budget-sidebar">
+ 
+    <div class="dashboard__username">{{user.usermembership.username}}</div>
+    <ul class="dashboard__sidebar__ul">
+          
+            <li class="dashboard__sidebar__li">
+                {% if 'dashboard' in request.path%}
+                <div class="dashboard__sidebar__box">&nbsp;</div>
+                {%else%}
+                <div class="dashboard__sidebar__box dashboard__sidebar__box-hover">&nbsp;</div>
+                {%endif%}
+        
+                    <a href="{%url 'dashboard'%}" class="dashboard__sidebar__link"> 
+
+                         <svg version="1.1" class="icon dashboard__sidebar__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 1025 1025" style="enable-background:new 0 0 1025 1025;" xml:space="preserve">
+                       
+                       <path class="st0" d="M828.17,974.55L828.17,974.55c-38.07,0-68.94-30.86-68.94-68.94V110.04c0-38.07,30.86-68.94,68.94-68.94h0
+                           c38.07,0,68.94,30.86,68.94,68.94v795.57C897.11,943.69,866.24,974.55,828.17,974.55z"/>
+                       <path class="st0" d="M504.17,974.55L504.17,974.55c-38.07,0-68.94-30.86-68.94-68.94V407.23c0-38.07,30.86-68.94,68.94-68.94h0
+                           c38.07,0,68.94,30.86,68.94,68.94v498.38C573.11,943.69,542.24,974.55,504.17,974.55z"/>
+                       <path class="st0" d="M180.17,968.43L180.17,968.43c-38.07,0-68.94-30.86-68.94-68.94V695.23c0-38.07,30.86-68.94,68.94-68.94h0
+                           c38.07,0,68.94,30.86,68.94,68.94v204.26C249.11,937.56,218.24,968.43,180.17,968.43z"/>
+                       </svg>
+                       
+                    Панель</a>
+            </li>
+            <li class="dashboard__sidebar__li">
+                {% if 'calendar' in request.path%}
+                <div class="dashboard__sidebar__box">&nbsp;</div>
+                {%else%}
+                <div class="dashboard__sidebar__box dashboard__sidebar__box-hover">&nbsp;</div>
+                {%endif%}
+                   <a href="{%url 'calendar'%}" class="dashboard__sidebar__link"> 
+
+                        <svg version="1.1" class="icon dashboard__sidebar__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 1025 1025" style="enable-background:new 0 0 1025 1025;" xml:space="preserve">
+                        <g class="st0">
+                                <path class="st1" d="M994.7,86.33v837.2H37.9V86.33h179.4v-59.8h59.8v59.8h478.4v-59.8h59.8v59.8H994.7z M97.7,146.13v119.6h837.2
+                                    v-119.6H815.3v59.8h-59.8v-59.8H277.1v59.8h-59.8v-59.8H97.7z M934.9,863.73v-538.2H97.7v538.2H934.9z M217.3,504.93h59.8v59.8
+                                    h-59.8V504.93z M217.3,624.53h59.8v59.8h-59.8V624.53z M217.3,744.13h59.8v59.8h-59.8V744.13z M396.7,385.33h59.8v59.8h-59.8
+                                    V385.33z M396.7,504.93h59.8v59.8h-59.8V504.93z M396.7,624.53h59.8v59.8h-59.8V624.53z M396.7,744.13h59.8v59.8h-59.8V744.13z
+                                     M576.1,385.33h59.8v59.8h-59.8V385.33z M576.1,504.93h59.8v59.8h-59.8V504.93z M576.1,624.53h59.8v59.8h-59.8V624.53z
+                                     M576.1,744.13h59.8v59.8h-59.8V744.13z M755.5,385.33h59.8v59.8h-59.8V385.33z M755.5,504.93h59.8v59.8h-59.8V504.93z
+                                     M755.5,624.53h59.8v59.8h-59.8V624.53z"/>
+                            </g>
+                            </svg>
+                            
+                   Календар</a>
+            </li>
+            <li class="dashboard__sidebar__li">
+                {% if 'goals' in request.path%}
+                <div class="dashboard__sidebar__box">&nbsp;</div>
+                {%else%}
+                <div class="dashboard__sidebar__box dashboard__sidebar__box-hover">&nbsp;</div>
+                {%endif%}
+                    <a href="{%url 'goals'%}" class="dashboard__sidebar__link">
+                        
+                        <svg version="1.1"class="icon dashboard__sidebar__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 25 25" style="enable-background:new 0 0 25 25;" xml:space="preserve">
+                        <g class="st0">
+                                <path class="st1" d="M19.9,24.4l-7.4-5.7l-7.4,5.7l2.9-9.2L0.7,9.6h9l2.8-9l2.8,9h9l-7.3,5.6L19.9,24.4z M4.5,10.9l4.9,3.8
+                                    l-1.9,6.1l4.9-3.8l4.9,3.8l-1.9-6.1l4.9-3.8h-6.1L12.5,5l-1.8,5.9C10.7,10.9,4.5,10.9,4.5,10.9z"/>
+                         </g>
+                         </svg>
+                        
+                        Цілі</a>
+            </li>
+            <li class="dashboard__sidebar__li">
+                {% if 'lists' in request.path%}
+                <div class="dashboard__sidebar__box">&nbsp;</div>
+                {%else%}
+                <div class="dashboard__sidebar__box dashboard__sidebar__box-hover">&nbsp;</div>
+                {%endif%}
+        
+                    <a href="{%url 'lists'%}" class="dashboard__sidebar__link"> 
+
+                         <svg version="1.1" class="icon dashboard__sidebar__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
+                         <path d="M405.6,491.4H80.1c-19.4,0-35.2-15.8-35.2-35.2V42.5c0-19.4,15.8-35.2,35.2-35.2h325.5c19.4,0,35.2,15.8,35.2,35.2v413.7
+                             C440.7,475.6,425,491.4,405.6,491.4z M80.1,35.7c-3.8,0-6.9,3.1-6.9,6.9v413.7c0,3.8,3.1,6.9,6.9,6.9h325.5c3.8,0,6.9-3.1,6.9-6.9
+                             V42.5c0-3.8-3.1-6.9-6.9-6.9H80.1z"/>
+                         <g>
+                             <path d="M195,96.2h146.6c6.4,0,11.6,5.2,11.6,11.6v3.1c0,6.4-5.2,11.6-11.6,11.6H195c-6.4,0-11.6-5.2-11.6-11.6v-3.1
+                                 C183.3,101.4,188.6,96.2,195,96.2z"/>
+                             <circle cx="138.1" cy="110" r="13.8"/>
+                         </g>
+                         <g>
+                             <path d="M195,184.7h146.6c6.4,0,11.6,5.2,11.6,11.6v3.1c0,6.4-5.2,11.6-11.6,11.6H195c-6.4,0-11.6-5.2-11.6-11.6v-3.1
+                                 C183.3,189.9,188.6,184.7,195,184.7z"/>
+                             <circle cx="138.1" cy="198.5" r="13.8"/>
+                         </g>
+                         <g>
+                             <path d="M195,273.2h146.6c6.4,0,11.6,5.2,11.6,11.6v3.1c0,6.4-5.2,11.6-11.6,11.6H195c-6.4,0-11.6-5.2-11.6-11.6v-3.1
+                                 C183.3,278.4,188.6,273.2,195,273.2z"/>
+                             <circle cx="138.1" cy="287" r="13.8"/>
+                         </g>
+                         <g>
+                             <path d="M195,361.7h146.6c6.4,0,11.6,5.2,11.6,11.6v3.1c0,6.4-5.2,11.6-11.6,11.6H195c-6.4,0-11.6-5.2-11.6-11.6v-3.1
+                                 C183.3,366.9,188.6,361.7,195,361.7z"/>
+                             <circle cx="138.1" cy="375.5" r="13.8"/>
+                         </g>
+                         </svg>
+                         
+                         
+                       
+                    Список Покупок</a>
+            </li>
+         
+
+            <li class="dashboard__sidebar__li">
+                {% if 'settings' in request.path%}
+                <div class="dashboard__sidebar__box">&nbsp;</div>
+                {%else%}
+                <div class="dashboard__sidebar__box dashboard__sidebar__box-hover">&nbsp;</div>
+                {%endif%}
+                    <a href="{%url 'settings'%}" class="dashboard__sidebar__link">
+                             <svg version="1.1" class="icon dashboard__sidebar__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 1025 1025" style="enable-background:new 0 0 1025 1025;" xml:space="preserve">
+                            <g class="st0">
+                                    <path class="st1" d="M863.4,492.1c0,2.8,0.1,5.7,0.2,8.5c0.2,2.8,0.2,5.7,0.2,8.5c0,2.8-0.1,5.7-0.2,8.5s-0.2,5.7-0.2,8.5
+                                        l122.8,76.3l-75.4,181.6L770,751.9c-7.6,8.2-15.5,16.1-23.7,23.7l32.2,140.8l-181.6,75.4L520.6,869c-2.8,0-5.7,0.1-8.5,0.2
+                                        c-2.8,0.2-5.7,0.2-8.5,0.2s-5.7-0.1-8.5-0.2c-2.8-0.2-5.7-0.2-8.5-0.2l-76.3,122.8l-181.6-75.4l32.2-140.8
+                                        c-8.2-7.6-16.1-15.5-23.7-23.7L96.3,784.2L20.9,602.6l122.8-76.3c0-2.8-0.1-5.7-0.2-8.5s-0.2-5.7-0.2-8.5s0.1-5.7,0.2-8.5
+                                        c0.2-2.8,0.2-5.7,0.2-8.5L20.9,415.8l75.4-181.6l140.8,32.2c7.6-8.2,15.5-16.1,23.7-23.7l-32.2-140.8l181.6-75.4l76.3,122.8
+                                        c2.8,0,5.7-0.1,8.5-0.2c2.8-0.2,5.7-0.2,8.5-0.2s5.7,0.1,8.5,0.2c2.8,0.2,5.7,0.2,8.5,0.2l76.3-122.8l181.6,75.4l-32.2,140.8
+                                        c8.2,7.6,16.1,15.5,23.7,23.7l140.8-32.2l75.4,181.6L863.4,492.1z M807.9,553.8c0.6-7.6,1.3-15.1,1.9-22.5c0.6-7.4,1-14.9,1-22.5
+                                        c0-7.3-0.3-14.7-1-22.3c-0.6-7.6-1.3-15-1.9-22.3l111.9-69.7L879,295.9l-128.5,29.9c-9.8-12-19.8-23.1-30.1-33.2
+                                        c-10.3-10.1-21.4-20.2-33.4-30.3l29.9-128.5l-98.6-40.8l-70.2,111.9c-7.3-0.6-14.7-1.3-22.3-1.9c-7.6-0.6-15-0.9-22.3-0.9
+                                        c-7.6,0-15.1,0.3-22.5,0.9c-7.4,0.6-14.9,1.3-22.5,1.9L388.8,92.9l-98.6,40.8L320,262.2c-12,9.8-23.1,19.8-33.2,30.1
+                                        c-10.1,10.3-20.2,21.4-30.3,33.4L128,295.8l-40.8,98.6l111.9,70.2c-0.6,7.6-1.3,15.1-1.9,22.5c-0.6,7.4-0.9,14.9-0.9,22.5
+                                        c0,7.3,0.3,14.7,0.9,22.3c0.6,7.6,1.3,15,1.9,22.3L87.3,623.9l40.8,98.6l128.5-29.9c9.8,12,19.8,23.1,30.1,33.2
+                                        c10.3,10.1,21.4,20.2,33.4,30.3l-29.9,128.5l98.6,40.8l70.2-111.9c7.3,0.6,14.7,1.3,22.3,1.9c7.6,0.6,15,1,22.3,1
+                                        c7.6,0,15.1-0.3,22.5-1c7.4-0.6,14.9-1.3,22.5-1.9l69.7,111.9l98.6-40.8L687,756.2c12-9.8,23.1-19.8,33.2-30.1
+                                        c10.1-10.3,20.2-21.4,30.3-33.4L879,722.5l40.8-98.6L807.9,553.8z M503.5,330.9c24.7,0,47.8,4.7,69.5,14
+                                        c21.7,9.3,40.5,22,56.7,38.2s28.8,35,38.2,56.7c9.3,21.6,14,44.8,14,69.5c0,24.7-4.7,47.8-14,69.5c-9.3,21.7-22,40.5-38.2,56.7
+                                        s-35,28.8-56.7,38.2c-21.7,9.3-44.8,14-69.5,14s-47.8-4.7-69.5-14c-21.6-9.3-40.5-22-56.7-38.2s-28.9-35-38.2-56.7
+                                        c-9.3-21.7-14-44.8-14-69.5s4.7-47.8,14-69.5c9.3-21.6,22-40.5,38.2-56.7s35-28.8,56.7-38.2C455.7,335.6,478.9,330.9,503.5,330.9z
+                                         M503.5,634.4c17.4,0,33.7-3.2,48.8-9.7c15.2-6.5,28.5-15.4,39.8-26.8s20.3-24.7,26.8-39.8c6.5-15.2,9.7-31.5,9.7-48.8
+                                        s-3.3-33.7-9.7-48.8c-6.5-15.2-15.4-28.5-26.8-39.8c-11.4-11.4-24.7-20.3-39.8-26.8c-15.2-6.5-31.5-9.7-48.8-9.7
+                                        c-17.4,0-33.7,3.2-48.8,9.7s-28.5,15.4-39.8,26.8s-20.3,24.6-26.8,39.8s-9.7,31.5-9.7,48.8c0,17.4,3.2,33.7,9.7,48.8
+                                        c6.5,15.2,15.4,28.5,26.8,39.8s24.6,20.3,39.8,26.8S486.1,634.4,503.5,634.4z"/>
+                                </g>
+                                </svg>
+                                
+                        Настройки</a>
+            </li>
+            <li class="dashboard__sidebar__li">
+                <div class="u-center-text">
+                    <button id="dashboard-close"  class="dashboard__popup-button dashboard__popup-button-2"><span>&larr;</span> Close</button> 
+                </div>  
+            </li>
+        </ul>
+      
+            </div>
+</div>
+
+
+{% endif %}

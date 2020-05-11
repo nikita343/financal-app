@@ -1,0 +1,282 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<html class="{{user.usermembership.colorscheme}}">
+<body style="--color-primary:{{user.usermembership.image.color}};">
+    
+	{% if user.usermembership.language.id == 1 %}
+
+<h1 class="blog__heading-main u-margin-bottom-medium">Financal Plans. Find Right For You</h1>
+	<div class="memberships u-margin-botton-top">
+		{% for object in object_list %}
+		<div class="memberships__card">
+			
+				<div class="memberships__card__side memberships__card__side--front memberships__card__side--front-auth">
+			<h2 class="memberships__card__heading">{{ object.membership_type }}</h2>
+	
+			<h1 class="memberships__card__heading-2 ">What Will You Get</h1>
+	
+			{% if object.membership_type == 'Free' %}
+				<ul>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Smart Calculations of Incomes and Expences and Balance</p>
+					</li>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Custom Background that User Choose</p>
+					</li>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">User's custom categories</p>
+					</li>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Dark and Light Themes</p>
+					</li>	
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Custom Text Colour That User Choose</p>
+					</li>
+
+	
+				</ul>
+				{% endif %}	
+				{% if object.membership_type != 'Free' %}
+				<ul>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2 memberships__card__text-3"><strong>All Free Features And Also</strong></p>
+					</li>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Smart Goals Feature</p>
+					</li>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Smart To Buy Lists Feature</p>
+					</li>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Custom Currencies for Your Convenience</p>
+					</li>
+				</ul>
+				{% endif %}	
+			</div>
+			<div class="memberships__card__side memberships__card__side--back memberships__card__side--back-auth">
+				<h1 class="memberships__card__heading-2 u-margin-botton-top">Only</h1>
+				{% if object.membership_type == 'Enterprise' %}
+				<p class="memberships__card__price">${{ object.price }}<small class="memberships__card__price-2"> /year</small></p>
+				<p class="memberships__card__price-2">Just $2.08 /month</p>
+				{%else%}
+				<p class="memberships__card__price">${{ object.price }}<small class="memberships__card__price-2"> /month</small></p>
+
+				{% endif %}	
+				{% if object.membership_type == 'Free' %}
+				<form  action="{% url 'dashboard' %}">
+					<div class="u-text-center">
+						<button class="dashboard__popup-button memberships__card__button-auth">Select <span>&rarr;</span></button>
+				</div>
+				</form>			
+				{% endif %}	
+			{% if object.membership_type != 'Free' %}
+			<form method="POST" action="{% url 'select' %}">
+				{% csrf_token %}
+				{% if object.membership_type != current_membership %}
+				
+					<button class="dashboard__popup-button memberships__card__button-auth">Select <span>&rarr;</span></button>
+				
+				<input type="hidden" name="membership_type" value="{{ object.membership_type }}">
+			</form>			
+			{% endif %}	
+	{% endif %}
+	{% if object.membership_type == current_membership %}
+					<small class="memberships__card__text">This is your current membership</small>
+					{% endif %}
+		</div>
+	</div>
+		{% endfor %}
+</div>
+
+
+
+{% endif %}
+    
+{% if user.usermembership.language.id == 2 %}
+
+<h1 class="blog__heading-main u-margin-bottom-medium">Подписки На Fincancal. Найдите Правильную для Вас</h1>
+	<div class="memberships u-margin-botton-top">
+		{% for object in object_list %}
+		<div class="memberships__card">
+			
+				<div class="memberships__card__side memberships__card__side--front memberships__card__side--front-auth">
+			<h2 class="memberships__card__heading">{{ object.membership_type }}</h2>
+	
+			<h1 class="memberships__card__heading-2 ">Что Вы Получете</h1>
+	
+			{% if object.membership_type == 'Free' %}
+				<ul>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Умные расчеты доходов и расходов и баланса</p>
+					</li>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Фон, который выбирает пользователь</p>
+					</li>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Категории пользователя</p>
+					</li>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Темные и Светлые Темы</p>
+					</li>	
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Цвет текста, который выбирает пользователь</p>
+					</li>
+	
+				</ul>
+				{% endif %}	
+				{% if object.membership_type != 'Free' %}
+				<ul>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2 memberships__card__text-3"><strong>Все Функции з Безплатной , а также :</strong></p>
+					</li>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Умная Функция Целей</p>
+					</li>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Умная Функция Списка Покупок</p>
+					</li>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Пользовательские Валюты для Вашего Удобства</p>
+					</li>
+				</ul>
+				{% endif %}	
+			</div>
+			<div class="memberships__card__side memberships__card__side--back memberships__card__side--back-auth">
+				<h1 class="memberships__card__heading-2 u-margin-botton-top">Всего</h1>
+				{% if object.membership_type == 'Enterprise' %}
+				<p class="memberships__card__price">${{ object.price }}<small class="memberships__card__price-2"> /год</small></p>
+				<p class="memberships__card__price-2">Только $2.08 /месяц</p>
+				{%else%}
+				<p class="memberships__card__price">${{ object.price }}<small class="memberships__card__price-2"> /месяц</small></p>
+
+				{% endif %}	
+				{% if object.membership_type == 'Free' %}
+				<form  action="{% url 'dashboard' %}">
+					<div class="u-text-center">
+						<button class="dashboard__popup-button memberships__card__button-auth">Выбрать <span>&rarr;</span></button>
+				</div>
+				</form>			
+				{% endif %}	
+			{% if object.membership_type != 'Free' %}
+			<form method="POST" action="{% url 'select' %}">
+				{% csrf_token %}
+				{% if object.membership_type != current_membership %}
+				
+					<button class="dashboard__popup-button memberships__card__button-auth">Выбрать <span>&rarr;</span></button>
+				
+				<input type="hidden" name="membership_type" value="{{ object.membership_type }}">
+			</form>			
+			{% endif %}	
+			{% endif %}
+			{% if object.membership_type == current_membership %}
+					<small class="memberships__card__text">Это Ваша Текущая Подписка</small>
+				{% endif %}
+		</div>
+	</div>
+		{% endfor %}
+</div>
+
+
+
+{% endif %}
+
+
+ 
+{% if user.usermembership.language.id == 4 %}
+
+<h1 class="blog__heading-main u-margin-bottom-medium">Підписки На Fincancal. Знайдіть Правильну для Вас</h1>
+	<div class="memberships u-margin-botton-top">
+		{% for object in object_list %}
+		<div class="memberships__card">
+			
+				<div class="memberships__card__side memberships__card__side--front memberships__card__side--front-auth">
+			<h2 class="memberships__card__heading">{{ object.membership_type }}</h2>
+	
+			<h1 class="memberships__card__heading-2 ">Що Ви Отримайте</h1>
+	
+			{% if object.membership_type == 'Free' %}
+				<ul>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Розумні розрахунки доходів і витрат і балансу</p>
+					</li>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Фон, який вибирає користувач</p>
+					</li>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Категорії Користувача</p>
+					</li>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Темні і Світлі Теми</p>
+					</li>	
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Колір Тексту, Який Вибирає Користувач</p>
+					</li>
+	
+				</ul>
+				{% endif %}	
+				{% if object.membership_type != 'Free' %}
+				<ul>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2 memberships__card__text-3"><strong>Всі Функції з безкоштовної Підписки, а Також :</strong></p>
+					</li>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Розумна Функція Цілей</p>
+					</li>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Розумна Функція Списку Покупок</p>
+					</li>
+					<li class="membership__card__list">
+						<p class="memberships__card__text memberships__card__text-2">Призначені для Користувача Валюти для Вашого Зручності</p>
+					</li>
+				</ul>
+				{% endif %}	
+			</div>
+			<div class="memberships__card__side memberships__card__side--back memberships__card__side--back-auth">
+				<h1 class="memberships__card__heading-2 u-margin-botton-top">Всього</h1>
+				{% if object.membership_type == 'Enterprise' %}
+				<p class="memberships__card__price">${{ object.price }}<small class="memberships__card__price-2"> /рік</small></p>
+				<p class="memberships__card__price-2">Тільки $2.08 /місяц</p>
+				{%else%}
+				<p class="memberships__card__price">${{ object.price }}<small class="memberships__card__price-2"> /місяц</small></p>
+
+				{% endif %}	
+				{% if object.membership_type == 'Free' %}
+				<form  action="{% url 'dashboard' %}">
+					<div class="u-text-center">
+						<button class="dashboard__popup-button memberships__card__button-auth">Вибрати <span>&rarr;</span></button>
+				</div>
+				</form>			
+				{% endif %}	
+			{% if object.membership_type != 'Free' %}
+			<form method="POST" action="{% url 'select' %}">
+				{% csrf_token %}
+				{% if object.membership_type != current_membership %}
+				
+					<button class="dashboard__popup-button memberships__card__button-auth">Вибрати <span>&rarr;</span></button>
+				
+				<input type="hidden" name="membership_type" value="{{ object.membership_type }}">
+			</form>			
+			{% endif %}	
+
+				{% endif %}
+				{% if object.membership_type == current_membership %}
+				<small class="memberships__card__text">Це Ваша Поточна Підписка</small>
+			{% endif %}			
+		</div>
+	</div>
+		{% endfor %}
+</div>
+
+
+
+{% endif %}
+
+
+{% include 'partials/_background_image.html' %}
+
+
+
+{% endblock content %}

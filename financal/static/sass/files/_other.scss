@@ -1,0 +1,229 @@
+
+.icon{
+    fill: var(--color-primary);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.errorIcon ,.error,.showpass{
+    opacity: 0 ;
+    visibility: hidden ;
+}
+ 
+.alert{
+    font-size: 2rem;
+    cursor: default;
+    &__button{
+        background: none;
+        border: none;
+        color: var(--color-primary);
+        font-size: 3.5rem;     
+        outline: none;
+        cursor: pointer;
+
+        transform: translateX(3rem) translateY(.5rem);
+        width: 3rem;
+        height: 4rem;
+        transition: all .2s ease-in-out ;
+        &:hover{
+            color: var(--color-secondary) !important;
+        }
+    }
+    &__strong{
+        color: var(--color-secondary);
+        
+    }
+    &__container{
+        display: block;
+        width: 100vw;
+        padding: .4rem;
+        height: 6.5rem;
+        border-bottom: 2px solid var(--color-primary);
+    }
+}
+
+
+.newPassIcon,.showpass,.showpassReg{
+    cursor:  pointer !important;
+}
+.payment-box{
+    width: 40vw;
+    margin: auto;
+    text-align: center ;
+    @media only screen and (max-width:$bp-tabmode){
+        width:90vw;
+    }
+}
+
+.goals__grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-left: 30rem;
+    margin-top: 5rem;
+    @media only screen and (max-width: $bp-big) {
+       margin-left: 25rem;
+     }
+     @media only screen and (max-width: $bp-bigger) {
+        margin-left: 20rem;
+      }
+      @media only screen and (max-width: $bp-landbig) {
+        margin-left: 2rem;
+        grid-template-columns: 1fr 1fr;
+        row-gap: 7rem;
+        column-gap: 2rem;
+      }
+
+      @media only screen and (max-width: $bp-medium) {
+        grid-template-columns: 1fr;
+        
+      }
+}
+
+
+
+.persinalization{
+&__wrapper{
+    position: relative;
+    width: 100vw;
+    overflow: hidden;
+}
+   &__child{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    &-1{
+     
+        top: 50%;
+    
+    }
+    &-2{
+        margin-left: 100vw;
+    }
+    &-3{
+        margin-left: 100vw;
+        top: 50%;
+    }
+    &-4{
+        margin-left: 100vw;
+        top: 45%;
+    }
+    &-5{
+        margin-left: 100vw;
+        top:40%;
+
+    }
+     &-6{
+        margin-left: 100vw;
+        top: 35%;
+    }
+    }
+}
+
+
+.payment-container{
+    height: 80vh;
+    width: 50vw;
+    color: var(--color-secondary);
+    background-color: var(--backgound-color);
+    border-radius: 3rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    margin: auto !important;
+    margin-top: 6rem !important;
+  }
+  @media only screen and (max-width: 50.000em) {
+    .payment-container {
+        width: 90% !important;
+        height: 90vh;
+    }
+   }
+  label {
+    font-family: "Roboto", Helvetica, sans-serif;
+    font-size: 16px;
+    font-variant: normal;
+    padding: 0;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    color: var(--color-secondary);
+  }
+
+  label {
+    font-weight: 500;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+    color: var(--color-secondary);
+  }
+  .payment-form{
+    border: 2px solid var(--color-primary);
+    border-radius: 3rem;
+    outline: none;
+    
+  }
+  #card-errors {
+    height: 20px;
+    padding: 4px 0;
+    color: #fa755a;
+  }
+  
+  .form-row {
+    width: 70%;
+    float: left;
+  }
+  
+  .token {
+    color: var(--color-secondary);
+    font-family: 'Roboto', monospace;
+    font-weight: 500;
+  }
+  
+  .wrapper {
+    width: 670px;
+    margin: 0 auto;
+  
+   
+      
+  }
+  @media only screen and (max-width: 83.750em) {
+    .wrapper {
+        width: 90% !important;
+    }
+   }
+  .card-enter{
+    border: 1px solid var(--color-primary) !important; 
+    border-radius: 1rem !important;
+  
+  }
+  
+  
+  #stripe-token-handler.is-hidden {
+    opacity: 0;
+    transform: translateY(-80px);
+  }
+  
+  /**
+   * The CSS shown here will not be introduced in the Quickstart guide, but shows
+   * how you can use CSS to style your Element's container.
+   */
+  .StripeElement {
+  
+    height: 40px;
+    padding: 10px 12px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+  }
+  
+  .StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+  }
+  
+  .StripeElement--invalid {
+    border-color: #fa755a;
+  }
+  
+  .StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+  }

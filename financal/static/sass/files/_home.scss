@@ -1,0 +1,351 @@
+.main{
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    @media only screen and (max-width: $bp-land-small) {
+     grid-template-columns: 1fr;
+     grid-template-rows: 1fr 1fr;
+   
+            }
+        &__container{
+            margin: 1rem;
+            padding: 1rem;
+        }
+    &__1{
+        margin: 4rem 0;
+        width: 100%;
+        @media only screen and (max-width: $bp-phonemode) {
+            margin: 1.5rem 0;
+        } 
+            &:nth-of-type(3) {
+            order: 1 !important;
+            }
+            &:nth-of-type(4) {
+            order: 2 !important;
+            }
+            &:nth-of-type(5) {
+            order: 4 !important;
+            }
+            &:nth-of-type(6) {
+            order: 3 !important;
+            }
+            &:nth-of-type(7) {
+            order: 5 !important;
+            }
+            &:nth-of-type(8) {
+            order: 6 !important;
+            }
+
+        @media only screen and (max-width: $bp-medium) {
+
+            &:nth-of-type(1) {
+                order: 4 !important;
+                }
+                &:nth-of-type(2) {
+                order: 3 !important;
+                }
+                &:nth-of-type(3) {
+                order: 6 !important;
+                }
+                &:nth-of-type(4) {
+                order: 5 !important;
+                }
+                &:nth-of-type(5) {
+                order: 7 !important;
+                }
+                &:nth-of-type(6) {
+                order: 8 !important;
+                }
+ }
+    }
+  
+    &__img{
+
+        height: 55rem;
+        margin: auto;
+        display: block;
+        @media only screen and (max-width: $bp-big) {
+            height: 40rem;
+
+                }
+                   @media only screen and (max-width: $bp-phonemode) {
+                        width: 80vw !important;
+                        height: auto;
+                    } 
+        &-2{
+            width: 68rem;
+            margin-top: 4.5rem;
+            margin-right: 2rem;
+            height: initial !important;
+            @media only screen and (max-width: $bp-big) {
+                width: 55rem !important;
+    
+                    }
+                    @media only screen and (max-width: $bp-land-small) {
+                        margin: auto !important;
+                    }
+                    @media only screen and (max-width: $bp-phonemode) {
+                        width: 80vw !important;
+                    } 
+      
+        }
+        
+    }
+    &__heading{
+        font-size: 5rem;
+        text-align: center;
+      
+        margin-top: 6rem;
+        color:var(--color-secondary);
+        @media only screen and (max-width: $bp-big) {
+          font-size: 3.5rem;
+         margin-top: 3rem;
+              }
+
+              @media only screen and (max-width: $bp-land-small) {
+                margin-top: 4rem;
+              }
+    }
+    &__image{
+    
+        width: 90rem;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        margin: auto !important;
+        position: absolute;
+        visibility: visible;
+        opacity: 1;
+        @media only screen and (max-width: $bp-land-small) {
+            visibility: hidden;
+            opacity: 0;
+            width: 80vw !important;
+        }
+        &-box{
+            position: relative;
+            width: 100%;
+            display: block;
+            margin-top: 2rem;
+            height: 70rem;
+      
+        }
+
+        &-2{
+            width: 80vw !important;
+            opacity: 0;
+            visibility: hidden;
+            @media only screen and (max-width: $bp-land-small) {
+              opacity: 1;
+              visibility: visible;
+              }
+        }
+    }
+    &__about{
+
+        &-click{
+            position: absolute;
+
+            width: 2.1rem;
+            height: 2.1rem;
+            border:3px solid var(--color-tertiary);
+            text-decoration: none;
+            border-radius: 50%;
+            transition: all .2s ease-in-out;
+            &:hover{
+                border-color: var(--color-primary);
+                transform: scale(1.3);
+            }
+            &-1{
+                top: 27%;
+                left: 31%;
+            }
+            &-2{
+                top: 27%;
+                left: 38%;
+            }
+            &-3{
+                top: 27%;
+                left: 46.5%;
+            }
+            &-4{
+                top: 27%;
+                left: 55%;
+            }
+            &-5{
+                top: 25%;
+                left: 68%;
+            }
+            &-6{
+                top: 25%;
+                left: 25%;
+            }
+            &-7{
+                top: 36.5%;
+                left: 24.3%;
+            }
+            &-8{
+                top: 41%;
+                left: 53%;
+            }
+            &-9{
+                top: 41%;
+                left: 68%;
+            }
+            &-10{
+                top: 51.5%;
+                left: 50.5%;
+            }
+        }
+        &-text{
+            text-transform: capitalize;
+            font-size: 4.5rem;
+            text-align: center;
+            color: var(--color-primary);
+            padding-top: 10rem;
+            font-weight: 700;
+            @media only screen and (max-width: $bp-land-small) {
+                font-size: 3.5rem !important;
+            }
+
+        }
+    }
+    &__text{
+        font-size: 3rem;
+        text-align: center;
+        color: var(--color-secondary);
+        width:70%;
+        margin: 3rem auto;
+        
+        @media only screen and (max-width: $bp-bigger) {
+            width: 60%;
+            font-size: 2rem !important;
+                }
+                @media only screen and (max-width: $bp-phonemode) {
+                    width: 90vw !important;
+                } 
+                &-2{
+            width: 75rem;
+            @media only screen and (max-width: $bp-phonemode) {
+                width: 90vw !important;
+            } 
+        }
+
+        &-foo{
+            font-size: 2.5rem;
+            text-align: center;
+        }
+    }
+   &__header{
+       height: 60rem;
+       @media only screen and (max-width: $bp-medium) {
+        height: 40rem !important; 
+
+            }
+            @media only screen and (max-width: $bp-phonemode) {
+                width: 90vw !important;
+        
+            } 
+            &-2{
+                @media only screen and (max-width: $bp-phonemode) {
+                    height: 20rem !important;
+                    margin-bottom: -50rem;
+            
+                }  
+            }
+        }
+   
+  
+}
+.footer{
+    position: relative;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    height: 12rem;
+    margin-top: 5rem;
+    margin-bottom: 4rem;
+    @media only screen and (max-width: $bp-big) {
+      height: 21rem;
+      margin-top: 10rem;
+
+      margin-bottom: -5rem;
+            }
+    &__logo-1{
+        width: 8rem;
+        height: 8rem;
+        position: absolute;
+        top: 20%;
+        left: 5%;
+        @media only screen and (max-width: $bp-big) {
+            opacity: 0;
+            visibility: hidden;
+                }
+    }
+
+    &__logo-2{
+        width: 30rem;
+        top: -20%;
+        transform: translateX(-50%);
+        left: 50%;
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+
+        @media only screen and (max-width: $bp-big) {
+            opacity: 1;
+            visibility: visible;
+                }
+    }
+    &__icon{
+        width: 7rem;
+        height:7rem;
+        display: block;
+        float: right;
+        position: absolute;
+        top: 25%;
+        text-decoration: none;
+        right: 5%;
+        transition: all .3s;
+        @media only screen and (max-width: $bp-big) {
+       top: 35%;
+            }
+        &:hover{
+            fill: var(--color-secondary) !important;
+          
+        }
+    }
+    &__link{
+        font-size: 2.5rem;
+        text-decoration: none;
+        color: var(--color-secondary);
+        margin-right: 7rem;
+        margin-top: 8rem;
+        transition: all .2s;
+        vertical-align: middle;
+        padding-top:2rem ;
+        @media only screen and (max-width: $bp-land-small) {
+            padding-top: 5rem !important;
+        }
+        @media only screen and (max-width: $bp-tabmode) {
+          font-size: 2rem;
+        padding-top: 3rem;
+           }
+        &:hover{
+            color: var(--color-primary);
+        }
+        &-box{
+           width: 85vw;
+            display: block;
+            margin: auto;
+            text-align: center;
+            @media only screen and (max-width: $bp-land-small) {
+                line-height: 3rem !important;
+            }
+            @media only screen and (max-width: $bp-tabmode) {
+                width: 75vw;
+
+          
+               }
+        }
+    }
+}
+
